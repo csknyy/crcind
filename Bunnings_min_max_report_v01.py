@@ -1,14 +1,18 @@
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Min Max v2.0", layout="wide")
+st.set_page_config(page_title="Bunnings min max v01", layout="wide")
 
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
 uploaded_file = st.file_uploader("Choose the .csv file")
 
-data = pd.read_excel(uploaded_file, header=1)
+try:
+    data = pd.read_excel(uploaded_file, header=None, skiprows=1)
+except Exception as e:
+    st.error(f"Error: {e}")
+    st.stop()
 
 data = data.fillna(0)
 
