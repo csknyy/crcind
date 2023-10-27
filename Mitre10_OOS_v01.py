@@ -51,6 +51,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
         
         del data['Physical inventory']
+        del data[' ']        
 
         st.dataframe(data)
 
