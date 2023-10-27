@@ -1,9 +1,18 @@
-import pandas as pd
+import streamlit as st
 
-data_BSS = pd.read_excel('NZ BSS Report - 26.10.23.xlsx', sheet_name = 'Products below safety stock')
+st.set_page_config(page_title="Min Max v2.0", layout="wide")
 
-data_M10_ranking = pd.read_excel('M10 Bronze CRC Ranking Report - CRC All Departments - wc 2023-10-16.xlsm', engine = 'openpyxl', skiprows = 5, usecols = list(range(4, 115)), sheet_name = 'Ranking')
-data_M10_stock = pd.read_excel('M10 Bronze CRC Ranking Report - CRC All Departments - wc 2023-10-16.xlsm', engine = 'openpyxl', skiprows = 2, usecols = list(range(2, 12)), sheet_name = 'Stock')
+def convert_data(data):
+    return data.to_csv(index=False).encode('utf-8')
+
+uploaded_file_0 = st.file_uploader("Choose the .csv file")
+uploaded_file_1 = st.file_uploader("Choose the .csv file")
+
+#####
+data_BSS = pd.read_excel(uploaded_file_0, sheet_name = 'Products below safety stock')
+
+data_M10_ranking = pd.read_excel(uploaded_file_1, engine = 'openpyxl', skiprows = 5, usecols = list(range(4, 115)), sheet_name = 'Ranking')
+data_M10_stock = pd.read_excel(uploaded_file_1, engine = 'openpyxl', skiprows = 2, usecols = list(range(2, 12)), sheet_name = 'Stock')
 
 
 data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
@@ -38,4 +47,8 @@ data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
 
 del data['Physical inventory']
 
-data
+st.dataframe(data)
+
+csv = convert_data(data)
+
+st.download_button(label="Download data as CSV", data=csv,file_name='Min_Max_with_supplier_request.csv', mime='text/csv')
