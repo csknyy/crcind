@@ -8,13 +8,14 @@ def convert_data(data):
 
 uploaded_file = st.file_uploader("Choose the .csv file")
 
-try:
-    data = pd.read_excel(uploaded_file, header=None, skiprows=1)
-except Exception as e:
-    st.error(f"Error: {e}")
-    st.stop()
+if uploaded_file is not None:
+    try:
+        data = pd.read_excel(uploaded_file, header=None, skiprows=1)
+    except Exception as e:
+        st.error(f"Error: {e}")
+        st.stop()
 
-data = data.fillna(0)
+    data = data.fillna(0)
 
 def rounding_check(number):
   return number // 1 == number
