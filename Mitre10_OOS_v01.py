@@ -1,13 +1,13 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Min Max v2.0", layout="wide")
+st.set_page_config(page_title="Mitre 10 OOS report", layout="wide")
 
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-uploaded_file_0 = st.file_uploader("Choose the 'Products below safety stock' .csv file", key="file_uploader_0")
-uploaded_file_1 = st.file_uploader("Choose the 'Ranking' and 'Stock' .xlsx file", key="file_uploader_1")
+uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key="file_uploader_0")
+uploaded_file_1 = st.file_uploader("Upload the 'M10 Bronze CRC Ranking Report' .xlsm file", key="file_uploader_1")
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
     try:
@@ -40,7 +40,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
         del data['Physical inventory']
 
-        st.dataframe(data)
+        st.dataframe(data)  # Display the processed data
+
         csv = convert_data(data)
         st.download_button(label="Download data as CSV", data=csv, file_name='Min_Max_with_supplier_request.csv', mime='text/csv')
 
