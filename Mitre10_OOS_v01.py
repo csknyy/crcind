@@ -60,3 +60,6 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
+else:
+    st.info("Please upload a CSV file to get started.")
