@@ -8,12 +8,11 @@ def convert_data(data):
 
 uploaded_file = st.file_uploader("Choose the .csv file")
 
-if uploaded_file_0 is not None:
+if uploaded_file is not None:
     try:
-        data = pd.read_excel(uploaded_file, header=1)
-        
+        data = pd.read_excel(uploaded_file, header=1, engine='openpyxl')
         data = data.fillna(0)
-        
+
         def rounding_check(number):
           return number // 1 == number
         
@@ -80,4 +79,6 @@ if uploaded_file_0 is not None:
         st.download_button(label="Download data as CSV", data=csv,file_name='Min_Max_with_supplier_request.csv', mime='text/csv')
 
     except Exception as e:
-        st.error(f"An error occurred: {e}")
+        st.error(f"Error: {e}")
+else:
+    st.info("Please upload a CSV file to get started.")
