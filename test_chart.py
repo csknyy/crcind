@@ -10,7 +10,7 @@ uploaded_file_0 = st.file_uploader("Upload a file", key="uploaded_file_0")
 
 if uploaded_file_0 is not None:
     try:
-        data = pd.read_csv(uploaded_file_0)
+        data = pd.read_csv(uploaded_file_0, encoding='utf-8')
         column_opt = [str(i) for i in data.columns]
         column = st.multiselect("Column", options = column_opt)
 
