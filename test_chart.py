@@ -20,10 +20,8 @@ if uploaded_file_0 is not None:
         column_opt = [str(i) for i in data.columns]
         columns = st.multiselect("Columns", options = column_opt)
 
-        try:
+        if len(columns) == 2:
             st.scatter_chart(data[columns])
-        except:
-            pass
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
