@@ -11,7 +11,8 @@ if uploaded_file is not None:
         data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
         column_options = [str(col) for col in data.columns]
 
-        ###Select filters
+        ###Filters
+        
         st.sidebar.header("Filters")
         filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
 
@@ -19,7 +20,14 @@ if uploaded_file is not None:
             filter1_list = [str(i) for i in data[filter1].unique()]
             filter1_list.sort()
             filter1_selected = st.sidebar.multiselect(filter1, options=filter1_list)
+
+        ####data = data.query("Country == @country & Channel == @channel & Priced_at_supplier_fc == @priced_at_supplier_fc & Supplier_fc == @supplier_fc & Priced_at_supplier == @pri_supplier & Supplier == @supplier")
+        
+        data = data[data[filter1]==filter1_selected]
+        
         ###
+
+        
 
         st.dataframe(data)
 
