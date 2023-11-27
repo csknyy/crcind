@@ -15,13 +15,14 @@ if uploaded_file is not None:
         
         st.sidebar.header("Filters")
         filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
-
+        
         if len(filter1)>0:
             filter1_list = [str(i) for i in data[filter1].unique()]
             filter1_list.sort()
             filter1_selected = st.sidebar.multiselect(filter1, options=filter1_list)
 
-        ####data = data.query("Country == @country & Channel == @channel & Priced_at_supplier_fc == @priced_at_supplier_fc & Supplier_fc == @supplier_fc & Priced_at_supplier == @pri_supplier & Supplier == @supplier")
+        if len(filter1_selected) == 0:
+            filter1_selected = filter1_list
         
         data = data[data[filter1].isin(filter1_selected)]
         
