@@ -10,6 +10,8 @@ if uploaded_file is not None:
     try:
         data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
 
+        st.sidebar.header("Filters")
+
         st.dataframe(data)
 
         column_options = [str(col) for col in data.columns]
