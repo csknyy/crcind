@@ -14,6 +14,11 @@ if uploaded_file is not None:
         ###Select filters
         st.sidebar.header("Filters")
         filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
+
+        if len(filter1)>0:
+            filter1_list = [str(i) for i in data[filter1].unique()]
+            filter1_list.sort()
+            filter1_selected = st.sidebar.multiselect(filter1, options=filter1_list)
         ###
 
         st.dataframe(data)
