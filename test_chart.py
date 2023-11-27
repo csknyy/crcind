@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Price Scraper", layout="wide")
+st.set_page_config(page_title="Test chart", layout="wide")
 
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
