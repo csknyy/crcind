@@ -23,7 +23,7 @@ if uploaded_file_0 is not None:
         if len(columns) == 2:
             st.scatter_chart(data[columns])
             df = data[columns]
-            df.plot.scatter(x = columns[0], y = columns[1])
+            st.pyplot(df.plot.scatter(x = columns[0], y = columns[1]))
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
