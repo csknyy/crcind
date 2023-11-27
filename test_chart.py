@@ -18,10 +18,10 @@ if uploaded_file_0 is not None:
         st.dataframe(data)
         
         column_opt = [str(i) for i in data.columns]
-        column = st.multiselect("Columns", options = column_opt)
+        columns = st.multiselect("Columns", options = column_opt)
 
-        while len(Columns) == 2:
-            st.scatter_chart(data[Columns])            
+        while len(columns) == 2:
+            st.scatter_chart(data[columns])            
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
