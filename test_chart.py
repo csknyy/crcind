@@ -6,10 +6,11 @@ st.set_page_config(page_title="Test chart", layout="wide")
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-data = st.file_uploader("Upload a file", key="data")
+uploaded_file_0 = st.file_uploader("Upload a file", key="uploaded_file_0")
 
-if data is not None:
+if uploaded_file_0 is not None:
     try:
+        data = pd.read_csv(uploaded_file_0)
         column_opt = [str(i) for i in data.columns]
         column = st.multiselect("Column", options = column_opt)
 
