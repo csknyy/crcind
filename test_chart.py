@@ -9,12 +9,15 @@ uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 if uploaded_file is not None:
     try:
         data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
+        column_options = [str(col) for col in data.columns]
 
+        ###Select filters
         st.sidebar.header("Filters")
+        filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
+        ###
 
         st.dataframe(data)
 
-        column_options = [str(col) for col in data.columns]
         x_axis = st.selectbox("Select X-axis:", options=column_options)
         y_axis = st.selectbox("Select Y-axis:", options=column_options)
 
