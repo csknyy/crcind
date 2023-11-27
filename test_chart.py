@@ -18,8 +18,8 @@ if uploaded_file is not None:
 
         # Create an interactive scatter plot with Plotly Express
         fig = px.scatter(data, x=x_axis, y=y_axis, title="Interactive Scatter Plot")
-        st.plotly_chart(fig)
         fig.update_layout(height=800, width=800)
+        st.plotly_chart(fig)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
