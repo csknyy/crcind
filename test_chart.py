@@ -11,7 +11,7 @@ data = st.file_uploader("Upload a file", key="data")
 if data is not None:
     try:
         column_opt = [str(i) for i in data.columns]
-        column = st..multiselect("Column", options = column_opt)
+        column = st.multiselect("Column", options = column_opt)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
