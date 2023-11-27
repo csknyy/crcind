@@ -5,11 +5,12 @@ st.set_page_config(page_title="Test chart", layout="wide")
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-uploaded_file_0 = st.file_uploader("Upload a file", key="file_uploader_0")
+data = st.file_uploader("Upload a file", key="file_uploader_0")
 
-if uploaded_file_0 is not None and uploaded_file_1 is not None:
+if data is not None:
     try:
-        pass
+        category = st.multiselect("Category", options=category_opt)
+        supplier_opt = [str(i) for i in data["Supplier"].unique()]
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
