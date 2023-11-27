@@ -21,11 +21,10 @@ if uploaded_file_0 is not None:
         columns = st.multiselect("Columns", options = column_opt)
 
         if len(columns) == 2:
-            scatter_chart = st.scatter_chart(data[columns], use_container_width=True)
-
-            scatter_chart.set_title("Custom Scatter Chart Title")
-            scatter_chart.set_xlabel(columns[0])
-            scatter_chart.set_ylabel(columns[1])
+            x_axis = st.selectbox("X-axis", columns)
+            y_axis = st.selectbox("Y-axis", columns)
+            
+            st.scatter_chart(data[columns])
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
