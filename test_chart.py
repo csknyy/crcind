@@ -23,7 +23,7 @@ if uploaded_file is not None:
 
         ####data = data.query("Country == @country & Channel == @channel & Priced_at_supplier_fc == @priced_at_supplier_fc & Supplier_fc == @supplier_fc & Priced_at_supplier == @pri_supplier & Supplier == @supplier")
         
-        data = data[data[filter1]==[filter1_selected]]
+        data = data[data[filter1] == filter1_selected]
         
         ###
 
