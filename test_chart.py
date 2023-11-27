@@ -9,8 +9,8 @@ data = st.file_uploader("Upload a file", key="file_uploader_0")
 
 if data is not None:
     try:
-        category = st.multiselect("Category", options=category_opt)
-        supplier_opt = [str(i) for i in data["Supplier"].unique()]
+        column_opt = [str(i) for i in data.columns]
+        column = st..multiselect("Dolumn", options = column_opt)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
