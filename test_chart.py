@@ -14,8 +14,11 @@ if uploaded_file_0 is not None:
             data = pd.read_csv(uploaded_file_0)
         except:
             data = pd.read_excel(uploaded_file_0)
+
+        st.dataframe(data)
+        
         column_opt = [str(i) for i in data.columns]
-        column = st.multiselect("Column", options = column_opt)
+        column = st.multiselect("Columns", options = column_opt)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
