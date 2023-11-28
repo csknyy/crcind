@@ -13,7 +13,7 @@ if uploaded_file is not None:
 
         ###Filters
     
-        st.sidebar.header("Filters")
+        '''st.sidebar.header("Filters")
         filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
         
         if len(filter1)>0:
@@ -24,7 +24,7 @@ if uploaded_file is not None:
         if len(filter1_selected) == 0:
             filter1_selected = filter1_list
         
-        data = data[data[filter1].isin(filter1_selected)]
+        data = data[data[filter1].isin(filter1_selected)]'''
 
         
         
