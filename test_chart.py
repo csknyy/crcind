@@ -53,11 +53,13 @@ if uploaded_file is not None:
             groupby_data = groupby_data.reset_index()
 
             if top > 0:
-                groupby_data = groupby_data.head(top)
+                groupby_data_top = groupby_data.head(top)
             elif bottom > 0:
-                groupby_data = groupby_data.tail(top)
+                groupby_data_top = groupby_data.tail(top)
+            else:
+                groupby_data_top = groupby_data.copy()
             
-            st.dataframe(groupby_data)
+            st.dataframe(groupby_data_top)
     
             #groupby_list = [str(i) for i in data.columns]
             #groupby_selected = st.multiselect("Group by", options = column_options)
