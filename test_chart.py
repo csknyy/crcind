@@ -99,15 +99,21 @@ if uploaded_file is not None:
         with middle_column:
             chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
         with right_column:
-            top_chart = st.text_input("First x rows:", key = "top_chart")
-            bottom_chart = st.text_input("Last x rows:", key = "bottom_chart")
+            top_chart = st.text_input('"+" for first x rows and "-" for last x rows"', key="top_chart")
+            try:
+                top_chart = int(top_chart)
+            except:
+                if not top_chart:
+                    pass
+                else:
+                    st.info("Please enter an integer")
 
-        if not top_chart and not bottom_chart:
+        if not top_chart:
             pass
         elif int(top_chart) > 0:
             data = data.head(int(top_chart))
-        elif int(bottom_chart) > 0:
-            data = data.tail(int(bottom_chart))
+        elif int(top_group) < 0:
+            data = data.tail(int(top_chart)*-1)
         else:
             pass
         
