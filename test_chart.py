@@ -48,7 +48,9 @@ if uploaded_file is not None:
             with right_column:
                 pass
     
-            groupby_data = groupby_data[selected_columns]
+            groupby_data = groupby_data[selected_columns].sort_values(by=data.columns[0], ascending=False)
+            groupby_data = groupby_data.reset_index()
+            
             st.dataframe(groupby_data)
     
             #groupby_list = [str(i) for i in data.columns]
@@ -70,9 +72,6 @@ if uploaded_file is not None:
             data = data
         else:
             data = groupby_data
-
-        data = data.sort_values(by=data.columns[0], ascending=False)
-        data = data.reset_index()
 
         new_column_options = [str(col) for col in data.columns]
 
