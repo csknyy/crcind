@@ -90,6 +90,8 @@ if uploaded_file is not None:
             data = data.head(top)
         elif bottom > 0:
             data = data.tail(top)
+        else:
+            pass
         
         new_column_options = [str(col) for col in data.columns]
 
@@ -121,6 +123,9 @@ if uploaded_file is not None:
             fig = px.line(data, x=x_axis, y=y_axis)
             fig.update_layout(height=800, width=800)
             st.plotly_chart(fig)
+
+        else:
+            pass
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
