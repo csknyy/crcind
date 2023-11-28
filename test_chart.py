@@ -45,7 +45,7 @@ if uploaded_file is not None:
             groupby_data = data.groupby(by=groupby_selected).sum()
             selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
         with right_column:
-            st.subheader("Supplier")
+            pass
 
         groupby_data = groupby_data[selected_columns]
         st.dataframe(groupby_data)
