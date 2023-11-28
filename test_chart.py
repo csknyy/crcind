@@ -22,12 +22,12 @@ if uploaded_file is not None:
 
         apply_filters = st.sidebar.radio("Apply filters", ("No", "Yes"))
 
-        if apply_filters == "Yes":
-            st.sidebar.header("Filters")
-            filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
-            filter1_list = [str(i) for i in data[filter1].unique()]
-            filter1_list.sort()
+        st.sidebar.header("Filters")
+        filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
+        filter1_list = [str(i) for i in data[filter1].unique()]
+        filter1_list.sort()
 
+        if apply_filters == "Yes":
             if len(filter1)>0:
                 filter1_selected = st.sidebar.multiselect(filter1, options=filter1_list)
                 data = data[data[filter1] == filter1_selected]
