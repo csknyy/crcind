@@ -14,6 +14,7 @@ if uploaded_file is not None:
         st.dataframe(data)
 
         st.markdown('---')
+        st.header('Grouped data')
 
         ##############################
         #####Filters
@@ -78,6 +79,7 @@ if uploaded_file is not None:
         ##############################
 
         st.markdown('---')
+        st.header('Chart')
 
         left_column, middle_column, right_column = st.columns(3)
         with left_column:
