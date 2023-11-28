@@ -84,7 +84,7 @@ if uploaded_file is not None:
             st.plotly_chart(fig)
         elif chart_type == "Scatter Matrix":
             dimensions = st.multiselect("Dimensions", options = column_options)
-            fig = px.scatter_matrix(df, dimensions = dimensions)
+            fig = px.scatter_matrix(data, dimensions = dimensions)
             st.plotly_chart(fig)
         
         elif chart_type == "Bar":
