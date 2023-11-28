@@ -63,6 +63,13 @@ if uploaded_file is not None:
         
         ##############################
 
+        data_type = st.radio("", ("Raw data", "Grouped data"))
+
+        if data_type == "Raw data":
+            data = data
+        else:
+            data = groupby_data
+
         x_axis = st.selectbox("Select X-axis:", options=column_options)
         y_axis = st.selectbox("Select Y-axis:", options=column_options)
 
