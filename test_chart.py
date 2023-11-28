@@ -70,6 +70,8 @@ if uploaded_file is not None:
         else:
             data = groupby_data
 
+        data = data.reset_index()
+
         new_column_options = [str(col) for col in data.columns]
 
         x_axis = st.selectbox("Select X-axis:", options=new_column_options)
