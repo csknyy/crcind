@@ -126,6 +126,7 @@ if uploaded_file is not None:
             
         elif chart_type == "Scatter Matrix":
             data.iteritems = data.items
+            pd.DataFrame.iteritems = pd.DataFrame.items
             dimensions = st.multiselect("Dimensions", options = new_column_options)
             fig = px.scatter_matrix(data, dimensions=dimensions)
         
