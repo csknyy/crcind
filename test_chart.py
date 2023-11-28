@@ -53,7 +53,10 @@ if uploaded_file is not None:
                 try:
                     top_group = int(top_group)
                 except:
-                    st.info("Please enter an integer")
+                    if not top_group:
+                        pass
+                    else:
+                        st.info("Please enter an integer")
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
