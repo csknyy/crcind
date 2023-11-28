@@ -26,8 +26,9 @@ if uploaded_file is not None:
 
         if len(filter1_selected) == 0:
             filter1_selected = filter1_list
-        
-        data = data[data[filter1].isin(filter1_selected)]
+
+        if apply_filters == "Yes":
+            data = data[data[filter1].isin(filter1_selected)]
 
         
         
