@@ -46,16 +46,16 @@ if uploaded_file is not None:
                 groupby_data = data.groupby(by=groupby_selected).sum()
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
-                top = st.text_input("Enter your text here:")
-                bottom = st.text_input("Enter your text here:")
+                top_group = st.text_input("Enter your text here:")
+                bottom_group = st.text_input("Enter your text here:")
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
 
-            if int(top) > 0:
-                groupby_data_top = groupby_data.head(int(top))
-            elif int(bottom) > 0:
-                groupby_data_top = groupby_data.tail(int(bottom))
+            if int(top_group) > 0:
+                groupby_data_top = groupby_data.head(int(top_group))
+            elif int(bottom_group) > 0:
+                groupby_data_top = groupby_data.tail(int(bottom_group))
             else:
                 groupby_data_top = groupby_data.copy()
             
@@ -85,13 +85,13 @@ if uploaded_file is not None:
         with middle_column:
             chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
         with right_column:
-            top = st.text_input("Enter your text here:")
-            bottom = st.text_input("Enter your text here:")
+            top_chart = st.text_input("Enter your text here:")
+            bottom_chart = st.text_input("Enter your text here:")
 
-        if int(top) > 0:
-            data = data.head(int(top))
-        elif int(bottom) > 0:
-            data = data.tail(int(bottom))
+        if int(top_chart) > 0:
+            data = data.head(int(top_chart))
+        elif int(bottom_chart) > 0:
+            data = data.tail(int(bottom_chart))
         else:
             pass
         
