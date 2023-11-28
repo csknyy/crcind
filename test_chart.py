@@ -137,12 +137,12 @@ if uploaded_file is not None:
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
             fig = px.line(data, x=x_axis, y=y_axis)
-            
-        fig.update_layout(height=800, width=1600)
-        st.plotly_chart(fig)
 
         else:
             pass
+            
+        fig.update_layout(height=800, width=1600)
+        st.plotly_chart(fig)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
