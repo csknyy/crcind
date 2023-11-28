@@ -40,7 +40,7 @@ if uploaded_file is not None:
         #groupby_list = [str(i) for i in data.columns]
         groupby_selected = st.multiselect(filter1, options = column_options)
         if len(groupby_selected) == 0:
-            groupby_selected = groupby_list
+            groupby_selected = column_options
             groupby_data = data.groupby(by=groupby_selected).sum()
             st.dataframe(groupby_data)
         else:
