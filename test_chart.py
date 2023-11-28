@@ -79,9 +79,10 @@ if uploaded_file is not None:
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
     
-            fig = px.scatter(data, x=x_axis, y=y_axis, title="Interactive Scatter Plot")
+            fig = px.scatter(data, x=x_axis, y=y_axis)
             fig.update_layout(height=800, width=800)
             st.plotly_chart(fig)
+            
         elif chart_type == "Scatter Matrix":
             dimensions = st.multiselect("Dimensions", options = column_options)
             fig = px.scatter_matrix(data, dimensions = dimensions)
@@ -90,11 +91,18 @@ if uploaded_file is not None:
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-            pass
+
+            fig = px.scatter(data, x=x_axis, y=y_axis)
+            fig.update_layout(height=800, width=800)
+            st.plotly_chart(fig)
+
         elif chart_type == "Line":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-            pass
+
+            fig = px.scatter(data, x=x_axis, y=y_axis)
+            fig.update_layout(height=800, width=800)
+            st.plotly_chart(fig)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
