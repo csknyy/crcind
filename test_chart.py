@@ -11,6 +11,8 @@ if uploaded_file is not None:
         data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
         column_options = [str(col) for col in data.columns]
 
+        st.dataframe(data)
+
         ##############################
         #####Filters
         ##############################
@@ -35,8 +37,8 @@ if uploaded_file is not None:
         #####Groupby
         ##############################
 
-        groupby_list = [str(i) for i in data.columns]
-        groupby_selected = st.multiselect(filter1, options=groupby_list)
+        #groupby_list = [str(i) for i in data.columns]
+        groupby_selected = st.multiselect(filter1, options = column_options)
         if len(groupby_selected) == 0:
             groupby_selected = groupby_list
             groupby_data = data.groupby(by=groupby_selected).sum()
@@ -45,8 +47,6 @@ if uploaded_file is not None:
             groupby_data = data.groupby(by=groupby_selected).sum()
         
         ##############################
-        
-        st.dataframe(data)
 
         x_axis = st.selectbox("Select X-axis:", options=column_options)
         y_axis = st.selectbox("Select Y-axis:", options=column_options)
