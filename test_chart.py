@@ -20,7 +20,7 @@ if uploaded_file is not None:
         #####Filters
         ##############################
 
-        apply_filters = st.sidebar.radio("Apply filters", ("No", "Yes"), default = "No")
+        apply_filters = st.sidebar.radio("Apply filters", ("No", "Yes"))
 
         st.sidebar.header("Filters")
         filter1 = st.sidebar.selectbox("Select filter:", options=column_options)
