@@ -39,10 +39,10 @@ if uploaded_file is not None:
         groupby_selected = st.multiselect(filter1, options=groupby_list)
         if len(groupby_selected) == 0:
             groupby_selected = groupby_list
-
-        groupby_data = data.groupby(by=groupby_selected).sum()
-
-        st.dataframe(groupby_data)
+            groupby_data = data.groupby(by=groupby_selected).sum()
+            st.dataframe(groupby_data)
+        else:
+            st.dataframe(data)
         
         ##############################
         
