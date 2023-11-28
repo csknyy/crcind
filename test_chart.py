@@ -72,19 +72,19 @@ if uploaded_file is not None:
         ##############################
 
         left_column, middle_column, right_column = st.columns(3)
-            with left_column:
-                data_type = st.radio("", ("Raw data", "Grouped data"))
+        with left_column:
+            data_type = st.radio("", ("Raw data", "Grouped data"))
 
-                if data_type == "Raw data":
-                    data = data
-                else:
-                    data = groupby_data
-                
-            with middle_column:
-                chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
-            with right_column:
-                top = int(st.text_input("Enter your text here:"))
-                bottom = int(st.text_input("Enter your text here:"))
+            if data_type == "Raw data":
+                data = data
+            else:
+                data = groupby_data
+            
+        with middle_column:
+            chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
+        with right_column:
+            top = int(st.text_input("Enter your text here:"))
+            bottom = int(st.text_input("Enter your text here:"))
 
         if top > 0:
             data = data.head(top)
