@@ -57,8 +57,8 @@ if uploaded_file is not None:
                         pass
                     else:
                         st.info("Please enter an integer")
-                        
-            groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
+
+            groupby_data = groupby_data[selected_columns].reset_index()
             
             if not top_group:
                 groupby_data_top = groupby_data.copy()
