@@ -125,8 +125,8 @@ if uploaded_file is not None:
             fig = px.scatter(data, x=x_axis, y=y_axis)
             
         elif chart_type == "Scatter Matrix":
-            dimensionss = st.multiselect("Dimensions", options = new_column_options)
-            fig = px.scatter_matrix(data, dimensions=dimensionss, color=data.columns[0])
+            dimensions = st.multiselect("Dimensions", options = new_column_options)
+            fig = px.scatter_matrix(data, dimensions=dimensions)
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
