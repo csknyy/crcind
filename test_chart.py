@@ -122,31 +122,24 @@ if uploaded_file is not None:
         if chart_type == "Scatter":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-    
             fig = px.scatter(data, x=x_axis, y=y_axis)
-            fig.update_layout(height=800, width=800)
-            st.plotly_chart(fig)
             
         elif chart_type == "Scatter Matrix":
             dimensionss = st.multiselect("Dimensions", options = new_column_options)
             fig = px.scatter_matrix(data, dimensions = dimensionss)
-            st.plotly_chart(fig)
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-
             fig = px.bar(data, x=x_axis, y=y_axis)
-            fig.update_layout(height=800, width=800)
-            st.plotly_chart(fig)
 
         elif chart_type == "Line":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-
             fig = px.line(data, x=x_axis, y=y_axis)
-            fig.update_layout(height=800, width=800)
-            st.plotly_chart(fig)
+            
+        fig.update_layout(height=800, width=1600)
+        st.plotly_chart(fig)
 
         else:
             pass
