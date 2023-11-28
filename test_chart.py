@@ -50,6 +50,10 @@ if uploaded_file is not None:
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
                 top_group = st.text_input('"+" for first x rows and "-" for last x rows"', key="top_group")
+                if isinstance(top_group, int) or not top_group:
+                    pass
+                else:
+                    st.info("Please enter an integer")
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
