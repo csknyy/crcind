@@ -46,11 +46,16 @@ if uploaded_file is not None:
                 groupby_data = data.groupby(by=groupby_selected).sum()
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
-                pass
+                top = int(st.text_input("Enter your text here:"))
+                bottom = int(st.text_input("Enter your text here:"))
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
-            #groupby_data = groupby_data.sort_values(by=groupby_data.columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
+
+            if top > 0:
+                groupby_data = groupby_data.head(top)
+            elif bottom > 0:
+                groupby_data = groupby_data.tail(top)
             
             st.dataframe(groupby_data)
     
@@ -66,14 +71,26 @@ if uploaded_file is not None:
         
         ##############################
 
-        data_type = st.radio("", ("Raw data", "Grouped data"))
-        chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
+        left_column, middle_column, right_column = st.columns(3)
+            with left_column:
+                data_type = st.radio("", ("Raw data", "Grouped data"))
 
-        if data_type == "Raw data":
-            data = data
-        else:
-            data = groupby_data
+                if data_type == "Raw data":
+                    data = data
+                else:
+                    data = groupby_data
+                
+            with middle_column:
+                chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
+            with right_column:
+                top = int(st.text_input("Enter your text here:"))
+                bottom = int(st.text_input("Enter your text here:"))
 
+        if top > 0:
+            data = data.head(top)
+        elif bottom > 0:
+            data = data.tail(top)
+        
         new_column_options = [str(col) for col in data.columns]
 
         if chart_type == "Scatter":
