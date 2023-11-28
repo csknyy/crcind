@@ -126,7 +126,7 @@ if uploaded_file is not None:
             
         elif chart_type == "Scatter Matrix":
             dimensionss = st.multiselect("Dimensions", options = new_column_options)
-            fig = px.scatter_matrix(data, dimensions = dimensionss)
+            fig = px.scatter_matrix(data, dimensions=dimensionss, color=data.columns[0])
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
@@ -141,7 +141,7 @@ if uploaded_file is not None:
         else:
             pass
             
-        fig.update_layout(height=800, width=1600)
+        fig.update_layout(height=800, width=1200)
         st.plotly_chart(fig)
 
     except Exception as e:
