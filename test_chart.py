@@ -126,7 +126,7 @@ if uploaded_file is not None:
         elif chart_type == "Scatter Matrix":
             pd.DataFrame.iteritems = pd.DataFrame.items
             numerical_columns = data.select_dtypes(include='number').columns.tolist()
-            all_numerical = st.radio("", ("Yes","No"))
+            all_numerical = st.radio("All numerical data", ("Yes","No"))
             if all_numerical == "Yes":
                 dimensions = st.multiselect("Dimensions", options = new_column_options, default = numerical_columns)
             else:
