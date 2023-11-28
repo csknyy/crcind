@@ -128,7 +128,7 @@ if uploaded_file is not None:
             numerical_columns = data.select_dtypes(include='number').columns.tolist()
             all_numerical = st.radio("", ("Yes","No"))
             if all_numerical == "Yes":
-                dimensions = numerical_columns
+                dimensions = st.multiselect("Dimensions", options = new_column_options, default = numerical_columns)
             else:
                 dimensions = st.multiselect("Dimensions", options = new_column_options)
             fig = px.scatter_matrix(data, dimensions=dimensions)
