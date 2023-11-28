@@ -37,13 +37,26 @@ if uploaded_file is not None:
         #####Groupby
         ##############################
 
-        #groupby_list = [str(i) for i in data.columns]
-        groupby_selected = st.multiselect("Group by", options = column_options)
-        if len(groupby_selected) != 0:
+        left_column, middle_column, right_column = st.columns(3)
+        with left_column:
+            groupby_list = [str(i) for i in data.columns]
+            groupby_selected = st.multiselect("Group by", options = column_options)
+        with middle_column:
             groupby_data = data.groupby(by=groupby_selected).sum()
             selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
-            groupby_data = groupby_data[selected_columns]
-            st.dataframe(groupby_data)
+        with right_column:
+            st.subheader("Supplier")
+
+        groupby_data = groupby_data[selected_columns]
+        st.dataframe(groupby_data)
+
+        #groupby_list = [str(i) for i in data.columns]
+        #groupby_selected = st.multiselect("Group by", options = column_options)
+        #if len(groupby_selected) != 0:
+        #    groupby_data = data.groupby(by=groupby_selected).sum()
+        #    selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
+        #    groupby_data = groupby_data[selected_columns]
+        #    st.dataframe(groupby_data)
         
         ##############################
 
