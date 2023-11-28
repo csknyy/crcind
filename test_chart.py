@@ -72,7 +72,6 @@ if uploaded_file is not None:
             data = groupby_data
 
         data = data.reset_index()
-        del data['index']
 
         data = data.sort_values(by=data.columns[0], ascending=False)
 
