@@ -74,6 +74,8 @@ if uploaded_file is not None:
         data = data.reset_index()
         del data['index']
 
+        data = data.sort_values(by=data.columns[0], ascending=False)
+
         new_column_options = [str(col) for col in data.columns]
 
         if chart_type == "Scatter":
