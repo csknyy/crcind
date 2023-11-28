@@ -42,7 +42,7 @@ if uploaded_file is not None:
             groupby_data = data.groupby(by=groupby_selected).sum()
             st.dataframe(groupby_data)
         else:
-            st.dataframe(data)
+            groupby_data = data.groupby(by=groupby_selected).sum()
         
         ##############################
         
