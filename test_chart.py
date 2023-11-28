@@ -46,8 +46,8 @@ if uploaded_file is not None:
                 groupby_data = data.groupby(by=groupby_selected).sum()
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
-                top_group = st.text_input("Enter your text here:")
-                bottom_group = st.text_input("Enter your text here:")
+                top_group = st.text_input("Top x rows:", key="top_group")
+                bottom_group = st.text_input("Bottom x rows:", key="bottom_group")
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
@@ -85,8 +85,8 @@ if uploaded_file is not None:
         with middle_column:
             chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
         with right_column:
-            top_chart = st.text_input("Enter your text here:")
-            bottom_chart = st.text_input("Enter your text here:")
+            top_chart = st.text_input("Enter your text here:", key = "top_chart")
+            bottom_chart = st.text_input("Enter your text here:", key = "bottom_chart")
 
         if int(top_chart) > 0:
             data = data.head(int(top_chart))
