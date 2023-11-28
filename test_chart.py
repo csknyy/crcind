@@ -70,8 +70,10 @@ if uploaded_file is not None:
         else:
             data = groupby_data
 
-        x_axis = st.selectbox("Select X-axis:", options=column_options)
-        y_axis = st.selectbox("Select Y-axis:", options=column_options)
+        new_column_options = [str(col) for col in data.columns]
+
+        x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+        y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
 
         # Create an interactive scatter plot with Plotly Express
         fig = px.scatter(data, x=x_axis, y=y_axis, title="Interactive Scatter Plot")
