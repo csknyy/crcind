@@ -64,6 +64,7 @@ if uploaded_file is not None:
         ##############################
 
         data_type = st.radio("", ("Raw data", "Grouped data"))
+        chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
 
         if data_type == "Raw data":
             data = data
@@ -74,13 +75,26 @@ if uploaded_file is not None:
 
         new_column_options = [str(col) for col in data.columns]
 
-        x_axis = st.selectbox("Select X-axis:", options=new_column_options)
-        y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-
-        # Create an interactive scatter plot with Plotly Express
-        fig = px.scatter(data, x=x_axis, y=y_axis, title="Interactive Scatter Plot")
-        fig.update_layout(height=800, width=800)
-        st.plotly_chart(fig)
+        if chart_type = "Scatter":
+            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
+    
+            fig = px.scatter(data, x=x_axis, y=y_axis, title="Interactive Scatter Plot")
+            fig.update_layout(height=800, width=800)
+            st.plotly_chart(fig)
+        elif chart_type = "Scatter Matrix":
+            dimensions = st.multiselect("Dimensions", options = column_options)
+            fig = px.scatter_matrix(df, dimensions = dimensions)
+            st.plotly_chart(fig)
+        
+        elif chart_type = "Bar":
+            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
+            pass
+        elif chart_type = "Line":
+            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
+            pass
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
