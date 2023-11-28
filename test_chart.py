@@ -52,7 +52,9 @@ if uploaded_file is not None:
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
 
-            if int(top_group) > 0:
+            if not top_group and not bottom_group:
+                pass
+            elif int(top_group) > 0:
                 groupby_data_top = groupby_data.head(int(top_group))
             elif int(bottom_group) > 0:
                 groupby_data_top = groupby_data.tail(int(bottom_group))
@@ -88,7 +90,9 @@ if uploaded_file is not None:
             top_chart = st.text_input("Enter your text here:", key = "top_chart")
             bottom_chart = st.text_input("Enter your text here:", key = "bottom_chart")
 
-        if int(top_chart) > 0:
+        if not top_chart and not bottom_chart:
+            pass
+        elif int(top_chart) > 0:
             data = data.head(int(top_chart))
         elif int(bottom_chart) > 0:
             data = data.tail(int(bottom_chart))
