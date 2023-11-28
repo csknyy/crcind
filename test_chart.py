@@ -39,12 +39,12 @@ if uploaded_file is not None:
 
         #groupby_list = [str(i) for i in data.columns]
         groupby_selected = st.multiselect("Group by", options = column_options)
-        if len(groupby_selected) == 0:
+        if len(groupby_selected) != 0:
             groupby_selected = column_options
             groupby_data = data.groupby(by=groupby_selected).sum()
+            selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
+            groupby_data = groupby_data[selected_columns]
             st.dataframe(groupby_data)
-        else:
-            groupby_data = data.groupby(by=groupby_selected).sum()
         
         ##############################
 
