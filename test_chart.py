@@ -11,9 +11,10 @@ if uploaded_file is not None:
         data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
         column_options = [str(col) for col in data.columns]
 
-        ###Filters
+        ##############################
+        #####Filters
+        ##############################
 
-        #st.sidebar.header("Apply filters")
         apply_filters = st.sidebar.radio("Apply filters", ("No", "Yes"))
     
         st.sidebar.header("Filters")
@@ -30,12 +31,21 @@ if uploaded_file is not None:
         if apply_filters == "Yes":
             data = data[data[filter1].isin(filter1_selected)]
 
-        
-        
-        ###
+        ##############################
+        #####Groupby
+        ##############################
 
-        
+        groupby_list = [str(i) for i in data.columns]
+        groupby_selected = st.multiselect(filter1, options=groupby_list)
+        if len(groupby_selected) == 0:
+            groupby_selected = groupby_list
 
+        groupby_data = data.groupby(by=groupby_selected).sum()
+
+        st.dataframe(groupby_data)
+        
+        ##############################
+        
         st.dataframe(data)
 
         x_axis = st.selectbox("Select X-axis:", options=column_options)
