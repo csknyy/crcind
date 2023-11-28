@@ -72,6 +72,7 @@ if uploaded_file is not None:
             data = groupby_data
 
         data = data.reset_index()
+        del data['index']
 
         new_column_options = [str(col) for col in data.columns]
 
@@ -84,15 +85,15 @@ if uploaded_file is not None:
             st.plotly_chart(fig)
             
         elif chart_type == "Scatter Matrix":
-            dimensions = st.multiselect("Dimensions", options = column_options)
-            fig = px.scatter_matrix(data, dimensions = dimensions)
+            dimensionss = st.multiselect("Dimensions", options = new_column_options)
+            fig = px.scatter_matrix(data, dimensions = dimensionss)
             st.plotly_chart(fig)
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
 
-            fig = px.scatter(data, x=x_axis, y=y_axis)
+            fig = px.bar(data, x=x_axis, y=y_axis)
             fig.update_layout(height=800, width=800)
             st.plotly_chart(fig)
 
@@ -100,7 +101,7 @@ if uploaded_file is not None:
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
 
-            fig = px.scatter(data, x=x_axis, y=y_axis)
+            fig = px.line(data, x=x_axis, y=y_axis)
             fig.update_layout(height=800, width=800)
             st.plotly_chart(fig)
 
