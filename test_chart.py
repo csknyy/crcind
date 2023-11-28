@@ -49,20 +49,19 @@ if uploaded_file is not None:
                 groupby_data = data.groupby(by=groupby_selected).sum()
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
-                top_group = st.text_input("First x rows:", key="top_group")
-                bottom_group = st.text_input("Last x rows:", key="bottom_group")
+                top_group = st.text_input('"+" for first x rows and "-" for last x rows", key="top_group")
     
             groupby_data = groupby_data[selected_columns].sort_values(by=selected_columns[0], ascending=False)
             groupby_data = groupby_data.reset_index()
 
-            if not top_group and not bottom_group:
-                pass
+            if not top_group:
+                groupby_data_top = groupby_data.copy()
             elif int(top_group) > 0:
                 groupby_data_top = groupby_data.head(int(top_group))
-            elif int(bottom_group) > 0:
-                groupby_data_top = groupby_data.tail(int(bottom_group))
+            elif int(bottom_group) < 0:
+                groupby_data_top = groupby_data.tail(int(bottom_group)*-1)
             else:
-                groupby_data_top = groupby_data.copy()
+                pass
             
             st.dataframe(groupby_data_top)
     
