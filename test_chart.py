@@ -30,11 +30,10 @@ if uploaded_file is not None:
         if apply_filters == "Yes":
             if len(filter1)>0:
                 filter1_selected = st.sidebar.multiselect(filter1, options=filter1_list)
-    
+                data = data[data[filter1] == filter1_selected]
+                
             if len(filter1_selected) == 0:
                 filter1_selected = filter1_list
-
-            data = data[data[filter1] == filter1_selected]
 
         ##############################
         #####Groupby
