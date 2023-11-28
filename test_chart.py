@@ -13,6 +13,8 @@ if uploaded_file is not None:
 
         st.dataframe(data)
 
+        st.markdown('---')
+
         ##############################
         #####Filters
         ##############################
@@ -74,6 +76,8 @@ if uploaded_file is not None:
             pass
         
         ##############################
+
+        st.markdown('---')
 
         left_column, middle_column, right_column = st.columns(3)
         with left_column:
