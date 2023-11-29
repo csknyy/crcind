@@ -141,7 +141,7 @@ if uploaded_file is not None:
             #    except:
             #        fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
 
-            fig = px.scatter_matrix(data, dimensions=dimensions, labels={col: f"{col}" for col in data['full_name']})
+            fig = px.scatter_matrix(data, dimensions=dimensions, labels={col:col for col in data['full_name'])
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
