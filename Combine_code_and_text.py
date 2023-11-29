@@ -15,7 +15,7 @@ if uploaded_file is not None:
       
       st.write(result_string)
 
-except Exception as e:
+    except Exception as e:
         st.error(f"An error occurred: {e}")
 
 else:
