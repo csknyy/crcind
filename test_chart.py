@@ -122,6 +122,16 @@ if uploaded_file is not None:
             y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
             fig = px.scatter(data, x=x_axis, y=y_axis)
             
+        elif chart_type == "Bar":
+            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
+            fig = px.bar(data, x=x_axis, y=y_axis)
+
+        elif chart_type == "Line":
+            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
+            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
+            fig = px.line(data, x=x_axis, y=y_axis)
+            
         elif chart_type == "Scatter Matrix":
             pd.DataFrame.iteritems = pd.DataFrame.items
             numerical_columns = data.select_dtypes(include='number').columns.tolist()
@@ -130,6 +140,10 @@ if uploaded_file is not None:
                 dimensions = st.multiselect("Dimensions", options = new_column_options, default = numerical_columns)
             else:
                 dimensions = st.multiselect("Dimensions", options = new_column_options)
+
+            max_values = [max(data2[dim])*1.1 for dim in dimensions]
+            min_values = [min(data2[dim]) for dim in dimensions]
+            
 
             label_name = st.text_input('Enter data label name', key="label_name")
             
@@ -140,21 +154,15 @@ if uploaded_file is not None:
                     fig = px.scatter_matrix(data, dimensions=dimensions, color = label_name)
                 except:
                     fig = px.scatter_matrix(data, dimensions=dimensions)
-        
-        elif chart_type == "Bar":
-            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
-            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-            fig = px.bar(data, x=x_axis, y=y_axis)
 
-        elif chart_type == "Line":
-            x_axis = st.selectbox("Select X-axis:", options=new_column_options)
-            y_axis = st.selectbox("Select Y-axis:", options=new_column_options)
-            fig = px.line(data, x=x_axis, y=y_axis)
-
+            for i, dim in enumerate(dimensions):
+                fig.update_layout({"xaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
+                fig.update_layout({"yaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
+                
         else:
             pass
             
-        fig.update_layout(height=800, width=1200)
+        fig.update_layout(height=800, width=1200, font=dict(size=8))
         st.plotly_chart(fig)
 
     except Exception as e:
