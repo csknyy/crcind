@@ -20,6 +20,7 @@ if uploaded_file is not None:
             return any(char.isdigit() for char in s)
 
         i = 0
+        check = False
         while check == False:
           check = contains_number(str(cell))
           i =+ 1
