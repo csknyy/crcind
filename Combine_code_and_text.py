@@ -12,7 +12,7 @@ if uploaded_file is not None:
         data = pd.read_csv(uploaded_file, header=None, names=headers) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, header=None, names=headers)
         
         #data['Code'] = [str(i).split('.')[0] for i in data['Code']]
-        data['Code'] = [str(i) for i in data['Code']]
+        data['Code'] = data['Code'].astype(int).astype(str)
         
         data['Name'] = [str(i) for i in data['Name']]
         
