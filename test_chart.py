@@ -132,13 +132,16 @@ if uploaded_file is not None:
                 dimensions = st.multiselect("Dimensions", options = new_column_options)
 
             label_name = st.text_input('Enter data label name', key="label_name")
-            if label_name == "":
-                fig = px.scatter_matrix(data, dimensions=dimensions)
-            else:
-                try:
-                    fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
-                except:
-                    fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
+            
+            #if label_name == "":
+            #    fig = px.scatter_matrix(data, dimensions=dimensions)
+            #else:
+            #    try:
+            #        fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
+            #    except:
+            #        fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
+
+            fig = px.scatter_matrix(data, dimensions=dimensions, labels = data['full_name'])
         
         elif chart_type == "Bar":
             x_axis = st.selectbox("Select X-axis:", options=new_column_options)
