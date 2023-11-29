@@ -21,14 +21,9 @@ if uploaded_file is not None:
         def contains_number(s):
             return any(char.isdigit() for char in s)
         
-        i = 0
-        for cell in data['Code']:
-            if any(char.isdigit() for char in str(cell)):
-                break
-            else:
-              i =+ 1
+        slice = next((index for index, cell in enumerate(data['Code']) if contains_number(str(cell))), len(data['Code']))
         
-        data = data.iloc[i:,:]
+        data = data.iloc[slice:,:]
         ########################################
         ########################################
         
