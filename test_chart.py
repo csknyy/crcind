@@ -15,7 +15,7 @@ if uploaded_file is not None:
         #else:
         #    data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
 
-        pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file)
+        data = pd.read_csv(uploaded_file, encoding='ISO-8859-1') if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, encoding='ISO-8859-1')
         column_options = [str(col) for col in data.columns]
 
         st.dataframe(data)
