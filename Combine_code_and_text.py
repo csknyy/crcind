@@ -12,7 +12,7 @@ if uploaded_file is not None:
         data.iloc[:, 0] = data.iloc[:, 0].astype(str)
         data.iloc[:, 1] = data.iloc[:, 1].astype(str)
         
-        data['Combined'] = data.iloc[:,0] + data.iloc[:,1]
+        data['Combined'] = data.iloc[:,0] + " " + data.iloc[:,1]
         
         result_string = ', '.join(data['Combined'])
         
