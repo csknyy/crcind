@@ -22,8 +22,9 @@ if uploaded_file is not None:
         i = 0
         check = False
         while check == False:
-          check = contains_number(str(cell))
-          i =+ 1
+            for cell in data['Code']:
+              check = contains_number(str(cell))
+              i =+ 1
         
         data = data.iloc[i:,:]
         ########################################
