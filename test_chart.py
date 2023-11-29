@@ -141,10 +141,9 @@ if uploaded_file is not None:
             else:
                 dimensions = st.multiselect("Dimensions", options = new_column_options)
 
-            max_values = [max(data2[dim])*1.1 for dim in dimensions]
-            min_values = [min(data2[dim]) for dim in dimensions]
+            max_values = [max(data[dim])*1.1 for dim in dimensions]
+            min_values = [min(data[dim]) for dim in dimensions]
             
-
             label_name = st.text_input('Enter data label name', key="label_name")
             
             if label_name == "":
