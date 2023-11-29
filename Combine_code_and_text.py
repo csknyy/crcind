@@ -11,8 +11,8 @@ if uploaded_file is not None:
         headers = ['Code', 'Name']        
         data = pd.read_csv(uploaded_file, header=None, names=headers) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, header=None, names=headers)
         
-        data.iloc[:, 0] = data.iloc[:, 0].astype(str)
-        data.iloc[:, 1] = data.iloc[:, 1].astype(str)
+        data.['Code'] = [str(i) for i in data.['Code']]
+        data.['Name'] = [str(i) for i in data.['Name']]
         
         ########################################
         ########################################
