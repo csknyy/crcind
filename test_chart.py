@@ -54,7 +54,7 @@ if uploaded_file is not None:
                 groupby_list = [str(i) for i in data.columns]
                 groupby_selected = st.multiselect("Group data by", options = column_options)
             with middle_column:
-                groupby_data = data.groupby(by=groupby_selected).sum().sort_values(by=data.columns[2], ascending=False)
+                groupby_data = data.groupby(by=groupby_selected).sum()
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
                 top_group = st.text_input('"+" for first x rows and "-" for last x rows"', key="top_group")
@@ -67,6 +67,7 @@ if uploaded_file is not None:
                         st.info("Please enter an integer")
 
             groupby_data = groupby_data[selected_columns].reset_index()
+            groupby_data = groupby_data.sort_values(by=data.columns[2], ascending=False)
             
             if not top_group:
                 groupby_data_top = groupby_data.copy()
