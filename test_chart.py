@@ -22,7 +22,12 @@ if uploaded_file is not None:
         if FM_check == "Yes":
             data.replace('-', '', regex=True, inplace=True)
             data.replace('', 0, inplace=True)
-            data = data.applymap(pd.to_numeric, errors='coerce')
+            def convert_to_numeric(value):
+                try:
+                    return pd.to_numeric(value)
+                except (ValueError, TypeError):
+                    return value
+            df = df.applymap(convert_to_numeric)
             data = data.fillna(0)        
 
         column_options = [str(col) for col in data.columns]
