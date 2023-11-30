@@ -17,6 +17,7 @@ if uploaded_file is not None:
 
         st.sidebar.markdown('---')
 
+        data = data.fillna(0)
 
         column_options = [str(col) for col in data.columns]
 
