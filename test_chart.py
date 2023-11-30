@@ -22,6 +22,7 @@ if uploaded_file is not None:
         if FM_check == "Yes":
             data.replace('-', '', regex=True, inplace=True)
             data.replace('', 0, inplace=True)
+            data = data.applymap(pd.to_numeric, errors='coerce')
             data = data.fillna(0)        
 
         column_options = [str(col) for col in data.columns]
