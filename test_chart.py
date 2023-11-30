@@ -45,7 +45,7 @@ if uploaded_file is not None:
                 filter1_selected = filter1_list
 
         ##############################
-        #####Groupby
+        #####Grouped data
         ##############################
         
         try:
@@ -54,7 +54,7 @@ if uploaded_file is not None:
                 groupby_list = [str(i) for i in data.columns]
                 groupby_selected = st.multiselect("Group data by", options = column_options)
             with middle_column:
-                groupby_data = data.groupby(by=groupby_selected).sum()
+                groupby_data = data.groupby(by=groupby_selected).sum().sort_values(by=data.columns[2], ascending=False)
                 selected_columns = st.multiselect("Selected columns", options = [str(col) for col in groupby_data.columns])
             with right_column:
                 top_group = st.text_input('"+" for first x rows and "-" for last x rows"', key="top_group")
