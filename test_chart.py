@@ -68,6 +68,8 @@ if uploaded_file is not None:
 
             groupby_data = groupby_data[selected_columns].reset_index()
             
+            groupby_data = groupby_data.sort_values(by=selected_columns[0], ascending=False)
+            
             if not top_group:
                 groupby_data_top = groupby_data.copy()
             elif int(top_group) > 0:
@@ -76,8 +78,6 @@ if uploaded_file is not None:
                 groupby_data_top = groupby_data.tail(int(top_group)*-1)
             else:
                 pass
-
-            groupby_data_top = groupby_data_top.sort_values(by=selected_columns[0], ascending=False)
             
             st.dataframe(groupby_data_top)
     
