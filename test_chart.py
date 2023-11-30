@@ -77,7 +77,7 @@ if uploaded_file is not None:
             else:
                 pass
 
-            #groupby_data_top = groupby_data_top.sort_values(by=data.columns[2], ascending=False)
+            groupby_data_top = groupby_data_top.sort_values(by=selected_columns[0], ascending=False)
             
             st.dataframe(groupby_data_top)
     
