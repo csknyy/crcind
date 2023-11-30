@@ -17,7 +17,10 @@ if uploaded_file is not None:
 
         st.sidebar.markdown('---')
 
-        data = data.fillna(0)
+        FM_check = st.sidebar.radio("FM Mode", ("No", "Yes"))
+        if FM_check == "Yes":
+            data.replace('-', '', regex=True, inplace=True)
+            data = data.fillna(0)        
 
         column_options = [str(col) for col in data.columns]
 
