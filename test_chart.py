@@ -27,7 +27,7 @@ if uploaded_file is not None:
                     return pd.to_numeric(value)
                 except (ValueError, TypeError):
                     return value
-            df = df.applymap(convert_to_numeric)
+            data = data.applymap(convert_to_numeric)
             data = data.fillna(0)        
 
         column_options = [str(col) for col in data.columns]
