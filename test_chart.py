@@ -17,7 +17,7 @@ if uploaded_file is not None:
 
         st.sidebar.markdown('---')
 
-        FM_check = st.sidebar.radio("FM Mode", ("No", "Yes"))
+        FM_check = st.sidebar.radio("Fill and convert N/a", ("No", "Yes"))
         st.sidebar.markdown('---')
         if FM_check == "Yes":
             data.replace('-', '', regex=True, inplace=True)
