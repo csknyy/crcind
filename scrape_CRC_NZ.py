@@ -9,7 +9,7 @@ data = pd.DataFrame()
 
 crc_codes = st.text_input('Enter commas between item codes')
 
-if crc_codes is not None:
+if len(crc_codes)>0:
   try:
     for i in crc_codes.split(','):
       url = 'https://www.crc.co.nz/catalogsearch/result/?q=' + str(i)
