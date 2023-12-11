@@ -45,6 +45,10 @@ if len(crc_codes)>0:
       ###FEATURES/BENEFITS
       feats_bens = soup.find('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
       data_dict['Features/Benefits'] = feats_bens
+
+      ###SAFETY DATA SHEET URL
+      safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
+      data_dict['Safety Data Sheet'] = safety_data_sheet_url
     
       ###SPECIFICATIONS
       specifications = soup.find('table', class_='data table additional-attributes')
