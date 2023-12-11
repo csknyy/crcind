@@ -35,6 +35,8 @@ if len(crc_codes)>0:
           pass
         
         data_dict = {}
+
+        data_dict['Country'] = url_country
         
         ###ITEM NAME
         item_name = soup.find('div', class_='page-title-wrapper product').find('span', class_='base', itemprop='name').get_text(strip=True)
