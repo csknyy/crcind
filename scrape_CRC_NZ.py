@@ -89,7 +89,8 @@ if len(crc_codes)>0:
         elif url_country == 'AU':
           mixtures_index = pdf_text.split('\n').index('3.1 Substances / Mixtures')
           mixtures = [i.title() for i in pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6] if '-' in i]
-          data_dict['Active Ingredients'] = '; '.join([' '.join(i.replace(' to ','').split(' ')[:-3]) for i in mixtures])
+          ingredients = ' '.join([' '.join(i.replace(' to ','').split(' ')[:-3]) for i in mixtures])
+          data_dict['Active Ingredients'] = ingredients
         
         ###HAZARD CODE
         if url_country == 'NZ':
