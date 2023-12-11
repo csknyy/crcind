@@ -56,14 +56,14 @@ for i in crc_codes.split(','):
       value = cells[1].find('span').get_text(strip=True)
       data_dict[label] = value
 
-  '''print(f'Item name \n{item_name}\n')
-  print(f'Product code \n{product_code}\n')
-  print(f'Description \n{description}\n')
-  print(f'Applications \n{applications}\n')
-  print(f'Features/Benefits \n{feats_bens}\n')
-  print(f'Specifications \n')
-  for label, value in data_dict.items():
-          print(f"{label}: {value}")'''
+  #print(f'Item name \n{item_name}\n')
+  #print(f'Product code \n{product_code}\n')
+  #print(f'Description \n{description}\n')
+  #print(f'Applications \n{applications}\n')
+  #print(f'Features/Benefits \n{feats_bens}\n')
+  #print(f'Specifications \n')
+  #for label, value in data_dict.items():
+  #        print(f"{label}: {value}")
 
   data_temp = pd.DataFrame([data_dict])
 
