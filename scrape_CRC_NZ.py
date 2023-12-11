@@ -77,7 +77,7 @@ if len(crc_codes)>0:
         if url_country == 'NZ':
           data['Product Code'] = data['Product Code:']
         
-          del data['Product Code:']
+          #del data['Product Code:']
         
           move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
         
