@@ -22,7 +22,7 @@ crc_codes = st.text_input('Enter commas between item codes')
 if len(crc_codes)>0:
   try:
     for i in crc_codes.split(','):
-      url = url_base + 'catalogsearch/result/?q=' + str(crc_code)
+      url = url_base + 'catalogsearch/result/?q=' + str(i)
 
       response = requests.get(url)
       soup = BeautifulSoup(response.content, 'html.parser')
