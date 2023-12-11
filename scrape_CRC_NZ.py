@@ -7,7 +7,7 @@ st.set_page_config(page_title="Collect web data from CRC", layout="wide")
 
 data = pd.DataFrame()
 
-crc_codes = st.text_input('Enter commas between cods')
+crc_codes = st.text_input('Enter commas between item codes')
 
 #crc_codes = '5022,5023'
 
