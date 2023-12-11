@@ -5,6 +5,16 @@ import streamlit as st
 
 st.set_page_config(page_title="Collect web data from CRC", layout="wide")
 
+
+url_country = st.radio("Which country?", ("NZ", "AU", "US"))
+
+if url_country == 'NZ':
+  url_base = 'https://www.crc.co.nz/'
+elif url_country == 'AU':
+  url_base = 'https://crcindustries.com.au/'
+elif url_country == 'US':
+  url_base = 'https://crcindustries.com/'
+
 data = pd.DataFrame()
 
 crc_codes = st.text_input('Enter commas between item codes')
@@ -12,7 +22,7 @@ crc_codes = st.text_input('Enter commas between item codes')
 if len(crc_codes)>0:
   try:
     for i in crc_codes.split(','):
-      url = 'https://www.crc.co.nz/catalogsearch/result/?q=' + str(i)
+      url = url_base + 'catalogsearch/result/?q=' + str(i)
     
       response = requests.get(url)
     
@@ -25,6 +35,7 @@ if len(crc_codes)>0:
       soup = BeautifulSoup(html_content, 'html.parser')
     
       data_dict = {}
+      data_dict['Country'] = url_country
     
       ###ITEM NAME
       item_name = soup.find('h1', class_='page-title').find('span', class_='base', itemprop='name').get_text(strip=True)
