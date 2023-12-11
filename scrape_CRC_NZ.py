@@ -75,7 +75,7 @@ if len(crc_codes)>0:
     
     del data['Product Code:']
     
-    move_to_end = ['Unit Size', 'Unit Package Description']
+    move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
     
     data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
     
