@@ -6,7 +6,7 @@ import streamlit as st
 st.set_page_config(page_title="Collect web data from CRC", layout="wide")
 
 
-url_country = st.radio("Which country?", ("NZ", "AU", "US"))
+url_country = st.radio("Which country?", ("NZ", "AU"))
 
 if url_country == 'NZ':
   url_base = 'https://www.crc.co.nz/'
