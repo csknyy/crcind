@@ -98,12 +98,12 @@ if len(crc_codes)>0:
         if url_country == 'NZ':
           hazard_index = next((index for index, string in enumerate(pdf_text.split('\n')) if '14.3.Transport hazard' in string), None)
           hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[-1]
-          data_dict['Hazard Code'] = hazard_code
+          data_dict['Dangerous Good Classification'] = hazard_code
         
         elif url_country == 'AU':
           hazard_index = pdf_text.split('\n').index('LAND TRANSPORT (ADG) SEA TRANSPORT (IMDG / IMO) AIR TRANSPORT (IATA / ICAO)')
           hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
-          data_dict['Hazard Code'] = hazard_code
+          data_dict['Dangerous Good Classification'] = hazard_code
         
         ###SPECIFICATIONS
         specifications = soup.find('table', class_='data table additional-attributes')
@@ -122,11 +122,11 @@ if len(crc_codes)>0:
         
           del data['Product Code:']
         
-          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
+          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
         elif url_country == 'AU':
-          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
+          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
 
