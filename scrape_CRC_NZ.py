@@ -74,23 +74,25 @@ if len(crc_codes)>0:
   
         data = pd.concat([data, data_temp], ignore_index=True)
         
-      if url_country == 'NZ':
-        data['Product Code'] = data['Product Code:']
+        if url_country == 'NZ':
+          data['Product Code'] = data['Product Code:']
+        
+          del data['Product Code:']
+        
+          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
+        
+          data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+        elif url_country == 'AU':
+          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet']
       
-        del data['Product Code:']
-      
-        move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
-      
-        data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
-      elif url_country == 'AU':
-        move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet']
-      
-        data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+          data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
     
-    st.dataframe(data)
+        #st.dataframe(data)
 
-    except:
-      pass
+      except:
+        pass
+
+      st.dataframe(data)
   
   except Exception as e:
     st.error(f"Error: {e}")
