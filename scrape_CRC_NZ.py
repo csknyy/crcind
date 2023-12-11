@@ -25,13 +25,10 @@ if len(crc_codes)>0:
       url = url_base + 'catalogsearch/result/?q=' + str(i)
     
       response = requests.get(url)
-    
-      url2 = response.text.split('<a class="product-item-link"\n                                              href="')[1].split('">')[0]
-    
+      soup = BeautifulSoup(html_content, 'html.parser')
+      url2 = soup.find('a', class_="product-item-link").get('href')
       response = requests.get(url2)
-    
       html_content = response.content
-    
       soup = BeautifulSoup(html_content, 'html.parser')
     
       data_dict = {}
