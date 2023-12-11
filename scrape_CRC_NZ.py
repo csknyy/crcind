@@ -66,20 +66,23 @@ if len(crc_codes)>0:
           value = cells[1].find('span').get_text(strip=True)
           data_dict[label] = value
       
-      data = pd.DataFrame([data_dict])
+      data_temp = pd.DataFrame([data_dict])
+
+      data = pd.concat([data, data_temp], ignore_index=True)
       
-      if url_country == 'NZ':
-        data['Product Code'] = data['Product Code:']
-      
-        del data['Product Code:']
-      
-        move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
-      
-        data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
-      elif url_country == 'AU':
-        move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet']
-      
-        data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+    if url_country == 'NZ':
+      data['Product Code'] = data['Product Code:']
+    
+      del data['Product Code:']
+    
+      move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
+    
+      data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+    elif url_country == 'AU':
+      move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet']
+    
+      data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+        
     
     st.dataframe(data)
   
