@@ -36,74 +36,92 @@ if len(crc_codes)>0:
           pass
         
         data_dict = {}
-
-        data_dict['Country'] = url_country
         
         ###ITEM NAME
-        item_name = soup.find('div', class_='page-title-wrapper product').find('span', class_='base', itemprop='name').get_text(strip=True)
-        data_dict['Item Name'] = item_name
+        try:
+          item_name = soup.find('div', class_='page-title-wrapper product').find('span', class_='base', itemprop='name').get_text(strip=True)
+          data_dict['Item Name'] = item_name
+        except:
+          data_dict['Item Name'] = ''
         
         ###PRODUCT CODE
         #product_code = soup.find('div', class_='product attribute product_number').find('div', class_='value', itemprop='product_number').get_text(strip=True)
         data_dict['Product Code'] = ''
         
         ###DESCRIPTION
-        description = soup.find('div', class_='product-page-description').find('h3', string='DESCRIPTION').find_next('div', class_='value').get_text(strip=True)
-        data_dict['Description'] = description
+        try:
+          description = soup.find('div', class_='product-page-description').find('h3', string='DESCRIPTION').find_next('div', class_='value').get_text(strip=True)
+          data_dict['Description'] = description
+        except:
+          data_dict['Description'] = ''
         
         ###APPLICATIONS
-        applications = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
-        data_dict['Applications'] = applications
+        try:
+          applications = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+          data_dict['Applications'] = applications
+        except:
+          data_dict['Applications'] = ''
         
         ###FEATURES/BENEFITS
-        feats_bens = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
-        data_dict['Features/Benefits'] = feats_bens
+        try:
+          feats_bens = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+          data_dict['Features/Benefits'] = feats_bens
+        except:
+          data_dict['Features/Benefits'] = ''
         
         ###SAFETY DATA SHEET URL
-        safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
-        data_dict['Safety Data Sheet'] = safety_data_sheet_url
+        try:
+          safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
+          data_dict['Safety Data Sheet'] = safety_data_sheet_url
         
-        ###ACTIVE INGREDIENTS
-        response2 = requests.get(safety_data_sheet_url)
+          ###ACTIVE INGREDIENTS
+          response2 = requests.get(safety_data_sheet_url)
         
-        with open("downloaded_pdf.pdf", "wb") as pdf_file:
-            pdf_file.write(response2.content)
+          with open("downloaded_pdf.pdf", "wb") as pdf_file:
+              pdf_file.write(response2.content)
         
-        with pdfplumber.open("downloaded_pdf.pdf") as pdf:
-            pdf_text = ""
-            for page in pdf.pages:
-                pdf_text += page.extract_text()
+          with pdfplumber.open("downloaded_pdf.pdf") as pdf:
+              pdf_text = ""
+              for page in pdf.pages:
+                  pdf_text += page.extract_text()
         
-        if url_country == 'NZ':
-          mixtures_index = pdf_text.split('\n').index('Mixtures')
-          mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 5]
+          if url_country == 'NZ':
+            mixtures_index = pdf_text.split('\n').index('Mixtures')
+            mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 5]
         
-          def extract_name(input_string):
-              parts = input_string.split(' ')
-              name = ' '.join(parts[2:])
-              return name
+            def extract_name(input_string):
+                parts = input_string.split(' ')
+                name = ' '.join(parts[2:])
+                return name
         
-          names = [extract_name(i).split(',')[0].title() for i in mixture]
-          data_dict['Active Ingredients'] = '; '.join(names)
+            names = [extract_name(i).split(',')[0].title() for i in mixture]
+            delimiter= '; '
+            ingredients = delimiter.join(names)
+            data_dict['Active Ingredients'] = ingredients
         
-        elif url_country == 'AU':
-          mixtures_index = pdf_text.split('\n').index('3.1 Substances / Mixtures')
-          mixtures = [i for i in pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6] if '-' in i]
-          mixtures = [' '.join(i.replace(' to ','').split(' ')[:-3]) for i in mixtures]
-          mixtures = [i.split(',')[0] for i in mixtures]
-          ingredients = '; '.join(mixtures).title()
-          data_dict['Active Ingredients'] = ingredients
+          elif url_country == 'AU':
+            mixtures_index = pdf_text.split('\n').index('3.1 Substances / Mixtures')
+            mixtures = [i for i in pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6] if '-' in i]
+            mixtures = [' '.join(i.replace(' to ','').split(' ')[:-3]) for i in mixtures]
+            mixtures = [i.split(',')[0] for i in mixtures]
+            ingredients = '; '.join(mixtures).title()
+            data_dict['Active Ingredients'] = ingredients
         
-        ###HAZARD CODE
-        if url_country == 'NZ':
-          hazard_index = next((index for index, string in enumerate(pdf_text.split('\n')) if '14.3.Transport hazard' in string), None)
-          hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[-1]
-          data_dict['Dangerous Good Classification'] = hazard_code
+          ###HAZARD CODE  
+          if url_country == 'NZ':
+            hazard_index = next((index for index, string in enumerate(pdf_text.split('\n')) if '14.3.Transport hazard' in string), None)
+            hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[-1]
+            data_dict['Hazard Code'] = hazard_code
         
-        elif url_country == 'AU':
-          hazard_index = pdf_text.split('\n').index('LAND TRANSPORT (ADG) SEA TRANSPORT (IMDG / IMO) AIR TRANSPORT (IATA / ICAO)')
-          hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
-          data_dict['Dangerous Good Classification'] = hazard_code
+          elif url_country == 'AU':
+            hazard_index = pdf_text.split('\n').index('LAND TRANSPORT (ADG) SEA TRANSPORT (IMDG / IMO) AIR TRANSPORT (IATA / ICAO)')
+            hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
+            data_dict['Hazard Code'] = hazard_code
+        
+        except:
+          data_dict['Safety Data Sheet'] = ''
+          data_dict['Active Ingredients'] = ''
+          data_dict['Hazard Code'] = ''
         
         ###SPECIFICATIONS
         specifications = soup.find('table', class_='data table additional-attributes')
@@ -121,11 +139,13 @@ if len(crc_codes)>0:
         if url_country == 'NZ':
           data['Product Code'] = data['Product Code:']
         
-          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
+          del data['Product Code:']
+        
+          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
         elif url_country == 'AU':
-          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
+          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
 
