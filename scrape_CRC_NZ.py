@@ -25,11 +25,10 @@ if len(crc_codes)>0:
       url = url_base + 'catalogsearch/result/?q=' + str(i)
     
       response = requests.get(url)
-      soup = BeautifulSoup(html_content, 'html.parser')
+      soup = BeautifulSoup(response.content, 'html.parser')
       url2 = soup.find('a', class_="product-item-link").get('href')
       response = requests.get(url2)
-      html_content = response.content
-      soup = BeautifulSoup(html_content, 'html.parser')
+      soup = BeautifulSoup(response.content, 'html.parser')
     
       data_dict = {}
       data_dict['Country'] = url_country
