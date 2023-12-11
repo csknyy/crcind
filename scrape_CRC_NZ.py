@@ -23,7 +23,7 @@ crc_codes = st.text_input('Enter commas between item codes')
 if len(crc_codes)>0:
   try:
     for i in crc_codes.split(','):
-      #try:
+      try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
   
         response = requests.get(url)
@@ -130,8 +130,8 @@ if len(crc_codes)>0:
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
 
-      #except:
-      #  pass
+      except:
+        pass
 
     st.dataframe(data)
   
