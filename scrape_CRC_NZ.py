@@ -87,7 +87,7 @@ if len(crc_codes)>0:
         
           if url_country == 'NZ':
             mixtures_index = pdf_text.split('\n').index('Mixtures')
-            mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 5]
+            mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6]
         
             def extract_name(input_string):
                 parts = input_string.split(' ')
@@ -142,6 +142,7 @@ if len(crc_codes)>0:
           move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
+
         elif url_country == 'AU':
           move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
         
