@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import streamlit as st
+import pdfplumber
 
 st.set_page_config(page_title="Collect web data from CRC", layout="wide")
 
