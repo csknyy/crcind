@@ -80,4 +80,4 @@ if crc_codes is not None:
   except:
     st.error(f"Error: {e}")
 else:
-    st.info("Please upload a CSV file to get started.")
+    st.info("Please enter some codes to get started.")
