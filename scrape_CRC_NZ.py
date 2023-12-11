@@ -77,7 +77,7 @@ if crc_codes is not None:
     
     st.dataframe(data)
   
-  except:
+  except Exception as e:
     st.error(f"Error: {e}")
 else:
     st.info("Please enter some codes to get started.")
