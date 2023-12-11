@@ -92,7 +92,7 @@ if len(crc_codes)>0:
       except:
         pass
 
-      st.dataframe(data)
+    st.dataframe(data)
   
   except Exception as e:
     st.error(f"Error: {e}")
