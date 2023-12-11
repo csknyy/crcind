@@ -62,6 +62,48 @@ if len(crc_codes)>0:
         safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
         data_dict['Safety Data Sheet'] = safety_data_sheet_url
         
+        ###ACTIVE INGREDIENTS
+        response2 = requests.get(safety_data_sheet_url)
+        
+        with open("downloaded_pdf.pdf", "wb") as pdf_file:
+            pdf_file.write(response2.content)
+        
+        with pdfplumber.open("downloaded_pdf.pdf") as pdf:
+            pdf_text = ""
+            for page in pdf.pages:
+                pdf_text += page.extract_text()
+        
+        if url_country == 'NZ':
+          mixtures_index = pdf_text.split('\n').index('Mixtures')
+          mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 5]
+        
+          def extract_name(input_string):
+              parts = input_string.split(' ')
+              name = ' '.join(parts[2:])
+              return name
+        
+          names = [extract_name(i).split(',')[0].title() for i in mixture]
+          delimiter= '; '
+          ingredients = delimiter.join(names)
+          data_dict['Active Ingredients'] = ingredients
+        
+        elif url_country == 'AU':
+          mixtures_index = pdf_text.split('\n').index('3.1 Substances / Mixtures')
+          mixtures = [i for i in pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6] if '-' in i]
+          ingredients = ' '.join([' '.join(i.replace(' to ','').split(' ')[:-3]) for i in mixtures])
+          data_dict['Active Ingredients'] = ingredients
+        
+        ###HAZARD CODE
+        if url_country == 'NZ':
+          hazard_index = pdf_text.split('\n').index('Hazardous Substance Location') + 3
+          hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[0]
+          data_dict['Hazard Code'] = hazard_code
+        
+        elif url_country == 'AU':
+          hazard_index = pdf_text.split('\n').index('LAND TRANSPORT (ADG) SEA TRANSPORT (IMDG / IMO) AIR TRANSPORT (IATA / ICAO)')
+          hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
+          data_dict['Hazard Code'] = hazard_code
+        
         ###SPECIFICATIONS
         specifications = soup.find('table', class_='data table additional-attributes')
         rows = specifications.find_all('tr')
@@ -72,24 +114,20 @@ if len(crc_codes)>0:
             value = cells[1].find('span').get_text(strip=True)
             data_dict[label] = value
         
-        data_temp = pd.DataFrame([data_dict])
-  
-        data = pd.concat([data, data_temp], ignore_index=True)
+        data = pd.DataFrame([data_dict])
         
         if url_country == 'NZ':
           data['Product Code'] = data['Product Code:']
         
-          #del data['Product Code:']
+          del data['Product Code:']
         
-          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet']
+          move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
         elif url_country == 'AU':
-          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet']
-      
+          move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
+        
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
-    
-        #st.dataframe(data)
 
       except:
         pass
