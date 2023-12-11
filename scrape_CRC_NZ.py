@@ -115,7 +115,8 @@ if len(crc_codes)>0:
             value = cells[1].find('span').get_text(strip=True)
             data_dict[label] = value
         
-        data = pd.DataFrame([data_dict])
+        data_temp = pd.DataFrame([data_dict])
+        data = pd.concat([data, data_temp], ignore_index=True)
         
         if url_country == 'NZ':
           data['Product Code'] = data['Product Code:']
