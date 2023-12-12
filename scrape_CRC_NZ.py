@@ -70,21 +70,20 @@ if len(crc_codes)>0:
           data_dict['Features/Benefits'] = ''
         
         ###SAFETY DATA SHEET URL
+        safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
+        data_dict['Safety Data Sheet'] = safety_data_sheet_url
+        
+        ###ACTIVE INGREDIENTS
+        response2 = requests.get(safety_data_sheet_url)
+        
+        with open("downloaded_pdf.pdf", "wb") as pdf_file:
+            pdf_file.write(response2.content)
+        
+        with pdfplumber.open("downloaded_pdf.pdf") as pdf:
+            pdf_text = ""
+            for page in pdf.pages:
+                pdf_text += page.extract_text()
         try:
-          safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
-          data_dict['Safety Data Sheet'] = safety_data_sheet_url
-        
-          ###ACTIVE INGREDIENTS
-          response2 = requests.get(safety_data_sheet_url)
-        
-          with open("downloaded_pdf.pdf", "wb") as pdf_file:
-              pdf_file.write(response2.content)
-        
-          with pdfplumber.open("downloaded_pdf.pdf") as pdf:
-              pdf_text = ""
-              for page in pdf.pages:
-                  pdf_text += page.extract_text()
-        
           if url_country == 'NZ':
             mixtures_index = pdf_text.split('\n').index('Mixtures')
             mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6]
@@ -106,8 +105,11 @@ if len(crc_codes)>0:
             mixtures = [i.split(',')[0] for i in mixtures]
             ingredients = '; '.join(mixtures).title()
             data_dict['Active Ingredients'] = ingredients
+        else:
+          data_dict['Active Ingredients'] = 'N/A'
         
-          ###HAZARD CODE  
+        ###HAZARD CODE
+        try:
           if url_country == 'NZ':
             hazard_index = next((index for index, string in enumerate(pdf_text.split('\n')) if '14.3.Transport hazard' in string), None)
             hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[-1]
@@ -117,11 +119,8 @@ if len(crc_codes)>0:
             hazard_index = pdf_text.split('\n').index('LAND TRANSPORT (ADG) SEA TRANSPORT (IMDG / IMO) AIR TRANSPORT (IATA / ICAO)')
             hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
             data_dict['Hazard Code'] = hazard_code
-        
         except:
-          data_dict['Safety Data Sheet'] = ''
-          data_dict['Active Ingredients'] = ''
-          data_dict['Hazard Code'] = ''
+          data_dict['Hazard Code'] = 'N/A'
         
         ###SPECIFICATIONS
         specifications = soup.find('table', class_='data table additional-attributes')
