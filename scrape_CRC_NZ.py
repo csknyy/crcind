@@ -105,7 +105,7 @@ if len(crc_codes)>0:
             mixtures = [i.split(',')[0] for i in mixtures]
             ingredients = '; '.join(mixtures).title()
             data_dict['Active Ingredients'] = ingredients
-        else:
+        except:
           data_dict['Active Ingredients'] = 'N/A'
         
         ###HAZARD CODE
