@@ -36,6 +36,7 @@ if len(crc_codes)>0:
           pass
         
         data_dict = {}
+        data_dict['Country'] = url_country
         
         ###ITEM NAME
         try:
