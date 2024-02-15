@@ -74,8 +74,11 @@ if len(crc_codes)>0:
           data_dict['Features/Benefits'] = ''
         
         ###SAFETY DATA SHEET URL
-        safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
-        data_dict['Safety Data Sheet'] = safety_data_sheet_url
+        try:
+          safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
+          data_dict['Safety Data Sheet'] = safety_data_sheet_url
+        except:
+          data_dict['Safety Data Sheet'] = ""
         
         ###ACTIVE INGREDIENTS
         response2 = requests.get(safety_data_sheet_url)
