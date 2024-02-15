@@ -151,7 +151,7 @@ if len(crc_codes)>0:
       except:
         pass
 
-    st.dataframe(data[data['Product code'].isin(crc_codes)])
+    st.dataframe(data[data['Product Code'].isin(crc_codes)])
   
   except Exception as e:
     st.error(f"Error: {e}")
