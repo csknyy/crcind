@@ -46,32 +46,31 @@ if len(crc_codes)>0:
           item_name = soup.find('div', class_='page-title-wrapper product').find('span', class_='base', itemprop='name').get_text(strip=True)
           data_dict['Item Name'] = item_name
         except:
-          data_dict['Item Name'] = ''
+          data_dict['Item Name'] = ""
         
         ###PRODUCT CODE
-        #product_code = soup.find('div', class_='product attribute product_number').find('div', class_='value', itemprop='product_number').get_text(strip=True)
-        data_dict['Product Code'] = ''
+        data_dict['Product Code'] = ""
         
         ###DESCRIPTION
         try:
           description = soup.find('div', class_='product-page-description').find('h3', string='DESCRIPTION').find_next('div', class_='value').get_text(strip=True)
           data_dict['Description'] = description
         except:
-          data_dict['Description'] = ''
+          data_dict['Description'] = ""
         
         ###APPLICATIONS
         try:
           applications = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
           data_dict['Applications'] = applications
         except:
-          data_dict['Applications'] = ''
-        
+          data_dict['Applications'] = ""
+          
         ###FEATURES/BENEFITS
         try:
-          feats_bens = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+          feats_bens = soup.find('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
           data_dict['Features/Benefits'] = feats_bens
         except:
-          data_dict['Features/Benefits'] = ''
+          data_dict['Features/Benefits'] = ""
         
         ###SAFETY DATA SHEET URL
         try:
@@ -79,6 +78,9 @@ if len(crc_codes)>0:
           data_dict['Safety Data Sheet'] = safety_data_sheet_url
         except:
           data_dict['Safety Data Sheet'] = ""
+        
+        ###ACTIVE INGREDIENTS
+        response2 = requests.get(safety_data_sheet_url)
         
         ###ACTIVE INGREDIENTS
         response2 = requests.get(safety_data_sheet_url)
