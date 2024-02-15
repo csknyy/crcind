@@ -19,10 +19,11 @@ elif url_country == 'US':
 data = pd.DataFrame()
 
 crc_codes = st.text_input('Enter commas between item codes')
+crc_codes_list = crc_codes.split(',')
 
 if len(crc_codes)>0:
   try:
-    for i in crc_codes.split(','):
+    for i in crc_codes_list:
       try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
   
@@ -151,7 +152,7 @@ if len(crc_codes)>0:
       except:
         pass
 
-    st.dataframe(data[data['Product Code'].isin(crc_codes)])
+    st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
     st.error(f"Error: {e}")
