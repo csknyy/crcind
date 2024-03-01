@@ -19,9 +19,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data = PowerBI.groupby(D3FO["Number"])[["Open Ordered $", "Open Qty"]].sum().sort_values(by="Open Ordered $", ascending=False)
         
-        data = data[data["Open Ordered $"] != 0]
-        
-        data = data.rename(columns={'Number': 'Sales Order Number'})
+        data = data[data["Open Ordered $"] != 0].index.rename('Sales Order Number')
 
         st.dataframe(data)
 
