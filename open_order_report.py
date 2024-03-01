@@ -25,7 +25,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         st.header(f'Total : ${int(data["Open Ordered $"].sum()*100)/100}')
         st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
-        st.subheader(f'Total lines: {data["Open Qty"].sum()}')
+        st.subheader(f'Total qty: {data["Open Qty"].sum()}')
 
         st.dataframe(data)
 
