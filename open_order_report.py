@@ -4,7 +4,7 @@ import pandas as pd
 st.set_page_config(page_title="Open orders report", layout="wide")
 
 def convert_data(data):
-    return data.to_csv(index=True).encode('utf-8')
+    return data.to_csv(index=False).encode('utf-8')
 
 uploaded_file_0 = st.file_uploader("Upload the Picking list registration report from D3FO", key="file_uploader_0")
 uploaded_file_1 = st.file_uploader("Upload the Open Orders (SKU) report from Power BI ", key="file_uploader_1")
