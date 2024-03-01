@@ -25,7 +25,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data = data.reset_index()
 
-        st.header(f'Total : ${data["Open Ordered $"].sum():,.2f}')
+        st.header(f'Total value: ${data["Open Ordered $"].sum():,.2f}')
         st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
         st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
