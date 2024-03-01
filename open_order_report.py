@@ -19,6 +19,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
             D3FO = pd.read_excel(uploaded_file_0, header=header_index)
             header_index = header_index + 1
 
+        st.dataframe(D3FO)
+
         header_index = 0
 
         PowerBI = pd.read_excel(uploaded_file_1, header=header_index)
@@ -26,6 +28,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         while PowerBI.columns[0].split(":")[0] == "Unnamed":
           PowerBI = pd.read_excel(uploaded_file_1, header=header_index)
           header_index = header_index + 1
+
+        st.dataframe(PowerBI)
 
         D3FO = D3FO[D3FO["Handling status"] == "Activated"]
 
