@@ -11,25 +11,9 @@ uploaded_file_1 = st.file_uploader("Upload the Open Orders (SKU) report from Pow
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
     try:
-        header_index = 0
+        D3FO = pd.read_excel(uploaded_file_0, header=0)
 
-        D3FO = pd.read_excel(uploaded_file_0, header=header_index)
-        
-        while D3FO.columns[0].split(":")[0] == "Unnamed":
-            D3FO = pd.read_excel(uploaded_file_0, header=header_index)
-            header_index = header_index + 1
-
-        st.dataframe(D3FO)
-
-        header_index = 0
-
-        PowerBI = pd.read_excel(uploaded_file_1, header=header_index)
-
-        while PowerBI.columns[0].split(":")[0] == "Unnamed":
-          PowerBI = pd.read_excel(uploaded_file_1, header=header_index)
-          header_index = header_index + 1
-
-        st.dataframe(PowerBI)
+        PowerBI = pd.read_excel(uploaded_file_1, header=2)
 
         D3FO = D3FO[D3FO["Handling status"] == "Activated"]
 
