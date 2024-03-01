@@ -23,6 +23,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data.index.rename('Sales Order Number', inplace=True)
 
+        st.text_area('Text text text')
+
         st.dataframe(data)
 
         csv = convert_data(data)
