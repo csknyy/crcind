@@ -23,6 +23,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data.index.rename('Sales Order Number', inplace=True)
 
+        data = data.rest_index()
+
         st.header(f'Total : ${int(data["Open Ordered $"].sum()*100)/100}')
         st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
         st.subheader(f'Total qty: {data["Open Qty"].sum()}')
