@@ -27,7 +27,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         st.header(f'Total : ${int(data["Open Ordered $"].sum()*100)/100}')
         st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
-        st.subheader(f'Total qty: {data["Open Qty"].sum()}').format(formatter="{,:.0f}")
+        st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
         st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Sales Order Number"], formatter="{:.0f}"))
 
