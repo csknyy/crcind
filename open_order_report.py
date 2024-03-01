@@ -6,7 +6,7 @@ st.set_page_config(page_title="Open orders report", layout="wide")
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-uploaded_file_0 = st.file_uploader("Upload the "Picking list registration" report from D3FO", key="file_uploader_0")
+uploaded_file_0 = st.file_uploader("Upload the Picking list registration report from D3FO", key="file_uploader_0")
 uploaded_file_1 = st.file_uploader("Upload the Open Orders (SKU) report from Power BI ", key="file_uploader_1")
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
