@@ -23,6 +23,10 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data.index.rename('Sales Order Number', inplace=True)
 
+        st.header(f'Total $: {data["Open Ordered $"].sum()}')
+        st.subheader('My sub')
+        st.subheader('My sub')
+
         st.dataframe(data)
 
         csv = convert_data(data)
