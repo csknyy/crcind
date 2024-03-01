@@ -23,17 +23,6 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         data.index.rename('Sales Order Number', inplace=True)
 
-        st.text('Fixed width text')
-        st.markdown('_Markdown_') # see #*
-        st.caption('Balloons. Hundreds of them...')
-        st.latex(r''' e^{i\pi} + 1 = 0 ''')
-        st.write('Most objects') # df, err, func, keras!
-        st.write(['st', 'is <', 3]) # see *
-        st.title('My title')
-        st.header('My header')
-        st.subheader('My sub')
-        st.code('for i in range(8): foo()')
-
         st.dataframe(data)
 
         csv = convert_data(data)
