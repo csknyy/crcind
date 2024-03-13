@@ -29,15 +29,15 @@ if len(crc_codes)>0:
   
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
-        try:
-          url2 = soup.find('a', class_="product-item-link").get('href')
-          response = requests.get(url2)
-          
-          st.write(url)
-          st.write(url2)
-          
-          soup = BeautifulSoup(response.content, 'html.parser')
-        except:
+
+        if url_country == 'NZ':
+          try:
+            url2 = soup.find('a', class_="product-item-link").get('href')
+            response = requests.get(url2)          
+            soup = BeautifulSoup(response.content, 'html.parser')
+          except:
+            pass
+        else:
           url2 = url
         
         data_dict = {}
@@ -164,8 +164,8 @@ if len(crc_codes)>0:
 
       except:
         pass
-    st.dataframe(data)
-    st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
+    #st.dataframe(data)
+    #st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
     st.write(e)
