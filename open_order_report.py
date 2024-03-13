@@ -32,7 +32,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
         #st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Sales Order Number"], formatter="{:.0f}"))
-        st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}"))
+        st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Open Qty"], formatter="{:,.0f}")
 
         csv = convert_data(data)
         st.download_button(label="Download data as CSV", data=csv, file_name='open_orders_report.csv', mime='text/csv')
