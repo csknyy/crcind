@@ -144,6 +144,9 @@ if len(crc_codes)>0:
             data_dict[label] = value
         
         data_temp = pd.DataFrame([data_dict])
+
+        st.dataframe(data_temp)
+        
         data = pd.concat([data, data_temp], ignore_index=True)
         
         if url_country == 'NZ':
@@ -160,7 +163,6 @@ if len(crc_codes)>0:
 
       except:
         pass
-    st.text(data_dict)
     st.dataframe(data)
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
