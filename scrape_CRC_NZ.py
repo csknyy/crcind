@@ -38,7 +38,7 @@ if len(crc_codes)>0:
           
           soup = BeautifulSoup(response.content, 'html.parser')
         except:
-          pass
+          url2 = url
         
         data_dict = {}
         data_dict['Country'] = url_country
