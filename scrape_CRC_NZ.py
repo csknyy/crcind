@@ -49,7 +49,7 @@ if len(crc_codes)>0:
           data_dict['Item Name'] = ""
         
         ###PRODUCT CODE
-        data_dict['Product Code'] = ""
+        data_dict['Product Code'] = i
         
         ###DESCRIPTION
         try:
