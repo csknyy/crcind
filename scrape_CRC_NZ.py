@@ -26,8 +26,6 @@ if len(crc_codes)>0:
     for i in crc_codes_list:
       try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
-
-        st.text(url)
   
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -42,6 +40,8 @@ if len(crc_codes)>0:
         data_dict['Country'] = url_country
 
         data_dict['URL'] = url2
+
+        st.text(data_dict)
         
         ###ITEM NAME
         try:
