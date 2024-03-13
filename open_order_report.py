@@ -20,9 +20,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         D3FO['Number'] = [str(i) for i in D3FO['Number']]
 
         data = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Sales Order Number", "Open Ordered $", "Open Qty"]].groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
-
         data.index.rename('Sales Order Number', inplace=True)
-
         data = data.reset_index()
 
         st.header(f'Total value: ${data["Open Ordered $"].sum():,.2f}')
@@ -30,10 +28,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
         data2 = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Item Description", "Open Ordered $", "Open Qty"]].groupby(by='Item Description').sum().sort_values(by="Open Ordered $", ascending=False)
-
         data2.index.rename('Item Description', inplace=True)
-
-        data2 = data.reset_index()
+        data2 = data2.reset_index()
 
 
         col1, col2 = st.columns(2)
