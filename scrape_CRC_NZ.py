@@ -164,6 +164,7 @@ if len(crc_codes)>0:
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
-    st.error(f"Error: {e}")
+    
+    #st.error(f"Error: {e}")
 else:
     st.info("Please enter some codes to get started.")
