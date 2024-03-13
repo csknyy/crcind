@@ -7,7 +7,7 @@ def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
 uploaded_file_0 = st.file_uploader("Upload the Picking list registration report from D3FO", key="file_uploader_0")
-uploaded_file_1 = st.file_uploader("Upload the Open Orders (SKU) report from Power BI ", key="file_uploader_1")
+uploaded_file_1 = st.file_uploader("Upload the Open Orders by Order Creation Date report from Power BI ", key="file_uploader_1")
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
     try:
@@ -17,7 +17,13 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         D3FO = D3FO[D3FO["Handling status"] == "Activated"]
 
-        data = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Sales Order Number", "Open Ordered $", "Open Qty"]].groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
+        PowerBI = PowerBI.groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
+
+        st.dataframe(PowerBI)
+
+        #data = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Sales Order Number", "Open Ordered $", "Open Qty"]].groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
+        data = D3FO[D3FO['Number'].isin(PowerBI['Sales Order Number'])][["Sales Order Number", "Open Ordered $", "Open Qty"]].groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
+
         
         data = data[data["Open Ordered $"] != 0]
 
