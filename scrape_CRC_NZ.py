@@ -26,6 +26,8 @@ if len(crc_codes)>0:
     for i in crc_codes_list:
       try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
+
+        print(URL)
   
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
