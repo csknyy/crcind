@@ -32,16 +32,17 @@ if len(crc_codes)>0:
         try:
           url2 = soup.find('a', class_="product-item-link").get('href')
           response = requests.get(url2)
+          
+          st.write(url)
+          st.write(url2)
+          
           soup = BeautifulSoup(response.content, 'html.parser')
         except:
           pass
         
         data_dict = {}
         data_dict['Country'] = url_country
-
         data_dict['URL'] = url2
-
-        st.write(url_country)
         
         ###ITEM NAME
         try:
