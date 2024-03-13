@@ -160,7 +160,7 @@ if len(crc_codes)>0:
 
       except:
         pass
-    st.write(data_dict)
+    st.text(data_dict)
     st.dataframe(data)
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
