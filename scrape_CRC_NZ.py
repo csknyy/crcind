@@ -145,8 +145,6 @@ if len(crc_codes)>0:
             data_dict[label] = value
         
         data_temp = pd.DataFrame([data_dict])
-
-        st.dataframe(data_temp)
         
         data = pd.concat([data, data_temp], ignore_index=True)
         
@@ -164,6 +162,8 @@ if len(crc_codes)>0:
 
       except:
         pass
+
+    st.dataframe(data)
   
   except Exception as e:
     st.write(e)
