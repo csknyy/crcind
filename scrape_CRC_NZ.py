@@ -41,7 +41,7 @@ if len(crc_codes)>0:
 
         data_dict['URL'] = url2
 
-        st.write(data_dict)
+        st.write(url_country)
         
         ###ITEM NAME
         try:
