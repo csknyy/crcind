@@ -46,6 +46,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
             #st.download_button(label="Download data as CSV", data=csv, file_name='open_orders_report.csv', mime='text/csv')
 
         with col2:
+            st.dataframe(data2.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Open Qty"], formatter="{:,.0f}"))
             
 
     except Exception as e:
