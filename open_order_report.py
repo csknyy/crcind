@@ -29,11 +29,24 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
         st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
-        #st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Sales Order Number"], formatter="{:.0f}"))
-        st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Open Qty"], formatter="{:,.0f}"))
+        data2 = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Item Description", "Open Ordered $", "Open Qty"]].groupby(by='Item Description').sum().sort_values(by="Open Ordered $", ascending=False)
 
-        csv = convert_data(data)
-        st.download_button(label="Download data as CSV", data=csv, file_name='open_orders_report.csv', mime='text/csv')
+        data2.index.rename('Item Description', inplace=True)
+
+        data2 = data.reset_index()
+
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            #st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Sales Order Number"], formatter="{:.0f}"))
+            st.dataframe(data.style.format(subset=["Open Ordered $"], formatter="${:,.2f}").format(subset=["Open Qty"], formatter="{:,.0f}"))
+    
+            #csv = convert_data(data)
+            #st.download_button(label="Download data as CSV", data=csv, file_name='open_orders_report.csv', mime='text/csv')
+
+        with col2:
+            
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
