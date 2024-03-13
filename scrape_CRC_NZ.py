@@ -27,7 +27,7 @@ if len(crc_codes)>0:
       try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
 
-        print(URL)
+        st.write(URL)
   
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -164,7 +164,7 @@ if len(crc_codes)>0:
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
-    print(e)
+    st.write(e)
     #st.error(f"Error: {e}")
 else:
     st.info("Please enter some codes to get started.")
