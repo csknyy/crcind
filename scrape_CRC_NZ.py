@@ -84,9 +84,6 @@ if len(crc_codes)>0:
         ###ACTIVE INGREDIENTS
         response2 = requests.get(safety_data_sheet_url)
         
-        ###ACTIVE INGREDIENTS
-        response2 = requests.get(safety_data_sheet_url)
-        
         with open("downloaded_pdf.pdf", "wb") as pdf_file:
             pdf_file.write(response2.content)
         
