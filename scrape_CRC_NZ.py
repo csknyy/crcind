@@ -156,7 +156,7 @@ if len(crc_codes)>0:
 
         elif url_country == 'AU':
           st.dataframe(data)
-          st.write(data.columns)
+          st.write(data.columns.to_list())
           move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
         
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
