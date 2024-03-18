@@ -6,7 +6,6 @@ import pdfplumber
 
 st.set_page_config(page_title="Collect web data from CRC", layout="wide")
 
-
 url_country = st.radio("Which country?", ("NZ", "AU"))
 
 if url_country == 'NZ':
