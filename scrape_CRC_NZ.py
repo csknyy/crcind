@@ -30,7 +30,7 @@ if len(crc_codes)>0:
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        if url_country == 'NZ':
+        if "result" in URL:
           try:
             url2 = soup.find('a', class_="product-item-link").get('href')
             response = requests.get(url2)          
@@ -42,9 +42,6 @@ if len(crc_codes)>0:
         
         data_dict = {}
         data_dict['Country'] = url_country
-        data_dict['URL'] = url2
-
-        st.write(data_dict)
         
         ###ITEM NAME
         try:
