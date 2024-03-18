@@ -12,8 +12,6 @@ if url_country == 'NZ':
   url_base = 'https://www.crc.co.nz/'
 elif url_country == 'AU':
   url_base = 'https://crcindustries.com.au/'
-elif url_country == 'US':
-  url_base = 'https://crcindustries.com/'
 
 data = pd.DataFrame()
 
