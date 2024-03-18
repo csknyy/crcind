@@ -151,16 +151,11 @@ if len(crc_codes)>0:
           data['Product Code'] = data['Product Code:']
         
           move_to_end = ['Unit Size', 'Unit Package Description', 'Safety Data Sheet', 'Active Ingredients', 'Dangerous Good Classification']
-        
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
 
         elif url_country == 'AU':
-          st.dataframe(data)
-          st.write(data.columns.to_list())
           move_to_end = ['Unit Dimensions', 'Unit Size', 'Safety Data Sheet', 'Active Ingredients', 'Hazard Code']
-        
           data = data[[col for col in data.columns if col not in move_to_end] + move_to_end]
-          st.write(data.columns)
 
       except:
         pass
