@@ -32,7 +32,7 @@ if len(crc_codes)>0:
 
         st.write(url)
 
-        if "result" in URL:
+        if "result" in url:
           try:
             url2 = soup.find('a', class_="product-item-link").get('href')
             response = requests.get(url2)          
