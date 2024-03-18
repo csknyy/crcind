@@ -43,6 +43,8 @@ if len(crc_codes)>0:
         data_dict = {}
         data_dict['Country'] = url_country
         data_dict['URL'] = url2
+
+        st.write(data_dict)
         
         ###ITEM NAME
         try:
