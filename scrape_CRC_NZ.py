@@ -77,6 +77,7 @@ if len(crc_codes)>0:
             data_dict['Features/Benefits'] = feats_bens
           elif url_country == 'AU':
             feats_bens_list = soup.find_all('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            st.write(feats_bens_list)
             data_dict['Features/Benefits'] = feats_bens_list[1]
         except:
           data_dict['Features/Benefits'] = ""
