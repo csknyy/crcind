@@ -61,15 +61,23 @@ if len(crc_codes)>0:
         
         ###APPLICATIONS
         try:
-          applications = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
-          data_dict['Applications'] = applications
+          if url_country == 'NZ':
+            applications = soup.find('div', class_='product-applications').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            data_dict['Applications'] = applications
+          elif url_country == 'AU':
+            applications = soup.find('div', class_='product-applications m-45').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            data_dict['Applications'] = applications
         except:
           data_dict['Applications'] = ""
           
         ###FEATURES/BENEFITS
         try:
-          feats_bens = soup.find('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
-          data_dict['Features/Benefits'] = feats_bens
+          if url_country == 'NZ':
+            feats_bens = soup.find('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            data_dict['Features/Benefits'] = feats_bens
+          elif url_country == 'AU':
+            feats_bens_list = soup.find_all('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            data_dict['Features/Benefits'] = second_feats_bens = feats_bens_list[1]
         except:
           data_dict['Features/Benefits'] = ""
         
