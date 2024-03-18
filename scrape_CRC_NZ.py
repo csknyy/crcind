@@ -79,7 +79,7 @@ if len(crc_codes)>0:
             #feats_bens_list = soup.find_all('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
             #data_dict['Features/Benefits'] = feats_bens_list[1]
 
-            temp = response.text.split('product-feature-benefits')[1]
+            temp = response.text()
             
             st.write(temp)
             
