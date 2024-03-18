@@ -76,9 +76,12 @@ if len(crc_codes)>0:
             feats_bens = soup.find('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
             data_dict['Features/Benefits'] = feats_bens
           elif url_country == 'AU':
-            feats_bens_list = soup.find_all('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
-            st.write(feats_bens_list)
-            data_dict['Features/Benefits'] = feats_bens_list[1]
+            #feats_bens_list = soup.find_all('div', class_='product-feature-benefits').find('p').get_text(strip=True).replace(':', ': ').replace('.', '. ')
+            #data_dict['Features/Benefits'] = feats_bens_list[1]
+
+            parent_div = soup.find('div', {'id': 'product-feature-benefits'})
+            st.write(parent_div)
+            
         except:
           data_dict['Features/Benefits'] = ""
         
