@@ -30,14 +30,11 @@ if len(crc_codes)>0:
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        st.write(url)
-
         if "result" in url:
           try:
             url2 = soup.find('a', class_="product-item-link").get('href')
             response = requests.get(url2)          
             soup = BeautifulSoup(response.content, 'html.parser')
-            st.write(url2)
           except:
             pass
         else:
