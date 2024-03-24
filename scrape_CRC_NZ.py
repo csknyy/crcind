@@ -136,7 +136,10 @@ if len(crc_codes)>0:
             hazard_code = pdf_text.split('\n')[hazard_index + 4].split(' ')[2]
             data_dict['Hazard Code'] = hazard_code
         except:
-          data_dict['Dangerous Good Classification'] = 'N/A'
+          if url_country == 'NZ':
+            data_dict['Dangerous Good Classification'] = 'N/A'
+          elif url_country == 'AU':
+            data_dict['Hazard Code'] = 'N/A'
         
         ###SPECIFICATIONS
         specifications = soup.find('table', class_='data table additional-attributes')
