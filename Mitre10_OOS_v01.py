@@ -21,10 +21,6 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         #####################################
         
         data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
-
-        ###
-        ###delete this
-        st.dataframe(data)
         
         data['SOH Status'] = ''
         
@@ -38,19 +34,11 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         data['Supplier Comments'] = ''
         
         data = pd.merge(data, data_M10_ranking[['Supplier Item Code','$Value MAT','Units MAT','SOH LW']], how='left', left_on='Legacy', right_on='Supplier Item Code')
-
-        ###
-        ###delete this
-        st.dataframe(data)
         
         del data['Supplier Item Code']
         
         data = pd.merge(data, data_M10_stock[['Supplier Item Code','WOC ']], how='left', left_on='Legacy', right_on='Supplier Item Code')
 
-        ###
-        ###delete this
-        st.dataframe(data)
-        
         del data['Supplier Item Code']
         
         data[' '] = ''
