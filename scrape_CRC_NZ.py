@@ -127,6 +127,9 @@ if len(crc_codes)>0:
         ###HAZARD CODE
         try:
           if url_country == 'NZ':
+
+            st.write(pdf_text)
+            
             hazard_index = next((index for index, string in enumerate(pdf_text.split('\n')) if '14.3.Transport hazard' in string), None)
             hazard_code = pdf_text.split('\n')[hazard_index].split(' ')[-1]
 
