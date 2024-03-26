@@ -6,8 +6,10 @@ st.set_page_config(page_title="Open orders report", layout="wide")
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-uploaded_file_0 = st.file_uploader("Upload the Picking list registration report from D3FO", key="file_uploader_0")
 st.write('https://crcprod.operations.dynamics.com/?cmp=NZ01&mi=WMSPickingRegistration')
+uploaded_file_0 = st.file_uploader("Upload the Picking list registration report from D3FO", key="file_uploader_0")
+
+st.write('https://app.powerbi.com/groups/me/apps/214e4084-75df-4879-8c90-d816976503d1/reports/63102159-9a9f-4a96-9e06-eabf076e3c6e/ReportSection3dd6b96d4bddd09e873d?ctid=635f5fbb-65ae-48dc-a182-43b70db76a78&experience=power-bi')
 uploaded_file_1 = st.file_uploader("Upload the Open Orders by Order Creation Date report from Power BI ", key="file_uploader_1")
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
