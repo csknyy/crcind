@@ -123,23 +123,32 @@ if uploaded_file is not None:
             top_chart = st.text_input(f'"+" for first x rows and "-" for last x rows. Total lines: {len(data)}', key="top_chart")
             try:
                 top_chart = int(top_chart)
-            except:
-                if ',' in top_chart:
+
+                if not top_chart:
+                    pass     
+                elif int(top_chart) > 0:
+                    data = data.head(top_chart)
+                elif int(top_chart) < 0:
+                    data = data.tail(top_chart*-1)
+                else:
                     pass
+            except:
+                elif ',' in top_chart:
+                    data = data.iloc[int(top_chart.split(',')[0])-1:int(top_chart.split(',')[1])]     
                 elif not top_chart:
                     pass
                 else:
                     st.info("Please enter an integer")
-            if not top_chart:
-                pass
-            elif ',' in top_chart:
-                data = data.iloc[int(top_chart.split(',')[0])-1:int(top_chart.split(',')[1])]          
-            elif int(top_chart) > 0:
-                data = data.head(top_chart)
-            elif int(top_chart) < 0:
-                data = data.tail(top_chart*-1)
-            else:
-                pass
+            #if not top_chart:
+            #    pass
+            #elif ',' in top_chart:
+            #    data = data.iloc[int(top_chart.split(',')[0])-1:int(top_chart.split(',')[1])]          
+            #elif int(top_chart) > 0:
+            #    data = data.head(top_chart)
+            #elif int(top_chart) < 0:
+            #    data = data.tail(top_chart*-1)
+            #else:
+            #    pass
         
         new_column_options = [str(col) for col in data.columns]
 
