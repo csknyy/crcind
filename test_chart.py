@@ -186,7 +186,6 @@ if uploaded_file is not None:
             
         fig.update_layout(height=800, width=1200, font=dict(size=8))
         st.plotly_chart(fig)
-        data['Net Sales $'] = data['Net Sales $'].map('{:,.2f}'.format)
         st.dataframe(data)
 
     except Exception as e:
