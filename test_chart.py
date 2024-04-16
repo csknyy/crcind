@@ -186,7 +186,7 @@ if uploaded_file is not None:
             
         fig.update_layout(height=800, width=1200, font=dict(size=8))
         st.plotly_chart(fig)
-        st.dataframe(data)
+        st.dataframe(data[Dimensions])
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
