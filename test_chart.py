@@ -191,7 +191,10 @@ if uploaded_file is not None:
         try:
             st.dataframe(data[['Item Description'] + dimensions])
         except:
-            pass
+            try:
+                st.dataframe(data[dimensions])
+            except:
+                pass
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
