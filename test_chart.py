@@ -142,7 +142,7 @@ if uploaded_file is not None:
             #if not top_chart:
             #    pass
             #elif ',' in top_chart:
-            #    data = data.iloc[int(top_chart.split(',')[0])-1:int(top_chart.split(',')[1])]          
+            #    data = data.iloc[int(top_chart.split(',')[0]):int(top_chart.split(',')[1])]          
             #elif int(top_chart) > 0:
             #    data = data.head(top_chart)
             #elif int(top_chart) < 0:
