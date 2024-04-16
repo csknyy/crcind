@@ -199,7 +199,7 @@ if uploaded_file is not None:
         fig.update_layout(height=800, width=1200, font=dict(size=8))
         st.plotly_chart(fig)
         try:
-            st.dataframe(data[dimensions])
+            st.dataframe(data[['Item Description'] + dimensions])
         except:
             pass
 
