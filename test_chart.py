@@ -130,9 +130,9 @@ if uploaded_file is not None:
                     st.info("Please enter an integer")
             if not top_chart:
                 pass
-            elif int(top_chart.split(',')[0]) > 0:
+            elif int(top_chart) > 0:
                 data = data.head(top_chart)
-            elif int(top_chart.split(',')[0]) < 0:
+            elif int(top_chart) < 0:
                 data = data.tail(top_chart*-1)
             else:
                 pass
