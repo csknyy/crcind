@@ -192,6 +192,10 @@ if uploaded_file is not None:
             for i, dim in enumerate(dimensions):
                 fig.update_layout({"xaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
                 fig.update_layout({"yaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
+
+            for i, trace in enumerate(fig.data):
+                trace.text = data['Item Description']
+                fig.update_traces(textposition='top center', textfont_size=10, row=i+1, col=1)
                 
         else:
             pass
