@@ -139,16 +139,6 @@ if uploaded_file is not None:
                     pass
                 else:
                     st.info("Please enter an integer")
-            #if not top_chart:
-            #    pass
-            #elif ',' in top_chart:
-            #    data = data.iloc[int(top_chart.split(',')[0]):int(top_chart.split(',')[1])]          
-            #elif int(top_chart) > 0:
-            #    data = data.head(top_chart)
-            #elif int(top_chart) < 0:
-            #    data = data.tail(top_chart*-1)
-            #else:
-            #    pass
         
         new_column_options = [str(col) for col in data.columns]
 
@@ -192,7 +182,6 @@ if uploaded_file is not None:
             for i, dim in enumerate(dimensions):
                 fig.update_layout({"xaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
                 fig.update_layout({"yaxis"+str(i+1): dict(range=[min_values[i], max_values[i]])})
-
                 
         else:
             pass
