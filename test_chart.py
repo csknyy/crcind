@@ -134,7 +134,7 @@ if uploaded_file is not None:
                     pass
             except:
                 if ',' in top_chart:
-                    data = data.iloc[int(top_chart.split(',')[0])-1:int(top_chart.split(',')[1])]     
+                    data = data.iloc[int(top_chart.split(',')[0]):int(top_chart.split(',')[1])]     
                 elif not top_chart:
                     pass
                 else:
