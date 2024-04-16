@@ -134,7 +134,7 @@ if uploaded_file is not None:
         elif int(top_chart) > 0:
             data = data.head(top_chart)
         elif int(top_chart) < 0:
-            data = data.tail(top_chart)
+            data = data.tail(top_chart*-1)
         else:
             pass
         
