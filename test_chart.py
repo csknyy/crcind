@@ -131,9 +131,9 @@ if uploaded_file is not None:
         try:
             if not top_chart:
                 pass
-            elif int(top_chart) > 0:
+            elif int(top_chart.split(',')[0]) > 0:
                 data = data.head(top_chart)
-            elif int(top_chart) < 0:
+            elif int(top_chart.split(',')[0]) < 0:
                 data = data.tail(top_chart*-1)
             elif ',' in top_chart:
                 data = data.iloc[top_chart.split[0]:top_chart.split[1]]
