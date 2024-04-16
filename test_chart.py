@@ -120,7 +120,7 @@ if uploaded_file is not None:
         with middle_column:
             chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
         with right_column:
-            top_chart = st.text_input('"+" for first x rows and "-" for last x rows"', key="top_chart")
+            top_chart = st.text_input(f'"+" for first x rows and "-" for last x rows. Total lines: {len(data)}', key="top_chart")
             try:
                 top_chart = int(top_chart)
             except:
