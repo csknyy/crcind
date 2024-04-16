@@ -133,7 +133,7 @@ if uploaded_file is not None:
             pass
         elif int(top_chart) > 0:
             data = data.loc[:top_chart-1]
-        elif int(top_group) < 0:
+        elif int(top_chart) < 0:
             data = data.loc[-1*(top_chart-1):]
         else:
             pass
