@@ -121,26 +121,21 @@ if uploaded_file is not None:
             chart_type = st.radio("", ("Scatter", "Scatter Matrix", "Line", "Bar"))
         with right_column:
             top_chart = st.text_input(f'"+" for first x rows and "-" for last x rows. Total lines: {len(data)}', key="top_chart")
-            #try:
-            #    top_chart = int(top_chart)
-            #except:
-            #    if not top_chart:
-            #        pass
-            #    else:
-            #        st.info("Please enter an integer")
             try:
+                top_chart = int(top_chart)
+            except:
                 if not top_chart:
                     pass
-                elif int(top_chart.split(',')[0]) > 0:
-                    data = data.head(top_chart)
-                elif int(top_chart.split(',')[0]) < 0:
-                    data = data.tail(top_chart*-1)
-                elif ',' in top_chart:
-                    data = data.iloc[top_chart.split[0]:top_chart.split[1]]
                 else:
-                    pass
-            except:
-                st.info("Please enter an integer")
+                    st.info("Please enter an integer")
+            if not top_chart:
+                pass
+            elif int(top_chart.split(',')[0]) > 0:
+                data = data.head(top_chart)
+            elif int(top_chart.split(',')[0]) < 0:
+                data = data.tail(top_chart*-1)
+            else:
+                pass
         
         new_column_options = [str(col) for col in data.columns]
 
