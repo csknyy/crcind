@@ -132,9 +132,9 @@ if uploaded_file is not None:
         if not top_chart:
             pass
         elif int(top_chart) > 0:
-            data = data.head(int(top_chart))
+            data = data.loc[:top_chart-1]
         elif int(top_group) < 0:
-            data = data.tail(int(top_chart)*-1)
+            data = data.loc[-1*(top_chart-1):]
         else:
             pass
         
