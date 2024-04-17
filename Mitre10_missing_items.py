@@ -43,9 +43,9 @@ if uploaded_file is not None:
 
     data['Sales Rep'] = sales_rep_list
     data['Count'] = 1
+    data['Count'] = data['Count'].astype(int)
 
     data['Supplier Item Code'] = data['Supplier Item Code'].astype(str)
-
 
     data_item = data[['Supplier Item Code', 'Item Description','Count']]
     data_item = data_item.groupby(by=['Supplier Item Code', 'Item Description']).sum().sort_values(by="Count", ascending=False)
@@ -55,10 +55,10 @@ if uploaded_file is not None:
     
     col1, col2 = st.columns(2)
     with col1:
-      #st.header(f'Total count: {data_item['Count'].sum()}')
+      st.subheader(f'Total count: {data_item["Count"].sum()}')
       st.dataframe(data_item)
     with col2:
-      #st.header(f'Total count: {data_rep['Count'].sum()}')
+      st.subheader(f'Total count: {data_rep["Count"].sum()}')
       st.dataframe(data_rep)
     st.dataframe(data)
 
