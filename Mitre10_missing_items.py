@@ -44,7 +44,8 @@ if uploaded_file is not None:
     data['Sales Rep'] = sales_rep_list
     data['Count'] = 1 * len(data)
 
-    data_item = data.groupby(by=['Supplier Item Code', 'Item Description']).sum()['Count']
+    data_item = data[['Supplier Item Code', 'Item Description','Count']]
+    data_item = data.groupby(by=['Supplier Item Code', 'Item Description']).sum()
 
     
     st.dataframe(data_item)
