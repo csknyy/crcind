@@ -7,7 +7,7 @@ uploaded_file = st.file_uploader("Upload a file")
 
 if uploaded_file is not None:
   try:  
-    data = pd.read_excel(uploaded_file, sheet_name="RangeGaps", header = 1)
+    data = pd.read_excel(uploaded_file, sheet_name="RangeGaps", header = 1, engine="openpyxl")
 
     sales_rep_dict = {"A3 Ashby's Mitre 10":"Bruce Gasson", "B7 Beachlands Mitre 10":"Ronny Hewson", "B7T Beachlands Trade Centre":"Ronny Hewson", "C8 Central Otago Mitre 10":"Bruce Gasson", "C7 Crofton Downs Mitre 10":"Bruce Gasson",
                       "C28 Cromwell Mitre 10":"Bruce Gasson", "W7 Dannevirke Mitre 10":"Mark Jenkins", "D2 Darragh's Mitre 10":"Mark Jenkins", "G11 Gisborne Mitre 10":"Mark Jenkins", "G6 Gore Mitre 10":"Bruce Gasson",
