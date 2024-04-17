@@ -61,10 +61,14 @@ if uploaded_file is not None:
       st.subheader(f'Total count: {data_rep["Count"].sum()}')
       st.dataframe(data_rep)
 
+    st.markdown('---')
+
     unique_rep = data_rep.reset_index()['Sales Rep']
 
     for i in unique_rep:
       temp = data[data['Sales Rep'].isin([i])][['Store','Supplier Item Code','Item Description']]
+      st.subheader(i)
+      st.subheader(f'Total count: {len(temp)}')
       st.dataframe(temp)
 
 
