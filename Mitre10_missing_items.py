@@ -35,7 +35,7 @@ if uploaded_file is not None:
 
     sales_rep_list = []
     
-    for i in data['Store']]:
+    for i in data['Store']:
       try:
         sales_rep_list.append(sales_rep_dict[i])
       except:
