@@ -48,7 +48,8 @@ if uploaded_file is not None:
 
 
     data_item = data[['Supplier Item Code', 'Item Description','Count']]
-    data_item = data_item.groupby(by=['Supplier Item Code', 'Item Description']).sum()
+    data_item = data_item.groupby(by=['Supplier Item Code', 'Item Description']).sum().sort_values(by="Count", ascending=False)
+
 
     
     st.dataframe(data_item)
