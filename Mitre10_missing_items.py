@@ -42,7 +42,7 @@ if uploaded_file is not None:
         sales_rep_list.append("")
 
     data['Sales Rep'] = sales_rep_list
-    data['Count'] = 1 * len(data)
+    data['Count'] = 1
 
     data['Supplier Item Code'] = data['Supplier Item Code'].astype(str)
 
