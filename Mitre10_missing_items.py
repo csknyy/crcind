@@ -70,6 +70,7 @@ if uploaded_file is not None:
       st.subheader(i)
       st.subheader(f'Total count: {len(temp)}')
       st.dataframe(temp)
+      st.markdown('---')
 
 
     st.markdown('---')
