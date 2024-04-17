@@ -42,7 +42,12 @@ if uploaded_file is not None:
         sales_rep_list.append("")
 
     data['Sales Rep'] = sales_rep_list
+    data['Count'] = 1 * len(data)
+
+    data_item = data.groupby(by=['Supplier Item Code', 'Item Description']).sum()['Count']
+
     
+    st.dataframe(data_item)
     st.dataframe(data)
 
   except:
