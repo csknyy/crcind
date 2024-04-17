@@ -50,9 +50,14 @@ if uploaded_file is not None:
     data_item = data[['Supplier Item Code', 'Item Description','Count']]
     data_item = data_item.groupby(by=['Supplier Item Code', 'Item Description']).sum().sort_values(by="Count", ascending=False)
 
-
+    data_rep = data[['Sales Rep','Count']]
+    data_rep = data_rep.groupby(by='Sales Rep').sum().sort_values(by="Count", ascending=False)
     
-    st.dataframe(data_item)
+    col1, col2 = st.columns(2)
+    with col1:
+      st.dataframe(data_item)
+    with col2:
+      st.dataframe(data_rep)
     st.dataframe(data)
 
   except Exception as e:
