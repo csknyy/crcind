@@ -63,7 +63,9 @@ if uploaded_file is not None:
 
     unique_rep = data_rep.reset_index()['Sales Rep']
 
-    st.write(unique_rep)
+    for i in unique_rep:
+      temp = data[data['Sales Rep'].isin([i])][['Store','Supplier Item Code','Item Description']]
+      st.dataframe(temp)
 
 
 
