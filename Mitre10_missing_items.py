@@ -50,5 +50,5 @@ if uploaded_file is not None:
     st.dataframe(data_item)
     st.dataframe(data)
 
-  except Exception as e::
+  except Exception as e:
     st.error(f"An error occurred: {e}")
