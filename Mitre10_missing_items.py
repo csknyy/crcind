@@ -30,7 +30,7 @@ if uploaded_file is not None:
                       "T12 Taumarunui Mitre 10":"Mark Jenkins", "T12T Taumarunui Timber":"Mark Jenkins", "X5D Tauranga Distribution Centre":"Mark Jenkins", "T16 Te Anau Mitre 10":"Bruce Gasson", "T8 Te Kuiti Mitre 10":"Mark Jenkins",
                       "T15 Te Puke Mitre 10":"Mark Jenkins", "T14 Thames Mitre 10":"Mark Jenkins", "M5 Waihi Mitre 10":"Mark Jenkins", "M5T Waihi Mitre 10 Prenail & Truss":"Mark Jenkins", "W31 Waiuku Mitre 10":"Ronny Hewson",
                       "W34 Whakatane Mitre 10":"Mark Jenkins", "W67 Whangaparaoa Mitre 10":"Ronny Hewson", "W12 Winton Mitre 10":"Bruce Gasson", "T9 Te Anau Mitre 10":"Bruce Gasson","P13 Ponsonby Mitre 10":"Ronny Hewson",
-                      "M6 Westport Mitre 10":"Bruce Gasson","M13 Stratford Mitre 10":"Tadak Brejnakowski","S5B Beckenham Mitre 10":"Bruce Gasson"}
+                      "M6 Westport Mitre 10":"Bruce Gasson","M13 Stratford Mitre 10":"Tadak Brejnakowski","S5B Beckenham Mitre 10":"Bruce Gasson","G4 Onehunga Mitre 10":"Ronny Hewson"}
     
     data = data[data['National RII'].isin(['A', 'B'])]
 
