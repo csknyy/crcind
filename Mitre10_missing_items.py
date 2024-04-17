@@ -9,3 +9,6 @@ if uploaded_file is not None:
   try:  
     data = pd.read_excel(uploaded_file, sheet_name="RangeGaps", header = 1)
     st.dataframe(data)
+
+  except:
+    st.error(f"An error occurred: {e}")
