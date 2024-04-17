@@ -32,6 +32,16 @@ if uploaded_file is not None:
                       "W34 Whakatane Mitre 10":"Mark Jenkins", "W67 Whangaparaoa Mitre 10":"Ronny Hewson", "W12 Winton Mitre 10":"Bruce Gasson"}
     
     data = data[data['National RII'].isin(['A', 'B'])]
+
+    sales_rep_list = []
+    
+    for i in data['Store']]:
+      try:
+        sales_rep_list.append(sales_rep_dict[i])
+      except:
+        sales_rep_list.append("")
+
+    data['Sales Rep'] = sales_rep_list
     
     st.dataframe(data)
 
