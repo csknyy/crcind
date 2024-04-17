@@ -72,8 +72,7 @@ if uploaded_file is not None:
       st.dataframe(temp)
 
 
-
-
+    st.markdown('---')
     
     st.dataframe(data)
 
