@@ -60,7 +60,18 @@ if uploaded_file is not None:
     with col2:
       st.subheader(f'Total count: {data_rep["Count"].sum()}')
       st.dataframe(data_rep)
+
+    unique_rep = data_rep.reset_index()['Sales Rep']
+
+    st.write(unique_rep)
+
+
+
+
+    
     st.dataframe(data)
+
+    
 
   except Exception as e:
     st.error(f"An error occurred: {e}")
