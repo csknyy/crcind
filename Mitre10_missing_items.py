@@ -81,7 +81,7 @@ if uploaded_file is not None:
       st.markdown('---')
 
 
-    st.dataframe(data[['Supplier Item Code','Item Description','Store','Sales Rep']])
+    st.dataframe(data[['Sales Rep','Store','Department','Supplier Item Code','ItemCode','Description','Item Range','National RII','Last SOH>0, weeks']])
 
     st.markdown('---')
     
