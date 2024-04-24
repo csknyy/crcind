@@ -1,4 +1,4 @@
-import streamlit as st
+=Fimport streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title="Mitre 10 missing items", layout="wide")
@@ -81,7 +81,7 @@ if uploaded_file is not None:
       st.markdown('---')
 
 
-    st.dataframe(data[['Sales Rep','Store','Department','Supplier Item Code','ItemCode','Item Description','Item Range','National RII','Last SOH>0, weeks']])
+    st.dataframe(data[['Sales Rep','Store','Department','Supplier Item Code','ItemCode','Item Description','Item Range','National RII','Last SOH>0, weeks']],index=False)
 
     st.markdown('---')
     
