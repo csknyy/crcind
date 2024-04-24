@@ -1,4 +1,4 @@
-=Fimport streamlit as st
+import streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title="Mitre 10 missing items", layout="wide")
