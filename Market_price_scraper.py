@@ -676,7 +676,8 @@ if select_text == "Mitre 10":
                         ' Check nearby stores': '',
                         ' done Click & Collect available': '',
                         'done Home Delivery available': '',
-                        'clear Click & Collect is not available at your chosen store': ''}
+                        'clear Click & Collect is not available at your chosen store': '',
+                        ' Afterpay-logo 4 interest free payments of $ ': ''}
         for old, new in replacements.items():
             text_input = text_input.replace(old, new)
 
