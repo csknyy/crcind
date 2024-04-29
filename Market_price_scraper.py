@@ -669,9 +669,12 @@ if select_text == "Mitre 10":
     text_input = st.text_input("Enter Mitre 10 text here:")
     if len(text_input) > 1:
         names,SKUs,prices,RRPs = [],[],[],[]
-        text_input = text_input.replace('pack of 72','each')
+        #for i in text_input.split(' Choose a store for availability '):
+        replacements = {'pack of 72': 'each', ' clear Not available at your chosen store.': '', ' clear Not available for home delivery': '', ' Check nearby stores': '', ' done Click & Collect available': ''}
+        for old, new in replacements.items():
+            text_input = text_input.replace(old, new)
 
-        for i in text_input.split(' Choose a store for availability '):
+        for i in text_input.split('each'):
           index = int((len(i.split(' ★')[0]) - 5)/2)
           names.append(i.split(' ★')[0][:-index].strip())
           SKUs.append(i.split('SKU: ')[1].split(' ')[0])
