@@ -674,7 +674,7 @@ if select_text == "Mitre 10":
         for old, new in replacements.items():
             text_input = text_input.replace(old, new)
 
-        for i in text_input.split('each'):
+        for i in text_input.split('each')[:-1]:
           index = int((len(i.split(' ★')[0]) - 5)/2)
           names.append(i.split(' ★')[0][:-index].strip())
           SKUs.append(i.split('SKU: ')[1].split(' ')[0])
