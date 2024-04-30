@@ -711,17 +711,23 @@ if select_text == "The ToolShed":
         
         products = [i.strip() for i in text_input.split('MORE INFO')[:-1]]
         
-        names, CRC_codes, prices = [],[],[]
+        names, CRC_codes, first_prices, prices = [],[],[],[]
         
         for i in products:
           ind = int((len(i.split(' ')) - 4) / 2)
           names.append(' '.join(i.split(' ')[:ind]))
-          CRC_codes.append(i.split(' ')[ind*2])
-          prices.append(i.split('$')[1])
+          CRC_codes.append(i.split(' (')[0].split(' ')[-1])
+          try:
+            first_prices.append(i.split('WAS: $')[1].split(' ')[0])
+            prices.append(i.split('NOW: $')[1].split(' ')[0])
+          except:
+            first_prices.append('')
+            prices.append(i.split('$')[1])
         
         data = pd.DataFrame()
         data['Item Description'] = names
         data['CRC codes'] = CRC_codes
+        data['First price'] = first_prices
         data['Price'] = prices
 
         st.dataframe(data)
