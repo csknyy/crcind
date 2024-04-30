@@ -63,7 +63,7 @@ def on_button_click_Place():
                 pass
             else:
                 crc_code_list.append(products[i].split('Part Code: ')[1].split('<')[0])
-            price_list.append(products[i].split('$')[1].split('<')[0])
+            price_list.append(products[i].split('\n\t\t\t\t\t\t\tdata-product-price="')[1].split('"')[0])
             link_list.append(products[i].split('data-product-url="')[1].split('"\n')[0])
         except:
             pass
