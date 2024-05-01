@@ -709,7 +709,7 @@ if select_text == "The ToolShed":
         for old, new in replacements.items():
             text_input = text_input.replace(old, new)
         
-        products = [i.strip() for i in text_input.split('MORE INFO')[:-1]]
+        products = [i.strip() for i in text_input.split('MORE INFO')]
         
         names, CRC_codes, first_prices, prices = [],[],[],[]
         
