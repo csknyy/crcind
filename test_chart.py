@@ -8,11 +8,13 @@ uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 
 if uploaded_file is not None:
     try:
-        if delimiter_check == "Yes":
-            delimiter = st.sidebar.text_input('Enter delimiter')
-            data = pd.read_csv(uploaded_file, delimiter=delimiter) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, engine='openpyxl')
-        else:
-            data = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, engine='openpyxl')
+        try:
+            delimiter_check = st.sidebar.radio("Manual delimiter", ("No", "Yes"))
+            if delimiter_check == "Yes":
+                delimiter = st.sidebar.text_input('Enter delimiter')
+                data = pd.read_csv(uploaded_file, encoding='ISO-8859-1', delimiter=delimiter) if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, encoding='ISO-8859-1')
+            else:
+                data = pd.read_csv(uploaded_file, encoding='ISO-8859-1') if uploaded_file.name.endswith('csv') else pd.read_excel(uploaded_file, encoding='ISO-8859-1')
         st.sidebar.markdown('---')
 
         FM_check = st.sidebar.radio("Fill and convert N/a", ("No", "Yes"))
