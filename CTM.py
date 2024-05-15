@@ -7,9 +7,8 @@ report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
     
 if report == "Bunnings":
 
-    if uploaded_file is not None:
-
     uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    if uploaded_file is not None:
     
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
@@ -54,10 +53,9 @@ if report == "Bunnings":
 
 elif report == "Mitre 10":
 
-    if uploaded_file is not None:
-
     uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
-        
+    if uploaded_file is not None:
+           
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'Ranking', header = 5)
 
@@ -105,9 +103,8 @@ elif report == "Mitre 10":
         
 else:
 
-    if uploaded_file is not None:
-
     uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    if uploaded_file is not None:
         
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
