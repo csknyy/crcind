@@ -66,6 +66,9 @@ if uploaded_file is not None:
             for i in ['Item Description']:
     
                 st.header(f"By {i}")
+
+                data['Sales $'] = data['Sales $'].astype(float)
+                data['GP $'] = data['GP $'].astype(float)
                 
                 data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
                 
