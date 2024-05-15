@@ -62,7 +62,8 @@ if uploaded_file is not None:
             data = data.rename(columns={'$Value MAT': 'Sales $'})
             data = data.rename(columns={'$GP MAT': 'GP $'})
 
-            for i in ['SubDepartment', 'FineLine', 'Class', 'Item Description']:
+            #for i in ['SubDepartment', 'FineLine', 'Item Description']:
+            for i in ['Item Description']:
     
                 st.header(f"By {i}")
                 
