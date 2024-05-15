@@ -26,7 +26,14 @@ if uploaded_file is not None:
 
         data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
         
-        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}").format(subset=["CTS %"], formatter="%{:,.2f}").format(subset=["GP $"], formatter="${:,.2f}").format(subset=["GP %"], formatter="%{:,.2f}").format(subset=["CTM %"], formatter="%{:,.2f}"))
+        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                     .format(subset=["CTS %"], formatter="%{:,.2f}")
+                     .format(subset=["GP $"], formatter="${:,.2f}")
+                     .format(subset=["GP %"], formatter="%{:,.2f}")
+                     .format(subset=["CTM %"], formatter="%{:,.2f}")
+                     .format(subset=['Check'], formatter="{:,.2f}")
+                    )
+        
         st.dataframe(data)
     
     except Exception as e:
