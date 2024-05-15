@@ -5,7 +5,7 @@ st.set_page_config(page_title="CTM report", layout="wide")
 
 report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
 
-uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
     
 if uploaded_file is not None:
 
