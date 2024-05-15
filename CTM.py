@@ -30,7 +30,6 @@ if uploaded_file is not None:
         
         st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                      .format(subset=["CTS %"], formatter="%{:,.2f}")
-                     .format(subset=["GP $"], formatter="${:,.2f}")
                      .format(subset=["GP %"], formatter="%{:,.2f}")
                      .format(subset=["CTM %"], formatter="%{:,.2f}")
                      .format(subset=['Check'], formatter="%{:,.2f}")
