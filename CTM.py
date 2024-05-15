@@ -5,11 +5,11 @@ st.set_page_config(page_title="CTM report", layout="wide")
 
 report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
     
-if uploaded_file is not None:
+if report == "Bunnings":
+
+    if uploaded_file is not None:
 
     uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
-
-    if report == "Bunnings":
     
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
@@ -51,9 +51,12 @@ if uploaded_file is not None:
         except Exception as e:
           st.error(f"An error occurred: {e}")
 
-    elif report == "Mitre 10":
 
-        uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+elif report == "Mitre 10":
+
+    if uploaded_file is not None:
+
+    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
         
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'Ranking', header = 5)
@@ -99,11 +102,12 @@ if uploaded_file is not None:
 
         except Exception as e:
           st.error(f"An error occurred: {e}")
+        
+else:
 
+    if uploaded_file is not None:
 
-    else:
-
-        uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
         
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
