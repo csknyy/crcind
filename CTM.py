@@ -57,7 +57,8 @@ if uploaded_file is not None:
             data = pd.read_excel(uploaded_file, sheet_name = 'Ranking', header = 5)
 
             data = data.rename(columns={'Item': 'Item Description'})
-            data = data.rename(columns={'Item': 'GP $'})
+            data = data.rename(columns={'$Value MAT': 'Sales $'})
+            data = data.rename(columns={'$GP MAT': 'GP $'})
 
             for i in ['SubDepartment', 'FineLine', 'Class', 'Item Description']:
     
