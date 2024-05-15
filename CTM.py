@@ -13,6 +13,9 @@ if uploaded_file is not None:
 
         
         for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
+
+            st.header(f"By {i}")
+            
             data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
             
             total_sales = data_grouped1['Sales $'].sum()
@@ -36,6 +39,8 @@ if uploaded_file is not None:
                          .format(subset=["CTM %"], formatter="%{:,.2f}")
                          .format(subset=['Check'], formatter="%{:,.2f}")
                         )
+
+            st.markdown('---')
             
         st.dataframe(data)
     
