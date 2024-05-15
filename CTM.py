@@ -56,13 +56,11 @@ if uploaded_file is not None:
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'Ranking', header = 5)
 
-            st.dataframe(data)
-
             data = data.rename(columns={'Item': 'Item Description'})
             data = data.rename(columns={'$Value MAT': 'Sales $'})
             data = data.rename(columns={'$GP MAT': 'GP $'})
 
-            dat2 = data[['SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
+            data2 = data[['SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
 
             for i in ['SubDepartment', 'FineLine', 'Item Description']:
             #for i in ['Item Description']:
