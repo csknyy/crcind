@@ -10,6 +10,9 @@ if uploaded_file is not None:
         data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
         data.columns.values[4] = 'Item Description'
 
+        data_grouped1 = data.groupby(by='Item Description').sum()[['Sales $','GP $']]
+        
+        st.dataframe(data_grouped1)
         st.dataframe(data)
     
     except Exception as e:
