@@ -12,7 +12,7 @@ if uploaded_file is not None:
         data.columns.values[4] = 'Item Description'
 
         
-        for i in ['Department', 'Sub Department', 'Class', 'Item Description']
+        for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
             data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
             
             total_sales = data_grouped1['Sales $'].sum()
@@ -37,7 +37,7 @@ if uploaded_file is not None:
                          .format(subset=['Check'], formatter="%{:,.2f}")
                         )
             
-            st.dataframe(data)
+        st.dataframe(data)
     
     except Exception as e:
       st.error(f"An error occurred: {e}")
