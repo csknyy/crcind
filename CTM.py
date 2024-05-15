@@ -23,10 +23,8 @@ if uploaded_file is not None:
         total_CTM = data_grouped1['CTM'].sum()
 
         data_grouped1['CTM %'] = data_grouped1['CTM'] / total_CTM
-
-        st.write(data_grouped1['CTM %'].sum())
         
-        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}").format(subset=["GP $"], formatter="${:,.2f}").format(subset=["GP %"], formatter="%{:,.2f}").format(subset=["CTM %"], formatter="%{:,.2f}"))
+        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}").format(subset=["GP $"], formatter="${:,.2f}").format(subset=["GP %"], formatter="%{:,.2f}").format(subset=["CTM %"], formatter="%{:,.4f}"))
         st.dataframe(data)
     
     except Exception as e:
