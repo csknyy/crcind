@@ -8,9 +8,11 @@ uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 if uploaded_file is not None:
     try:
         data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+        data = data.iloc[:-1]
         data.columns.values[4] = 'Item Description'
 
         data_grouped1 = data.groupby(by='Item Description').sum()[['Sales $','GP $']]
+        data_grouped1['GP %'] = data_grouped1['GP $'] / data_grouped1['Sales $']
         
         st.dataframe(data_grouped1)
         st.dataframe(data)
