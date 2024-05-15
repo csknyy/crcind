@@ -7,7 +7,7 @@ report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
     
 if report == "Bunnings":
 
-    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a Bunnings KPI report", type=["csv", "xlsx", "xlsm"])
     if uploaded_file is not None:
     
         try:
@@ -53,7 +53,7 @@ if report == "Bunnings":
 
 elif report == "Mitre 10":
 
-    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a Mitre 10 Bronze CRC trade ranking report", type=["csv", "xlsx", "xlsm"])
     if uploaded_file is not None:
            
         try:
