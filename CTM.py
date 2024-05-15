@@ -14,7 +14,7 @@ if uploaded_file is not None:
         data_grouped1 = data.groupby(by='Item Description').sum()[['Sales $','GP $']]
         
         total_sales = data_grouped1['Sales $'].sum()
-        data_grouped1['CTS'] = data_grouped1['Sales $'] / total_sales
+        data_grouped1['CTS %'] = data_grouped1['Sales $'] / total_sales
         
         data_grouped1['GP %'] = data_grouped1['GP $'] / data_grouped1['Sales $']
 
@@ -24,7 +24,7 @@ if uploaded_file is not None:
 
         data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
-        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}").format(subset=["GP $"], formatter="${:,.2f}").format(subset=["GP %"], formatter="%{:,.2f}").format(subset=["CTM %"], formatter="%{:,.2f}"))
+        st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}").format(subset=["CTS %"], formatter="%{:,.2f}").format(subset=["GP $"], formatter="${:,.2f}").format(subset=["GP %"], formatter="%{:,.2f}").format(subset=["CTM %"], formatter="%{:,.2f}"))
         st.dataframe(data)
     
     except Exception as e:
