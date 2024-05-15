@@ -33,6 +33,8 @@ if uploaded_file is not None:
                      .format(subset=["CTM %"], formatter="%{:,.2f}")
                      .format(subset=['Check'], formatter="%{:,.2f}")
                     )
+
+        data = data.drop(columns=['GP $', 'CTM'])
         
         st.dataframe(data)
     
