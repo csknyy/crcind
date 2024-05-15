@@ -5,11 +5,12 @@ st.set_page_config(page_title="CTM report", layout="wide")
 
 report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
 
-if report == "Bunnings":
-
-    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
     
-    if uploaded_file is not None:
+if uploaded_file is not None:
+
+    if report == "Bunnings":
+    
         try:
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
             data = data.iloc[:-1]
@@ -50,4 +51,16 @@ if report == "Bunnings":
     
         except Exception as e:
           st.error(f"An error occurred: {e}")
-      
+
+    elif report == "Mitre 10":
+    
+        try:
+            data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+
+        except Exception as e:
+          st.error(f"An error occurred: {e}")
+
+
+    else:
+        pass
+
