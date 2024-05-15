@@ -69,6 +69,8 @@ if uploaded_file is not None:
 
                 data['Sales $'] = data['Sales $'].astype(float)
                 data['GP $'] = data['GP $'].astype(float)
+
+                data = data[['Sales $','GP $']]
                 
                 data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
                 
