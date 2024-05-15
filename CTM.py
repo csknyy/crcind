@@ -8,6 +8,7 @@ uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 if uploaded_file is not None:
     try:
         data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+        data.columns.values[4] = 'Item Description'
 
         st.dataframe(data)
     
