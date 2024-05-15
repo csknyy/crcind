@@ -62,5 +62,9 @@ if uploaded_file is not None:
 
 
     else:
-        pass
+        try:
+            data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+
+        except Exception as e:
+          st.error(f"An error occurred: {e}")
 
