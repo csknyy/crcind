@@ -62,17 +62,14 @@ if uploaded_file is not None:
             data = data.rename(columns={'$Value MAT': 'Sales $'})
             data = data.rename(columns={'$GP MAT': 'GP $'})
 
-            #for i in ['SubDepartment', 'FineLine', 'Item Description']:
-            for i in ['Item Description']:
+            data_grouped1 = data[['SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
+
+            for i in ['SubDepartment', 'FineLine', 'Item Description']:
+            #for i in ['Item Description']:
     
                 st.header(f"By {i}")
-
-                data['Sales $'] = data['Sales $'].astype(float)
-                data['GP $'] = data['GP $'].astype(float)
-
-                data = data[['Sales $','GP $']]
                 
-                data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
+                data_grouped1 = data_grouped1.groupby(by=i).sum()[['Sales $','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
