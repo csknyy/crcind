@@ -18,7 +18,7 @@ if uploaded_file is not None:
         
         data_grouped1['GP %'] = data_grouped1['GP $'] / data_grouped1['Sales $']
 
-        data_grouped1['CTM'] = data_grouped1['CTS'] * data_grouped1['GP %']
+        data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %']
 
         total_CTM = data_grouped1['CTM'].sum()
 
