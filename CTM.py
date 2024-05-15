@@ -31,7 +31,7 @@ if uploaded_file is not None:
                      .format(subset=["GP $"], formatter="${:,.2f}")
                      .format(subset=["GP %"], formatter="%{:,.2f}")
                      .format(subset=["CTM %"], formatter="%{:,.2f}")
-                     .format(subset=['Check'], formatter="{:,.2f}")
+                     .format(subset=['Check'], formatter="%{:,.2f}")
                     )
         
         st.dataframe(data)
