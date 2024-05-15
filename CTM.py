@@ -55,7 +55,10 @@ if uploaded_file is not None:
     elif report == "Mitre 10":
     
         try:
-            data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+            data = pd.read_excel(uploaded_file, sheet_name = 'Ranking', header = 5)
+
+
+            st.dataframe(data)
 
         except Exception as e:
           st.error(f"An error occurred: {e}")
