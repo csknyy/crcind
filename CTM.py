@@ -12,6 +12,7 @@ if uploaded_file is not None:
         data.columns.values[4] = 'Item Description'
 
         data_grouped1 = data.groupby(by='Item Description').sum()[['Sales $','GP $']]
+        st.data_editor(data_grouped1, column_config={'Sales $': st.column_config.NumberColumn(format="$%d")})
 
         total_sales = data_grouped1['Sales $'].sum()
         data_grouped1['CTS'] = data_grouped1['Sales $'] / total_sales
