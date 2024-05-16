@@ -57,7 +57,7 @@ if report == "Bunnings":
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
                              .format(subset=['Check'], formatter="%{:,.2f}")
-                             .style.applymap(conditional_formatting, subset=['Check']))
+                             .style.applymap(conditional_formatting, subset=['Check'])
                             )
     
                 st.markdown('---')
