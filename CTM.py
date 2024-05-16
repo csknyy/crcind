@@ -15,6 +15,7 @@ if report == "Bunnings":
             data = data.iloc[:-1]
             data.columns.values[4] = 'Item Description'
             data = data.rename(columns={'Sales Qty': 'Units'})
+            data = data.fillna(0)
     
             for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
     
