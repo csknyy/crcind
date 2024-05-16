@@ -37,8 +37,6 @@ if report == "Bunnings":
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
-                             .format(subset=["Units"], formatter="%{:,.0f}")
-                             .format(subset=["Avg Price"], formatter="%{:,.2f}")
                              .format(subset=["CTS %"], formatter="%{:,.2f}")
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
@@ -93,6 +91,8 @@ elif report == "Mitre 10":
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="%{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="%{:,.2f}")
                              .format(subset=["CTS %"], formatter="%{:,.2f}")
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
