@@ -110,7 +110,7 @@ else:
     with right_column:
         pass
 
-    uploaded_file = st.file_uploader("Upload a file")
+    uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname)
     
     if uploaded_file is not None:
         
