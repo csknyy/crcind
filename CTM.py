@@ -134,16 +134,16 @@ else:
 
             data2 = data.copy()
 
-            data2 = data2.rename(columns={item_description : 'Item Description'})
-            data2 = data2.rename(columns={sales_data : 'Sales $'})
-            data2 = data2.rename(columns={GP_data : 'GP $'})
-
             selected_columns = [item_description, sales_data, GP_data]
             groupby_columns = st.multiselect("Select columns to group by", options = column_names)
             for i in groupby_columns:
                 selected_columns.append(i)
 
             data2 = data2[selected_columns]
+
+            data2 = data2.rename(columns={item_description : 'Item Description'})
+            data2 = data2.rename(columns={sales_data : 'Sales $'})
+            data2 = data2.rename(columns={GP_data : 'GP $'})
 
             for i in groupby_columns:
             #for i in ['Item Description']:
