@@ -14,17 +14,21 @@ if report == "Bunnings":
             data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
             data = data.iloc[:-1]
             data.columns.values[4] = 'Item Description'
+            data = data.rename(columns={'Sales Qty': 'Units'})
     
             for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
     
                 st.header(f"By {i}")
                 
-                data_grouped1 = data.groupby(by=i).sum()[['Sales $','GP $']]
+                data_grouped1 = data.groupby(by=i).sum()[['Sales $','Units','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
+
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
-                data_grouped1['GP %'] = 100*data_grouped1['GP $'] / data_grouped1['Sales $']
+                data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
         
                 data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
         
@@ -37,6 +41,8 @@ if report == "Bunnings":
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="{:,.2f}")
                              .format(subset=["CTS %"], formatter="%{:,.2f}")
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
