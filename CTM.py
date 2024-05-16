@@ -192,17 +192,7 @@ else:
 
                 data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
 
-                #data_grouped1 = data_grouped1.sort_values(by = "RII_calc", ascending = False)
-
                 data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
-
-                #rank = 1
-                #RII_rank = []
-                #for i in data_grouped1['RII_calc']:
-                #    RII_rank.append(rank)
-                #    rank = rank + 1
-
-                #data_grouped1['RII_rank'] = RII_rank
                 
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
