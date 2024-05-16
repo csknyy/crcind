@@ -127,8 +127,6 @@ else:
             else:
                 data = pd.read_excel(uploaded_file)
 
-            st.dataframe(data)
-
             column_names = data.columns
 
             item_description = st.selectbox("Select item description", options = column_names, key = "text0")
