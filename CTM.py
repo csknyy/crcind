@@ -141,17 +141,19 @@ else:
 
             column_names = data.columns
 
-            left_column0, middle_column0, right_column0 = st.columns(3)
+            left_column0, middle_left_column0, middle_right_column0, right_column0 = st.columns(4)
             with left_column0:
                 item_description = st.selectbox("Select item description", options = column_names, key = "text0")
-            with middle_column0:
+            with middle_left_column0:
                 sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
+            with middle_right_column0:
+                sales_qty = st.selectbox("Select Units", options = column_names, key = "text2")
             with right_column0:
-                GP_data =  st.selectbox("Select GP $", options = column_names, key = "text2")
+                GP_data =  st.selectbox("Select GP $", options = column_names, key = "text3")
             
             data2 = data.copy()
 
-            selected_columns = [item_description, sales_data, GP_data]
+            selected_columns = [item_description, sales_data, sales_qty, GP_data]
             groupby_columns = st.multiselect("Select columns to group by", options = column_names)
             for i in groupby_columns:
                 selected_columns.append(i)
@@ -163,16 +165,19 @@ else:
 
             #data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
+            data2 = data2.rename(columns={sales_qty : 'Sales $'})
             data2 = data2.rename(columns={GP_data : 'GP $'})
 
             for i in groupby_columns:
-            #for i in ['Item Description']:
     
                 st.header(f"By {i}")
                 
-                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
+                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
+
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
                 data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
@@ -188,6 +193,8 @@ else:
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="{:,.2f}")
                              .format(subset=["CTS %"], formatter="%{:,.2f}")
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
