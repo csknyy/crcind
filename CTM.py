@@ -116,11 +116,11 @@ else:
         
         try:
             if len(sheetname)>0 and len(header_ind)>0:
-                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname, header = header_ind)
+                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname, header = int(header_ind))
             elif len(sheetname)>0:
                 uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname)
             elif len(header_ind)>0:
-                uploaded_file = st.file_uploader("Upload a file", header = header_ind)
+                uploaded_file = st.file_uploader("Upload a file", header = int(header_ind))
             else:
                 uploaded_file = st.file_uploader("Upload a file")
 
