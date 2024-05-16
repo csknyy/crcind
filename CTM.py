@@ -17,8 +17,51 @@ if report == "Bunnings":
             data = data.rename(columns={'Sales Qty': 'Units'})
     
             for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
+    
+                st.header(f"By {i}")
+                
+                data_grouped1 = data.groupby(by=i).sum()[['Sales $','Units','GP $']]
+                
+                total_sales = data_grouped1['Sales $'].sum()
 
-if report == "Mitre 10":
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
+                data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
+                
+                data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
+        
+                data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
+        
+                total_CTM = data_grouped1['CTM'].sum()
+        
+                data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
+        
+                data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
+        
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc'])
+                
+                st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="{:,.2f}")
+                             .format(subset=["CTS %"], formatter="%{:,.2f}")
+                             .format(subset=["GP %"], formatter="%{:,.2f}")
+                             .format(subset=["CTM %"], formatter="%{:,.2f}")
+                             .format(subset=['Check'], formatter="%{:,.2f}")
+                            )
+    
+                st.markdown('---')
+                
+            st.dataframe(data)
+    
+        except Exception as e:
+          st.error(f"An error occurred: {e}")
+
+
+elif report == "Mitre 10":
 
     uploaded_file = st.file_uploader("Upload a Mitre 10 Bronze CRC trade ranking report", type=["csv", "xlsx", "xlsm"])
     if uploaded_file is not None:
@@ -34,7 +77,49 @@ if report == "Mitre 10":
             data2 = data[['Department', 'SubDepartment', 'FineLine', 'Item Description', 'Sales $', 'Units', 'GP $']]
 
             for i in ['SubDepartment', 'FineLine', 'Item Description']:
+    
+                st.header(f"By {i}")
                 
+                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
+                
+                total_sales = data_grouped1['Sales $'].sum()
+
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
+                data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
+                
+                data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
+        
+                data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
+        
+                total_CTM = data_grouped1['CTM'].sum()
+        
+                data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
+        
+                data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
+        
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc'])
+                
+                st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="{:,.2f}")
+                             .format(subset=["CTS %"], formatter="%{:,.2f}")
+                             .format(subset=["GP %"], formatter="%{:,.2f}")
+                             .format(subset=["CTM %"], formatter="%{:,.2f}")
+                             .format(subset=['Check'], formatter="%{:,.2f}")
+                            )
+    
+                st.markdown('---')
+                
+            st.dataframe(data)
+
+        except Exception as e:
+          st.error(f"An error occurred: {e}")
+        
 else:
     left_column0, middle_column0, right_column0 = st.columns(3)
     with left_column0:
@@ -93,46 +178,45 @@ else:
 
             for i in groupby_columns:
     
-            st.header(f"By {i}")
-            
-            data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
-            
-            total_sales = data_grouped1['Sales $'].sum()
-        
-            data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
-            
-            data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
-            
-            data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
-        
-            data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
-        
-            total_CTM = data_grouped1['CTM'].sum()
-        
-            data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
-        
-            data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
-        
-            data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
-        
-            data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
-            
-            data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc'])
-            
-            st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
-                         .format(subset=["Units"], formatter="{:,.0f}")
-                         .format(subset=["Avg Price"], formatter="{:,.2f}")
-                         .format(subset=["CTS %"], formatter="%{:,.2f}")
-                         .format(subset=["GP %"], formatter="%{:,.2f}")
-                         .format(subset=["CTM %"], formatter="%{:,.2f}")
-                         .format(subset=['Check'], formatter="%{:,.2f}")
-                        )
-        
-            st.markdown('---')
-        
-        
-        st.dataframe(data)
-        
-        except Exception as e:
-        st.error(f"An error occurred: {e}")
+                st.header(f"By {i}")
+                
+                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
+                
+                total_sales = data_grouped1['Sales $'].sum()
 
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
+                data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
+                
+                data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
+        
+                data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
+        
+                total_CTM = data_grouped1['CTM'].sum()
+        
+                data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
+        
+                data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
+                
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc'])
+                
+                st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                             .format(subset=["Units"], formatter="{:,.0f}")
+                             .format(subset=["Avg Price"], formatter="{:,.2f}")
+                             .format(subset=["CTS %"], formatter="%{:,.2f}")
+                             .format(subset=["GP %"], formatter="%{:,.2f}")
+                             .format(subset=["CTM %"], formatter="%{:,.2f}")
+                             .format(subset=['Check'], formatter="%{:,.2f}")
+                            )
+    
+                st.markdown('---')
+
+
+            st.dataframe(data)
+
+        except Exception as e:
+          st.error(f"An error occurred: {e}")
