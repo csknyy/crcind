@@ -115,11 +115,11 @@ else:
     if uploaded_file is not None:
         
         try:
-            if len(sheetname)>0 and len(header_ind)>0:
+            if len(sheetname)>0 and header_ind>0:
                 data = pd.read_excel(uploaded_file, sheet_name = sheetname, header = header_ind)
             elif len(sheetname)>0:
                 data = pd.read_excel(uploaded_file, sheet_name = sheetname)
-            elif len(header_ind)>0:
+            elif header_ind>0:
                 data = pd.read_excel(uploaded_file, header = header_ind)
             else:
                 data = pd.read_excel(uploaded_file)
