@@ -103,7 +103,10 @@ elif report == "Mitre 10":
         
 else:
 
-    uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a file")
+
+    sheetname = st.input()
+    
     if uploaded_file is not None:
         
         try:
