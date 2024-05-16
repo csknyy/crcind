@@ -37,6 +37,10 @@ if report == "Bunnings":
                 data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
         
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
@@ -93,6 +97,10 @@ elif report == "Mitre 10":
                 data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
         
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
