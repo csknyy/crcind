@@ -47,7 +47,7 @@ if report == "Bunnings":
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
 
                 def conditional_formatting(val):
-                    color = 'red' if val==0 else 'yellow' if val>0 else 'green'
+                    color = 'red' if val<0 else 'yellow' if val==0 else 'green'
                     return f'background-color: {color}'
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
