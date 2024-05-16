@@ -83,7 +83,7 @@ elif report == "Mitre 10":
 
             data2 = data[['Department', 'SubDepartment', 'FineLine', 'Item Description', 'Sales $', 'Units', 'GP $']]
 
-            for i in ['SubDepartment', 'FineLine', 'Item Description']:
+            for i in ['Department','SubDepartment', 'FineLine', 'Item Description']:
     
                 st.header(f"By {i}")
                 
