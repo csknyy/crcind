@@ -15,13 +15,14 @@ if report == "Bunnings":
             data = data.iloc[:-1]
             data.columns.values[4] = 'Item Description'
             data = data.rename(columns={'Sales Qty': 'Units'})
-            data = data.fillna(0)
     
             for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
     
                 st.header(f"By {i}")
                 
                 data_grouped1 = data.groupby(by=i).sum()[['Sales $','Units','GP $']]
+
+                data_grouped1 = data_grouped1[data_grouped1['Avg Price']>0]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
@@ -38,8 +39,6 @@ if report == "Bunnings":
                 data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
-
-                st.dataframe(data_grouped1)
 
                 data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
 
