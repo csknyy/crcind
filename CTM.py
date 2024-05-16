@@ -63,7 +63,7 @@ elif report == "Mitre 10":
             data = data.rename(columns={'$Value MAT': 'Sales $'})
             data = data.rename(columns={'$GP MAT': 'GP $'})
 
-            data2 = data[['SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
+            data2 = data[['Department', 'SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
 
             for i in ['SubDepartment', 'FineLine', 'Item Description']:
     
