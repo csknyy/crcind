@@ -110,19 +110,19 @@ else:
     with right_column:
         pass
 
-    uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname)
+    uploaded_file = st.file_uploader("Upload a file")
     
     if uploaded_file is not None:
         
         try:
             if len(sheetname)>0 and len(header_ind)>0:
-                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname, header = int(header_ind))
+                data = pd.read_excel(uploaded_file, sheet_name = sheetname, header = int(header_ind))
             elif len(sheetname)>0:
-                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname)
+                data = pd.read_excel(uploaded_file, sheet_name = sheetname)
             elif len(header_ind)>0:
-                uploaded_file = st.file_uploader("Upload a file", header = int(header_ind))
+                data = pd.read_excel(uploaded_file, header = int(header_ind))
             else:
-                uploaded_file = st.file_uploader("Upload a file")
+                data = pd.read_excel(uploaded_file)
 
         except Exception as e:
           st.error(f"An error occurred: {e}")
