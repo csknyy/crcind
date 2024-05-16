@@ -126,16 +126,16 @@ else:
             column_names = data.columns
 
             item_description = st.selectbox("Select item description", options = column_names)
-            sales$ = st.selectbox("Select Sales $", options = column_names)
-            GP$ =  st.selectbox("Select GP $", options = column_names)
+            sales_data = st.selectbox("Select Sales $", options = column_names)
+            GP_data =  st.selectbox("Select GP $", options = column_names)
 
             groupby_columns = st.selectbox("Select GP $", options = column_names)
 
-            data2 = data[[item_description, sales$, GP$, groupby_columns]]
+            data2 = data[[item_description, sales_data, GP_data, groupby_columns]]
 
             data2 = data2.rename(columns={item_description : 'Item Description'})
-            data2 = data2.rename(columns={sales$ : 'Sales $'})
-            data2 = data2.rename(columns={GP$ : 'GP $'})
+            data2 = data2.rename(columns={sales_data : 'Sales $'})
+            data2 = data2.rename(columns={GP_data : 'GP $'})
 
             for i in groupby_columns:
             #for i in ['Item Description']:
