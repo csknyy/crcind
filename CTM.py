@@ -42,7 +42,7 @@ if report == "Bunnings":
 
                 data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
         
-                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = False)
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
@@ -102,7 +102,7 @@ elif report == "Mitre 10":
 
                 data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
 
-                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = False)
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
@@ -202,7 +202,7 @@ else:
 
                 data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
                 
-                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = False)
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
