@@ -102,9 +102,13 @@ elif report == "Mitre 10":
           st.error(f"An error occurred: {e}")
         
 else:
-
-    sheetname = st.text_input("Enter prefered sheet name")
-    header_ind = st.text_input("Enter prefered header index")
+    left_column, middle_column, right_column = st.columns(3)
+        with left_column:
+            sheetname = st.text_input("Enter prefered sheet name")
+        with middle_column:
+            header_ind = st.text_input("Enter prefered header index")
+        with right_column:
+            pass
 
     uploaded_file = st.file_uploader("Upload a file")
     
