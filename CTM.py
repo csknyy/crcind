@@ -83,6 +83,8 @@ elif report == "Mitre 10":
                 st.header(f"By {i}")
                 
                 data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
+
+                data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0) & (data_grouped1['Units'] != 0)]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
