@@ -165,7 +165,7 @@ else:
 
             #data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
-            data2 = data2.rename(columns={sales_qty : 'Sales $'})
+            data2 = data2.rename(columns={sales_qty : 'Units'})
             data2 = data2.rename(columns={GP_data : 'GP $'})
 
             for i in groupby_columns:
