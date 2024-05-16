@@ -194,7 +194,7 @@ else:
 
                 #data_grouped1 = data_grouped1.sort_values(by = "RII_calc", ascending = False)
 
-                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min')
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
 
                 #rank = 1
                 #RII_rank = []
