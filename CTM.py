@@ -141,7 +141,7 @@ else:
 
             data2 = data2[selected_columns]
 
-            data2 = data2.rename(columns={item_description : 'Item Description'})
+            #data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
             data2 = data2.rename(columns={GP_data : 'GP $'})
 
