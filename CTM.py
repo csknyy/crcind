@@ -22,7 +22,7 @@ if report == "Bunnings":
                 
                 data_grouped1 = data.groupby(by=i).sum()[['Sales $','Units','GP $']]
 
-                data_grouped1 = data_grouped1[data_grouped1['Avg Price']>0]
+                data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0) & (data_grouped1['Units'] != 0)]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
