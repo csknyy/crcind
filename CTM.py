@@ -151,12 +151,17 @@ else:
 
             left_column0, middle_left_column0, middle_right_column0, right_column0 = st.columns(4)
             with left_column0:
+                check_RII = report = st.radio("RII check", ("No", "Yes"))
+
+            left_column1, middle_left_column1, middle_right_column1, right_column1 = st.columns(4)
+            with left_column1:
                 item_description = st.selectbox("Select item description", options = column_names, key = "text0")
-            with middle_left_column0:
+            with middle_left_column1:
                 sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
-            with middle_right_column0:
-                sales_qty = st.selectbox("Select Units", options = column_names, key = "text2")
-            with right_column0:
+            with middle_right_column1:
+                if check_RII = Yes:
+                    sales_qty = st.selectbox("Select Units", options = column_names, key = "text2")
+            with right_column1:
                 GP_data =  st.selectbox("Select GP $", options = column_names, key = "text3")
             
             data2 = data.copy()
@@ -173,18 +178,23 @@ else:
 
             #data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
-            data2 = data2.rename(columns={sales_qty : 'Units'})
+            if check_RII = Yes:
+                data2 = data2.rename(columns={sales_qty : 'Units'})
             data2 = data2.rename(columns={GP_data : 'GP $'})
 
             for i in groupby_columns:
     
                 st.header(f"By {i}")
-                
-                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
+
+                if check_RII = Yes:
+                    data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
+                else:
+                    data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
-                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                if check_RII = Yes:
+                    data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
                 
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
@@ -198,11 +208,12 @@ else:
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
 
-                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
-
-                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
-                
-                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
+                if check_RII = Yes:
+                    data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+    
+                    data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
+                    
+                    data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
