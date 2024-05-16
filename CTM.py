@@ -139,6 +139,9 @@ else:
             for i in groupby_columns:
                 selected_columns.append(i)
 
+            selected_columns = set(i for i in selected_columns)
+            selected_columns = [i for i in selected_columns]
+
             data2 = data2[selected_columns]
 
             #data2 = data2.rename(columns={item_description : 'Item Description'})
