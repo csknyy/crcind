@@ -159,7 +159,7 @@ else:
             with middle_left_column1:
                 sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
             with middle_right_column1:
-                if check_RII = Yes:
+                if check_RII == "Yes":
                     sales_qty = st.selectbox("Select Units", options = column_names, key = "text2")
             with right_column1:
                 GP_data =  st.selectbox("Select GP $", options = column_names, key = "text3")
@@ -178,7 +178,7 @@ else:
 
             #data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
-            if check_RII = Yes:
+            if check_RII == "Yes":
                 data2 = data2.rename(columns={sales_qty : 'Units'})
             data2 = data2.rename(columns={GP_data : 'GP $'})
 
@@ -186,14 +186,14 @@ else:
     
                 st.header(f"By {i}")
 
-                if check_RII = Yes:
+                if check_RII == "Yes":
                     data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
                 else:
                     data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
-                if check_RII = Yes:
+                if check_RII == "Yes":
                     data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
                 
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
@@ -208,7 +208,7 @@ else:
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
 
-                if check_RII = Yes:
+                if check_RII == "Yes":
                     data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
     
                     data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
