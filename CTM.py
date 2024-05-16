@@ -189,6 +189,8 @@ else:
                 data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
+
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
         
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
