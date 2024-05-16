@@ -128,9 +128,9 @@ else:
 
             column_names = data.columns
 
-            item_description = st.selectbox("Select item description", options = column_names, key = text0)
-            sales_data = st.selectbox("Select Sales $", options = column_names, key = text1)
-            GP_data =  st.selectbox("Select GP $", options = column_names, key = text2)
+            item_description = st.selectbox("Select item description", options = column_names, key = "text0")
+            sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
+            GP_data =  st.selectbox("Select GP $", options = column_names, key = "text2")
 
             groupby_columns = st.selectbox("Select GP $", options = column_names)
 
