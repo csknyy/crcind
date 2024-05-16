@@ -166,7 +166,10 @@ else:
             
             data2 = data.copy()
 
-            selected_columns = [item_description, sales_data, sales_qty, GP_data]
+            if check_RII == "Yes":
+                selected_columns = [item_description, sales_data, sales_qty, GP_data]
+            else:
+                selected_columns = [item_description, sales_data, GP_data]
             groupby_columns = st.multiselect("Select columns to group by", options = column_names)
             for i in groupby_columns:
                 selected_columns.append(i)
