@@ -191,7 +191,15 @@ else:
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
 
                 data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
-        
+
+                rank = 1
+                RII_rank = []
+                for i in data_grouped1['RII_calc']:
+                    RII_rank = rank
+                    rank = rank + 1
+
+                data_grouped1['RII_rank'] = RII_rank
+                
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM'])
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
