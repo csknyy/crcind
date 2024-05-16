@@ -74,7 +74,7 @@ elif report == "Mitre 10":
                 total_sales = data_grouped1['Sales $'].sum()
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
-                data_grouped1['GP %'] = data_grouped1['GP $'] / data_grouped1['Sales $']
+                data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
         
                 data_grouped1['CTM'] = data_grouped1['CTS %'] * data_grouped1['GP %'] / 100
         
