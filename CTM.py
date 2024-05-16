@@ -61,6 +61,7 @@ elif report == "Mitre 10":
 
             data = data.rename(columns={'Item': 'Item Description'})
             data = data.rename(columns={'$Value MAT': 'Sales $'})
+            data = data.rename(columns={'Units MAT': 'Units'})
             data = data.rename(columns={'$GP MAT': 'GP $'})
 
             data2 = data[['Department', 'SubDepartment', 'FineLine', 'Item Description', 'Sales $','GP $']]
@@ -69,9 +70,12 @@ elif report == "Mitre 10":
     
                 st.header(f"By {i}")
                 
-                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
+                data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
                 
                 total_sales = data_grouped1['Sales $'].sum()
+
+                data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
                 data_grouped1['GP %'] = 100 * data_grouped1['GP $'] / data_grouped1['Sales $']
