@@ -134,7 +134,9 @@ else:
 
             groupby_columns = st.multiselect("Select columns to group by", options = column_names)
 
-            data2 = data[[item_description, sales_data, GP_data, groupby_columns] + groupby_columns]
+            selected_columns = [item_description, sales_data, GP_data, groupby_columns] + groupby_columns
+
+            data2 = data[selected_columns]
 
             data2 = data2.rename(columns={item_description : 'Item Description'})
             data2 = data2.rename(columns={sales_data : 'Sales $'})
