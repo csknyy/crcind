@@ -18,7 +18,7 @@ if report == "Bunnings":
     
             for i in ['Department', 'Sub Department', 'Class', 'Item Description']:
 
-elif report == "Mitre 10":
+if report == "Mitre 10":
 
     uploaded_file = st.file_uploader("Upload a Mitre 10 Bronze CRC trade ranking report", type=["csv", "xlsx", "xlsm"])
     if uploaded_file is not None:
