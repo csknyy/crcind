@@ -45,6 +45,10 @@ if report == "Bunnings":
                 data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
         
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
+
+                def conditional_formatting(val):
+                    color = 'red' if val==0 else 'yellow' if val>0 else 'green'
+                    return f'background-color: {color}'
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
@@ -53,6 +57,7 @@ if report == "Bunnings":
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
                              .format(subset=['Check'], formatter="%{:,.2f}")
+                             .style.applymap(conditional_formatting, subset=['Check']))
                             )
     
                 st.markdown('---')
