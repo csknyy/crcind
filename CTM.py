@@ -103,14 +103,22 @@ elif report == "Mitre 10":
         
 else:
 
-    uploaded_file = st.file_uploader("Upload a file")
+    sheetname = st.text_input("Enter prefered sheet name")
+    header_ind = st.text_input("Enter prefered header index")
 
-    sheetname = st.input()
+    uploaded_file = st.file_uploader("Upload a file")
     
     if uploaded_file is not None:
         
         try:
-            data = pd.read_excel(uploaded_file, sheet_name = 'By Item', header = 5)
+            if len(sheetname)>0 and len(header_ind)>0:
+                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname, header = header_ind)
+            elif len(sheetname)>0:
+                uploaded_file = st.file_uploader("Upload a file", sheet_name = sheetname)
+            elif len(header_ind)>0:
+                uploaded_file = st.file_uploader("Upload a file", header = header_ind)
+            else:
+                uploaded_file = st.file_uploader("Upload a file")
 
         except Exception as e:
           st.error(f"An error occurred: {e}")
