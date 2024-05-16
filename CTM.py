@@ -3,6 +3,10 @@ import pandas as pd
 
 st.set_page_config(page_title="CTM report", layout="wide")
 
+def conditional_formatting(val):
+    color = '#FFC7CE' if val<0 else '#D0CECE' if val==0 else '#C6EFCE'
+    return f'background-color: {color}'
+
 report = st.radio("Choose report supplier", ("Bunnings", "Mitre 10", "Custom"))
     
 if report == "Bunnings":
@@ -46,10 +50,6 @@ if report == "Bunnings":
         
                 data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
 
-                def conditional_formatting(val):
-                    color = '#FFC7CE' if val<0 else '#D0CECE' if val==0 else '#C6EFCE'
-                    return f'background-color: {color}'
-                
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
                              .format(subset=["Avg Price"], formatter="{:,.2f}")
@@ -120,6 +120,7 @@ elif report == "Mitre 10":
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
                              .format(subset=['Check'], formatter="%{:,.2f}")
+                             .applymap(conditional_formatting, subset=['Check'])
                             )
     
                 st.markdown('---')
@@ -237,6 +238,7 @@ else:
                              .format(subset=["GP %"], formatter="%{:,.2f}")
                              .format(subset=["CTM %"], formatter="%{:,.2f}")
                              .format(subset=['Check'], formatter="%{:,.2f}")
+                             .applymap(conditional_formatting, subset=['Check'])
                             )
     
                 st.markdown('---')
