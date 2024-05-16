@@ -197,6 +197,8 @@ else:
                     data_grouped1 = data2.groupby(by=i).sum()[['Sales $','Units','GP $']]
                 else:
                     data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
+
+                data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0) & (data_grouped1['Units'] != 0)]
                 
                 total_sales = data_grouped1['Sales $'].sum()
 
