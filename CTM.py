@@ -101,16 +101,16 @@ elif report == "Mitre 10":
           st.error(f"An error occurred: {e}")
         
 else:
-    left_column, middle_column, right_column = st.columns(3)
-    with left_column:
+    left_column0, middle_column0, right_column0 = st.columns(3)
+    with left_column0:
         sheetname = st.text_input("Enter prefered sheet name")
-    with middle_column:
+    with middle_column0:
         header_ind = st.text_input("Enter prefered header index")
         try:
             header_ind = int(header_ind) - 1
         except:
             pass
-    with right_column:
+    with right_column0:
         pass
 
     uploaded_file = st.file_uploader("Upload a file")
@@ -129,10 +129,14 @@ else:
 
             column_names = data.columns
 
-            item_description = st.selectbox("Select item description", options = column_names, key = "text0")
-            sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
-            GP_data =  st.selectbox("Select GP $", options = column_names, key = "text2")
-
+            left_column0, middle_column0, right_column0 = st.columns(3)
+            with left_column0:
+                item_description = st.selectbox("Select item description", options = column_names, key = "text0")
+            with middle_column0:
+                sales_data = st.selectbox("Select Sales $", options = column_names, key = "text1")
+            with right_column0:
+                GP_data =  st.selectbox("Select GP $", options = column_names, key = "text2")
+            
             data2 = data.copy()
 
             selected_columns = [item_description, sales_data, GP_data]
