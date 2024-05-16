@@ -133,6 +133,7 @@ else:
             GP_data =  st.selectbox("Select GP $", options = column_names, key = "text2")
 
             groupby_columns = st.multiselect("Select columns to group by", options = column_names)
+            groupby_columns = [i for i in groupby_columns]
 
             selected_columns = [item_description, sales_data, GP_data, groupby_columns] + groupby_columns
 
