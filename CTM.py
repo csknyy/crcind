@@ -106,6 +106,7 @@ else:
         sheetname = st.text_input("Enter prefered sheet name")
     with middle_column:
         header_ind = st.text_input("Enter prefered header index")
+        header_ind = int(header_ind) - 1
     with right_column:
         pass
 
@@ -115,11 +116,11 @@ else:
         
         try:
             if len(sheetname)>0 and len(header_ind)>0:
-                data = pd.read_excel(uploaded_file, sheet_name = sheetname, header = int(header_ind))
+                data = pd.read_excel(uploaded_file, sheet_name = sheetname, header = header_ind)
             elif len(sheetname)>0:
                 data = pd.read_excel(uploaded_file, sheet_name = sheetname)
             elif len(header_ind)>0:
-                data = pd.read_excel(uploaded_file, header = int(header_ind))
+                data = pd.read_excel(uploaded_file, header = header_ind)
             else:
                 data = pd.read_excel(uploaded_file)
 
