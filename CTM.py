@@ -106,7 +106,10 @@ else:
         sheetname = st.text_input("Enter prefered sheet name")
     with middle_column:
         header_ind = st.text_input("Enter prefered header index")
-        header_ind = int(header_ind) - 1
+        try:
+            header_ind = int(header_ind) - 1
+        except:
+            pass
     with right_column:
         pass
 
