@@ -139,7 +139,7 @@ else:
         try:
             header_ind = int(header_ind) - 1
         except:
-            pass
+            header_ind = 0
     with right_column0:
         pass
 
