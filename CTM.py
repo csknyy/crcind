@@ -106,17 +106,12 @@ elif report == "Mitre 10":
                 data_grouped1['CTM %'] = 100 * data_grouped1['CTM'] / total_CTM
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
-
-                try:
-
-                    data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
+                
+                data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
     
-                    data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
+                data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
     
-                    data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
-
-                except:
-                    pass
+                data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
                 
                 st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                              .format(subset=["Units"], formatter="{:,.0f}")
@@ -236,15 +231,24 @@ else:
                     data_grouped1 = data_grouped1.drop(columns=['GP $', 'CTM', 'RII_calc']).sort_values(by="RII_rank", ascending = True)
 
                 
-                st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
-                             .format(subset=["Units"], formatter="{:,.0f}")
-                             .format(subset=["Avg Price"], formatter="{:,.2f}")
-                             .format(subset=["CTS %"], formatter="%{:,.2f}")
-                             .format(subset=["GP %"], formatter="%{:,.2f}")
-                             .format(subset=["CTM %"], formatter="%{:,.2f}")
-                             .format(subset=['Check'], formatter="%{:,.2f}")
-                             .applymap(conditional_formatting, subset=['Check'])
-                            )
+                    st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                                 .format(subset=["Units"], formatter="{:,.0f}")
+                                 .format(subset=["Avg Price"], formatter="{:,.2f}")
+                                 .format(subset=["CTS %"], formatter="%{:,.2f}")
+                                 .format(subset=["GP %"], formatter="%{:,.2f}")
+                                 .format(subset=["CTM %"], formatter="%{:,.2f}")
+                                 .format(subset=['Check'], formatter="%{:,.2f}")
+                                 .applymap(conditional_formatting, subset=['Check'])
+                                )
+                else:
+                    st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
+                                 .format(subset=["Avg Price"], formatter="{:,.2f}")
+                                 .format(subset=["CTS %"], formatter="%{:,.2f}")
+                                 .format(subset=["GP %"], formatter="%{:,.2f}")
+                                 .format(subset=["CTM %"], formatter="%{:,.2f}")
+                                 .format(subset=['Check'], formatter="%{:,.2f}")
+                                 .applymap(conditional_formatting, subset=['Check'])
+                    
     
                 st.markdown('---')
 
