@@ -204,12 +204,12 @@ else:
                 else:
                     data_grouped1 = data2.groupby(by=i).sum()[['Sales $','GP $']]
 
-                data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0) & (data_grouped1['Units'] != 0)]
+                try:
+                    data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0) & (data_grouped1['Units'] != 0)]
+                except:
+                    data_grouped1 = data_grouped1[(data_grouped1['Sales $'] != 0)]
                 
                 total_sales = data_grouped1['Sales $'].sum()
-
-                if check_RII == "Yes":
-                    data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
                 
                 data_grouped1['CTS %'] = 100 * data_grouped1['Sales $'] / total_sales
                 
@@ -223,7 +223,9 @@ else:
         
                 data_grouped1['Check'] = data_grouped1['CTM %'] - data_grouped1['CTS %']
 
-                if check_RII == "Yes":
+                try:
+                    data_grouped1['Avg Price'] = data_grouped1['Sales $'] / data_grouped1['Units']
+                    
                     data_grouped1['RII_calc'] = data_grouped1['Units'] * data_grouped1['Avg Price'] * (data_grouped1['GP %'] ** 2)
     
                     data_grouped1['RII_rank'] = data_grouped1['RII_calc'].rank(ascending=False, method='min').astype(int)
@@ -240,7 +242,7 @@ else:
                                  .format(subset=['Check'], formatter="%{:,.2f}")
                                  .applymap(conditional_formatting, subset=['Check']))
                                  
-                else:
+                except:
                     st.dataframe(data_grouped1.style.format(subset=["Sales $"], formatter="${:,.2f}")
                                  .format(subset=["Avg Price"], formatter="{:,.2f}")
                                  .format(subset=["CTS %"], formatter="%{:,.2f}")
