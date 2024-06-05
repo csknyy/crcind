@@ -842,15 +842,17 @@ if select_text == "Tool Kit Depot":
         list1 = [i.replace('CRC ','') for i in list1]
         
         raw_prices = [i.split(' ')[0] for i in list1[1:]]
+        raw_prices2 = [i.split(' ')[1] for i in list1[1:]]
         products = [list1[0]]
         
         for i in list1[1:-1]:
           products.append(' '.join(i.split(' ')[1:]))
         
         names = [i.split('CR')[0].split(' - ')[0].strip() for i in products]
+        names = [' '.join(i.split(' ')[1:]) if '$' in i else i for i in names]
         CRC_codes = [i.split('CR')[1].split(' ')[0].strip() for i in products]
         
-        prices = [float(i.split('$')[1]) for i in raw_prices]
+        prices = [float(i.split('$')[1].replace(',','')) for i in raw_prices]
         first_prices = []
         for i in raw_prices:
           try:
@@ -864,7 +866,7 @@ if select_text == "Tool Kit Depot":
         data['CRC Code'] = CRC_codes
         data['Price'] = prices
         data['First Price'] = first_prices
-        data['TKD Price'] = (data['Price'] * 0.975).round(2)
+        data['TKD Price'] = raw_prices2
         
         st.dataframe(data)
 
