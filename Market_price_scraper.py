@@ -1086,14 +1086,18 @@ if select_text == "Tools.com":
     text_input = st.text_input("Enter Tools.com text here:")
     if len(text_input) > 1:
         products = [i.strip() for i in text_input.split(' Add To cart')][:-1]
-
+        price_flag = [' '.join(i.split(' ')[-2:]) if i.split(' ')[-1] == 'Off' else '' for i in products]
+        products = [' '.join(i.split(' ')[:-2]) if i.split(' ')[-1] == 'Off' else i for i in products]
+        
         names = [i.split('$')[0].strip() for i in products]
         prices = [i.split('$')[1].split(' ')[0] for i in products]
+        
         CRC_codes = [i.split(' ')[-1] for i in products]
         
         data = pd.DataFrame()
         data['Item Description'] = names
         data['CRC Code'] = CRC_codes
         data['Price'] = prices
+        data['Price Flag'] = price_flag
 
         st.dataframe(data)
