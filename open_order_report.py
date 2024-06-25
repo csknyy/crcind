@@ -35,6 +35,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
 
         data2 = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Item Description", "Open Ordered $", "Open Qty"]].groupby(by='Item Description').sum().sort_values(by="Open Qty", ascending=False)
+        data2["Open Ordered $"] = [round(i,2) for i in data2["Open Ordered $"]]
         data2.index.rename('Item Description', inplace=True)
         data2 = data2.reset_index()
 
