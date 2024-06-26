@@ -638,7 +638,7 @@ if st.button("NZ - Scrape The ToolShed"):
 select_text = st.radio("Select customer",["Bunnings", "Mitre 10", "The ToolShed", "Repco", "Sydney Tools"])
 
 ######################################################
-######## Bunnings
+######## NZ - Bunnings (text)
 
 if select_text == "Bunnings":
     text_input = st.text_input("Enter Bunnings text here:")
@@ -663,7 +663,7 @@ if select_text == "Bunnings":
         st.dataframe(data)
 
 ######################################################
-######## Mitre 10
+######## NZ - Mitre 10 (text)
 
 if select_text == "Mitre 10":
     text_input = st.text_input("Enter Mitre 10 text here:")
@@ -703,7 +703,7 @@ if select_text == "Mitre 10":
         st.dataframe(data)
 
 ######################################################
-######## The ToolShed
+######## NZ - The ToolShed (text)
 if select_text == "The ToolShed":
     text_input = st.text_input("Enter The ToolShed text here:")
     if len(text_input) > 1:
@@ -736,7 +736,7 @@ if select_text == "The ToolShed":
         st.dataframe(data)
 
 ######################################################
-######## Repco
+######## NZ - Repco (text)
 if select_text == "Repco":
     text_input = st.text_input("Enter Repco text here:")
     if len(text_input) > 1:
@@ -772,7 +772,7 @@ if select_text == "Repco":
         st.dataframe(data)
 
 ######################################################
-######## Sydney Tools
+######## NZ - Sydney Tools (text)
 if select_text == "Sydney Tools":
     text_input = st.text_input("Enter Sydney Tools text here:")
     if len(text_input) > 1:
@@ -833,7 +833,7 @@ select_text = st.radio("Select customer",["Tool Kit Depot", "Anaconda", "Repco",
 
 
 ######################################################
-######## Tool Kit Depot
+######## AU - Tool Kit Depot (text)
 
 if select_text == "Tool Kit Depot":
     text_input = st.text_input("Enter Tool Kit Depot text here:")
@@ -872,7 +872,7 @@ if select_text == "Tool Kit Depot":
 
 
 ######################################################
-######## Anaconda
+######## AU - Anaconda (text)
 if select_text == "Anaconda":
     text_input = st.text_input("Enter Anaconda text here:")
     if len(text_input) > 1:
@@ -888,7 +888,7 @@ if select_text == "Anaconda":
         st.dataframe(data)
 
 ######################################################
-######## Repco
+######## AU - Repco (text)
 
 if select_text == "Repco":
     text_input = st.text_input("Enter Repco text here:")
@@ -920,7 +920,7 @@ if select_text == "Repco":
         st.dataframe(data)
 
 ######################################################
-######## Sydney Tools
+######## AU - Sydney Tools (text)
 
 if select_text == "Sydney Tools":
     text_input = st.text_input("Enter Sydney tools text here:")
@@ -957,7 +957,7 @@ if select_text == "Sydney Tools":
         st.dataframe(data)
 
 ######################################################
-######## Atom Supply
+######## AU - Atom Supply (text)
 
 if select_text == "Atom Supply":
     text_input = st.text_input("Enter Atom Supply text here:")
@@ -990,7 +990,7 @@ if select_text == "Atom Supply":
         st.dataframe(data)
         
 ######################################################
-######## Mitre 10
+######## AU - Mitre 10 (text)
 
 if select_text == "Mitre 10":
     text_input = st.text_input("Enter Mitre 10 text here:")
@@ -1015,7 +1015,7 @@ if select_text == "Mitre 10":
         st.dataframe(data)
 
 ######################################################
-######## Autobarn
+######## AU - Autobarn (text)
 
 if select_text == "Autobarn":
     text_input = st.text_input("Enter Autobarn text here:")
@@ -1048,7 +1048,7 @@ if select_text == "Autobarn":
         st.dataframe(data)
 
 ######################################################
-######## BFC
+######## AU - BFC (text)
 
 if select_text == "BFC":
     text_input = st.text_input("Enter BFC text here:")
@@ -1065,7 +1065,7 @@ if select_text == "BFC":
         st.dataframe(data)
 
 ######################################################
-######## Auto One
+######## AU - Auto One (text)
 
 if select_text == "Auto One":
     text_input = st.text_input("Enter Auto One text here:")
@@ -1081,7 +1081,7 @@ if select_text == "Auto One":
         st.dataframe(data)
 
 ######################################################
-######## Tools.com
+######## AU - Tools.com (text)
 
 if select_text == "Tools.com":
     text_input = st.text_input("Enter Tools.com text here:")
