@@ -925,6 +925,7 @@ if select_text == "Repco":
 if select_text == "Sydney Tools":
     text_input = st.text_input("Enter Sydney tools text here:")
     if len(text_input) > 1:
+        test_list = test_list.replace("Product Label ","")
         test_list = text_input.split("CRC ")[::3][1:]
     
         new_list,indexes = [],[]
