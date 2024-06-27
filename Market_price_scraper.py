@@ -1003,7 +1003,7 @@ if select_text == "Mitre 10":
         
         for i in text_input:
           try:
-            price = int(i.split('$')[1].split(' ')[0])/100
+            price = i.split('$')[1].split(' ')[0]
             prices.append(price)
           except:
             prices.append(' ')
