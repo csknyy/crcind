@@ -2,7 +2,7 @@ import streamlit as st
 import pdfplumber
 import pandas as pd
 
-uploaded_file = st.file_uploader("Choose your .pdf file", type="pdf")
+uploaded_file = st.file_uploader("Choose your .pdf file", type="pdf", accept_multiple_files=True)
 
 with pdfplumber.open(uploaded_file) as pdf_file:
   pdf_text = ""
