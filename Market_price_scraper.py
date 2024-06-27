@@ -1071,8 +1071,9 @@ if select_text == "Auto One":
     text_input = st.text_input("Enter Auto One text here:")
     if len(text_input) > 1:
         text_input = text_input.replace('(PICKUP ONLY) ', '')
+        text_input = text_input.replace('AEROSOL', 'AEROSOL -')
         prices = [i.split(' ')[-1].replace('$','') for i in text_input.split(' ADD TO CART Add to Compare')[:-1]]
-        CRC_codes = [i.split(' ')[-2] for i in text_input.split(' ADD TO CART Add to Compare')[:-1]]
+        CRC_codes = [i.split('-')[-1].strip().split(' ')[0] for i in text_input.split(' ADD TO CART Add to Compare')[:-1]]
 
         data = pd.DataFrame()
         data['CRC Code'] = CRC_codes
