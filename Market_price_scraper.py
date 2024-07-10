@@ -910,14 +910,18 @@ if select_text == "Repco":
         list1 = text_input.split('In-Store')[:-1]
         list1 = [i.split(' - ')[1:3] for i in list1]
         
-        names = [i[0] for i in list1]
-        CRC_codes = [i[1].split('$')[0].split('(')[0].strip() for i in list1]
-        prices = [i[1].split('$')[1].split(' ')[0] for i in list1]
+        names = [i[0].split('CRC ')[1] for i in list1]
+        CRC_codes = [i[1].split('$')[0].split('(')[0].split(' ')[0].strip() for i in list1]
+        prices = [float(i[1].split('$')[1].split(' ')[0].strip()) for i in list1]
+        ACP = [float(i[1].split('ACP ')[1].split(' ')[0].strip()) if 'ACP ' in i[1] else '' for i in list1]
+        price_flag = [' '.join(i[0].split('CRC')[0].split(' ')[1:]).strip() for i in list1]
         
         data = pd.DataFrame()
         data['Item Description'] = names
         data['CRC Codes'] = CRC_codes
         data['Price'] = prices
+        data['Auto Club Price'] = ACP
+        data['Price Flag'] = price_flag
     
         st.dataframe(data)
 
