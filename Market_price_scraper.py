@@ -879,11 +879,13 @@ if select_text == "Anaconda":
         products = [i.strip() for i in text_input.split('CRC')[1:]]
 
         names = [i.split('(')[0].strip() for i in products]
-        prices = [i.split('$')[1].strip() for i in products]
+        prices = [i.split('$')[1].split('CLUB')[0].strip() for i in products]
+        club_prices = [i.split('CLUB')[1].replace('$','') for i in products]
         
         data = pd.DataFrame()
         data['Item Description'] = names
         data['Price'] = prices
+        data['Club Price'] = club_prices
 
         st.dataframe(data)
 
