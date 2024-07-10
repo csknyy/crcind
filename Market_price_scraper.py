@@ -829,7 +829,7 @@ if st.button("AU - Scrape Anaconda"):
     on_button_click_AU_Anaconda()
 
 
-select_text = st.radio("Select customer",["Tool Kit Depot", "Anaconda", "Repco", "Sydney Tools", "Atom Supply", "Mitre 10", "Autobarn", "BFC", "Auto One", "Tools.com"])
+select_text = st.radio("Select customer",["Tool Kit Depot", "Anaconda", "Repco", "Sydney Tools", "Atom Supply", "Bunnings", "Mitre 10", "Autobarn", "BFC", "Auto One", "Tools.com"])
 
 
 ######################################################
@@ -997,7 +997,25 @@ if select_text == "Atom Supply":
         data['Actual Price'] = actual_price
     
         st.dataframe(data)
-        
+
+######################################################
+######## AU - Mitre 10 (text)
+
+if select_text == "Bunnings":
+    text_input = st.text_input("Enter Mitre 10 text here:")
+    if len(text_input) > 1:
+
+    text_input = text_input.replace(' In-store only ', '')
+    
+    products = text_input.split('Compare ')[1:]
+    
+    names = [i.split(' CRC')[0] for i in products]
+    prices = [float(i.split('$')[1].strip()) for i in products]
+    
+    data = pd.DataFrame({'Item Description': names, 'Price': prices})
+
+    st.dataframe(data)
+
 ######################################################
 ######## AU - Mitre 10 (text)
 
