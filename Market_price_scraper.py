@@ -906,6 +906,7 @@ if select_text == "Repco":
           text_input = text_input.replace(i,'')
         
         text_input = text_input.replace('store finder icon Click to find in nearby store Not in stock at selected store.','In-Store')
+        text_input1 = text_input1.replace('Auto Club Price $' , 'ACP ')
         
         list1 = text_input.split('In-Store')[:-1]
         list1 = [i.split(' - ')[1:3] for i in list1]
