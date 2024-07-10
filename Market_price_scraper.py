@@ -1004,17 +1004,16 @@ if select_text == "Atom Supply":
 if select_text == "Bunnings":
     text_input = st.text_input("Enter Mitre 10 text here:")
     if len(text_input) > 1:
-
-    text_input = text_input.replace(' In-store only ', '')
+        text_input = text_input.replace(' In-store only ', '')
+        
+        products = text_input.split('Compare ')[1:]
+        
+        names = [i.split(' CRC')[0] for i in products]
+        prices = [float(i.split('$')[1].strip()) for i in products]
+        
+        data = pd.DataFrame({'Item Description': names, 'Price': prices})
     
-    products = text_input.split('Compare ')[1:]
-    
-    names = [i.split(' CRC')[0] for i in products]
-    prices = [float(i.split('$')[1].strip()) for i in products]
-    
-    data = pd.DataFrame({'Item Description': names, 'Price': prices})
-
-    st.dataframe(data)
+        st.dataframe(data)
 
 ######################################################
 ######## AU - Mitre 10 (text)
