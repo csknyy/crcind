@@ -908,6 +908,7 @@ if select_text == "Repco":
         text_input = text_input.replace('store finder icon Click to find in nearby store Not in stock at selected store.','In-Store')
         text_input = text_input.replace('Auto Club Price $' , 'ACP ')
         text_input = text_input.replace('Crc' , 'CRC')
+        text_input = text_input.replace('ADOS Ultra High Strength Spray Adhesive Combo Pack 2x404G - 1753207' , 'CRC ADOS Ultra High Strength Spray Adhesive Combo Pack 2x404G - 1753207')
         
         list1 = text_input.split('In-Store')[:-1]
         list1 = [i.split(' - ')[1:3] for i in list1]
