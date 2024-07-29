@@ -208,12 +208,23 @@ def on_button_click_Super():
 def on_button_click_Warehouse():
     st.write("Scrapping started")
 
-    url = "https://www.thewarehouse.co.nz/search?prefn1=brand&prefv1=Ados%7CCRC&sz=64"
+    url1 = "https://www.thewarehouse.co.nz/search?q=crc&start=0"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
-    response = requests.get(url, headers=headers)
-
-    products = response.text.split('a href="/p/')
-
+    response1 = requests.get(url1, headers=headers)
+    response1 = response1.text
+    
+    url2 = "https://www.thewarehouse.co.nz/search?q=crc&start=32"
+    response2 = requests.get(url2, headers=headers)
+    response2 = response2.text
+    
+    url3 = "https://www.thewarehouse.co.nz/search?q=ados&start=0"
+    response3 = requests.get(url3, headers=headers)
+    response3 = response3.text
+    
+    response = response1 + ' ' + response2 + ' ' + response3
+    
+    products = response.split('a href="/p/')
+    
     link_list = []
     id_list = []
     name_list = []
@@ -236,9 +247,18 @@ def on_button_click_Warehouse():
           crc_code_list.append("")
       price_list.append(response.text.split('","price":"')[1].split('"')[0])
     
+    crc_code_dict = {'R2683755':'1751837','R571149':'3055','R2664531':'8498','R2920264':'1752781','R2829253':'1753336','R2846839':'3379','R1178951':'5023','R2920323':'1754703','R1799909':'2089','R2846818':'3380','R2848366':'5131','R2846795':'3377','R1955851':'9230','R669512':'9060','R1981465':'14610','R571151':'5089','R571147':'5047','R2664530':'5069','R2846796':'5117','R2846789':'3370','R2846837':'3378','R571150':'5070','R2846831':'3376','R2846794':'3375','R2846817':'3372','R1178961':'9304','R1178960':'9302','R2582304':'9240','M11650076':'3060','M16579797':'8629','M12814460':'3037','M16398719':'4000','M12077763':'3183','M17082371':'3145','M16960663':'3147','M13110336':'5078','M12133678':'3193','R726357':'8015','M18973639':'7006','M18973641':'7091','M18973644':'7004','M18973640':'7093','M13364482':'8362'}
+    
     data = pd.DataFrame()
     data['Name'] = name_list
     data['CRC Code'] = crc_code_list
+    for i in range(len(data['CRC Code'])):
+      if len(data['CRC Code'][i]) == 0:
+        try:
+          data['CRC Code'][i] = crc_code_dict[id_list[i]]
+        except:
+          pass
+    
     data['The Warehouse SKU'] = id_list
     data['Price'] = price_list
     data['Link'] = link_list
