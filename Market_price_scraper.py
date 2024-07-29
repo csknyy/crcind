@@ -727,7 +727,8 @@ if select_text == "Mitre 10":
 if select_text == "The ToolShed":
     text_input = st.text_input("Enter The ToolShed text here:")
     if len(text_input) > 1:
-        replacements = {'5 Stars4 Stars3 Stars2 Stars1 Star ': '', ' Inc GST': '', 'ADD TO CART ': ''}
+        text_input = text_input.upper()
+        replacements = {'5 STARS4 STARS3 STARS2 STARS1 STAR ': '', ' INC GST': '', 'ADD TO CART ': ''}
 
         for old, new in replacements.items():
             text_input = text_input.replace(old, new)
