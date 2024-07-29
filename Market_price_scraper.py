@@ -767,7 +767,9 @@ if select_text == "Repco":
         text_input = text_input.replace('Contact Adhesive F2 Mp 75ml', 'CRC Contact Adhesive F2 Mp 75ml')
         text_input = text_input.replace('CRC Prime It - Red Oxide Primer 400ml - 2091', 'CRC Prime It Red Oxide Primer 400ml - 2091')
 
-        products = [i.strip() for i in text_input.split('CRC')[2::2]]
+        text_input = text_input.replace('CRC Belt Dressing 350G/500Ml', 'CRC Belt Dressing 350G/500Ml - 1753472')
+
+        products = [i.strip() for i in text_input.split('CRC')[3::3]]
 
         names, CRC_codes, prices, price_flags, price_flags1, price_flags2, first_prices = [], [], [], [], [], [], []
         
