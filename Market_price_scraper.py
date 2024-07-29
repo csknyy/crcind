@@ -743,10 +743,10 @@ if select_text == "The ToolShed":
           CRC_codes.append(i.split(' (')[0].split(' ')[-1])
           try:
             first_prices.append(i.split('WAS: $')[1].split(' ')[0])
-            prices.append(i.split('NOW: $')[1].split(' ')[0])
+            prices.append(i.split('NOW: $')[1].split(' ')[0].split(' PRICE')[0])
           except:
             first_prices.append('')
-            prices.append(i.split('$')[1])
+            prices.append(i.split('$')[1].split(' PRICE')[0])
         
         data = pd.DataFrame()
         data['Item Description'] = names
