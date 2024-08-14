@@ -90,7 +90,7 @@ def on_button_click_Place():
 def on_button_click_Super():
     st.write("Scrapping started")
     
-    url = "https://www.supercheapauto.co.nz/search?prefn1=srgBrand&prefv1=CRC%7CADOS&sz=60"
+    url = "https://www.supercheapauto.co.nz/brands/crc"
     response = requests.get(url)
     
     products = response.text.split(';" title="')
@@ -115,8 +115,28 @@ def on_button_click_Super():
       except:
         link_list.append("")
     
-    data = pd.DataFrame()
-    data['Name'] = name_list
+    url = "https://www.supercheapauto.co.nz/brands/ados"
+    response = requests.get(url)
+    
+    products = response.text.split(';" title="')
+    
+    for i in range(1, len(products)):
+      if "<" in products[i].split('">')[0]:
+        pass
+      else:
+        name_list.append(products[i].split('">')[0])
+      if "<" in products[i].split("/images/")[1].split("/")[0]:
+        pass
+      else:
+        id_list.append(products[i].split("/images/")[1].split("/")[0])
+      try:
+        price_list.append(products[i].split('price">$')[1].split('<')[0])
+      except:
+        price_list.append("")
+      try:
+        link_list.append("https://www.supercheapauto.co.nz" + products[i].split('href="')[1].split('"')[0])
+      except:
+        link_list.append("")
     
     CRC_name_code_dict = {
         'CRC Aeroclean Degreaser - 400g' : '5070',
@@ -176,8 +196,14 @@ def on_button_click_Super():
         'CRC AC Charge Refrigerant R134a Refill  and  Hose - 400g' : '5100',
         'CRC Etch It - 400mL' : '2110',
         'CRC Prime It - 400mL' : '2091',
-        'CRC Battery Terminal Protector 300g' : '5098'
+        'CRC Battery Terminal Protector 300g' : '5098',
+        'CRC Evapo-Rust Spray Gel 500g' : '1753336',
+        'CRC Evapo-Rust Rust Remover - 5 Litre' : 'EVR5',
+        'CRC Evapo-Rust Rust Remover - 1 Litre' : 'EVR1'
     }
+    
+    data = pd.DataFrame()
+    data['Name'] = name_list
     
     crc_code_list = []
     
@@ -192,6 +218,7 @@ def on_button_click_Super():
     data['Super Cheap Auto SKU'] = id_list
     data['Price'] = price_list
     data['Link'] = link_list
+
 
     st.dataframe(data)
     
