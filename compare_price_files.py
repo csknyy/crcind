@@ -30,7 +30,10 @@ data2 = files[1]
 
 customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 customer_opt_0.sort()
-customer_0 = st.multiselect("Customer", options = customer_opt_0, default = customer_opt_0)
+with st.expander("Legacy Item Number"):
+    customer_0 = st.multiselect("Customer", options = customer_opt_0, default = customer_opt_0)
+    if len(customer_0) == 0:
+        customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 
 legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 legacy_id_0.sort()
