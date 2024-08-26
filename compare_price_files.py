@@ -35,7 +35,7 @@ customer_0 = st.multiselect("Customer", options = customer_opt_0, default = cust
 legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 legacy_id_0.sort()
 with st.expander("Legacy Item Number"):
-    legacy_id_0 = st.multiselect("Legacy_Item_Number", options = legacy_id_0, default = legacy_id_0)
+    legacy_id_0 = st.multiselect("", options = legacy_id_0, default = legacy_id_0)
     if len(legacy_id_0) == 0:
         legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 
