@@ -20,3 +20,22 @@ for uploaded_file,file in zip(uploaded_files,files):
 
 st.dataframe(files[0])
 st.dataframe(files[1])
+
+data1 = files[0]
+data2 = files[1]
+
+data11 = data1[['Date','Customer','Legacy Item Number','Item Name','Price']]
+data22 = data2[['Date','Customer','Legacy Item Number','Item Name','Price']]
+
+merged_data = pd.merge(data11, data22, on=['Customer', 'Legacy Item Number', 'Item Name'], suffixes=('_old', '_new'))
+price_increases = merged_data[merged_data['Price_new'] > merged_data['Price_old']]
+
+price_increases['Price_old'] = pd.to_numeric(price_increases['Price_old'], errors='coerce')
+price_increases['Price_new'] = pd.to_numeric(price_increases['Price_new'], errors='coerce')
+
+price_increases.fillna(0, inplace=True)
+
+price_increases['Price change'] = price_increases['Price_new'] - price_increases['Price_old']
+price_increases['Price change %'] = (price_increases['Price change'] / price_increases['Price_old']) * 100
+
+st.dataframe(price_increases)
