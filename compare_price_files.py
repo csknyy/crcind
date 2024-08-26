@@ -50,14 +50,14 @@ with right_column0:
         if len(legacy_id_0) == 0:
             legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 
-data1 = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
-data2 = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
+data1_temp = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
+data2_temp = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 
 left_column1, right_column1 = st.columns(2)
 with left_column1:
-    st.dataframe(data1)
+    st.dataframe(data1_temp)
 with right_column1:
-    st.dataframe(data2)
+    st.dataframe(data2_temp)
     
 st.markdown('---')
 
