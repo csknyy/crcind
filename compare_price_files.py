@@ -27,6 +27,7 @@ with left_column0:
     st.dataframe(files[0])
 with right_column0:
     st.dataframe(files[1])
+    
 st.markdown('---')
         
 data1 = files[0]
@@ -45,5 +46,12 @@ price_increases.fillna(0, inplace=True)
 
 price_increases['Price change'] = price_increases['Price_new'] - price_increases['Price_old']
 price_increases['Price change %'] = (price_increases['Price change'] / price_increases['Price_old']) * 100
+
+customer_opt = [str(i) for i in price_increases["Customer"].unique()]
+customer_opt.sort()
+customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
+
+#data_selection = data.query("Supplier_fc == @supplier_fc & Priced_at_supplier_fc == @priced_at_fc
+price_increases = price_increases.query("Customer == @customer")
 
 st.dataframe(price_increases[price_increases['Price change'] != 0])
