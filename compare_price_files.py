@@ -33,6 +33,9 @@ else:
     data1 = files[1]
     data2 = files[0]
 
+data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
+data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
+
 left_column0, right_column0 = st.columns(2)
 with left_column0:
     customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
