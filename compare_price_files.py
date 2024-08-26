@@ -28,27 +28,30 @@ for i in range(len(files)):
 data1 = files[0]
 data2 = files[1]
 
-customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
-customer_opt_0.sort()
-with st.expander("Select Customer"):
-    customer_0 = st.multiselect("", options = customer_opt_0, default = customer_opt_0)
-    if len(customer_0) == 0:
-        customer_0 = [str(i) for i in data2["Customer"].unique()]
+left_column0, right_column0 = st.columns(2)
+with left_column0:
+    customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
+    customer_opt_0.sort()
+    with st.expander("Select Customer"):
+        customer_0 = st.multiselect("", options = customer_opt_0, default = customer_opt_0)
+        if len(customer_0) == 0:
+            customer_0 = [str(i) for i in data2["Customer"].unique()]
 
-legacy_id_opt_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
-legacy_id_opt_0.sort()
-with st.expander("Select Legacy Item Number"):
-    legacy_id_0 = st.multiselect("", options = legacy_id_opt_0, default = legacy_id_opt_0)
-    if len(legacy_id_0) == 0:
-        legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
+with right_column0:
+    legacy_id_opt_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
+    legacy_id_opt_0.sort()
+    with st.expander("Select Legacy Item Number"):
+        legacy_id_0 = st.multiselect("", options = legacy_id_opt_0, default = legacy_id_opt_0)
+        if len(legacy_id_0) == 0:
+            legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 
 data1 = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 data2 = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 
-left_column0, right_column0 = st.columns(2)
-with left_column0:
+left_column1, right_column1 = st.columns(2)
+with left_column1:
     st.dataframe(data1)
-with right_column0:
+with right_column1:
     st.dataframe(data2)
     
 st.markdown('---')
@@ -67,14 +70,14 @@ price_increases['Price_change'] = price_increases['Price_new'] - price_increases
 price_increases['Price_change_%'] = (price_increases['Price_change'] / price_increases['Price_old']) * 100
 price_increases = price_increases[price_increases['Price_change'] != 0]
 
-left_column1, right_column1 = st.columns(2)
-with left_column1:
+left_column2, right_column2 = st.columns(2)
+with left_column2:
     with st.expander("Select Customer"):
         customer_opt = [str(i) for i in price_increases["Customer"].unique()]
         customer_opt.sort()
         customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
 
-with right_column1:
+with right_column2:
     with st.expander("Select Legacy Item Number"):
         legacy_id_opt = [str(i) for i in price_increases["Legacy_Item_Number"].unique()]
         legacy_id_opt.sort()
