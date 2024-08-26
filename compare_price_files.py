@@ -25,8 +25,13 @@ for uploaded_file,file in zip(uploaded_files,files):
 for i in range(len(files)):
     files[i].columns = files[i].columns.str.replace(' ', '_')
 
-data1 = files[0]
-data2 = files[1]
+st.radio("Switch order", ("No", "Yes"))
+if "Switch order" == "No":
+    data1 = files[0]
+    data2 = files[1]
+else:
+    data1 = files[1]
+    data2 = files[0]
 
 left_column0, right_column0 = st.columns(2)
 with left_column0:
