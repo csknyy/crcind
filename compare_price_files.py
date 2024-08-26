@@ -30,11 +30,11 @@ data2 = files[1]
 
 customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 customer_opt_0.sort()
-customer_0 = st.selectbox("Customer",options = customer_opt_0,default=customer_opt_0)
+customer_0 = st.selectbox("Customer",options = customer_opt_0)
 
 legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 legacy_id_0.sort()
-legacy_id_0 = st.selectbox("Legacy_Item_Number",options = legacy_id_0,default=legacy_id_0)
+legacy_id_0 = st.selectbox("Legacy_Item_Number",options = legacy_id_0)
 
 data1 = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 data2 = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
