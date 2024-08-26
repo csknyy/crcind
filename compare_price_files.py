@@ -18,9 +18,12 @@ for uploaded_file,file in zip(uploaded_files,files):
     st.write("Uploaded:", uploaded_file.name)
     i = i+1
 
-st.dataframe(files[0])
-st.dataframe(files[1])
-
+left_column0, right_column0 = st.columns(2)
+    with left_column0:
+        st.dataframe(files[0])
+    with middle_column0:
+        st.dataframe(files[1])
+        
 data1 = files[0]
 data2 = files[1]
 
