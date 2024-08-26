@@ -56,13 +56,15 @@ st.markdown('---')
 data11 = data1[['Date','Customer','Legacy_Item_Number','Item_Name','Price']]
 data22 = data2[['Date','Customer','Legacy_Item_Number','Item_Name','Price']]
 
-merged_data = pd.merge(data11, data22, on=['Customer', 'Legacy_Item_Number', 'Item_Name'], suffixes=('_old', '_new'))
+merged_data = pd.merge(data11, data22, on=['Customer', 'Legacy Item Number', 'Item Name'], suffixes=('_old', '_new'))
+merged_data['Price_old'] = pd.to_numeric(merged_data['Price_old'], errors='coerce')
+merged_data['Price_new'] = pd.to_numeric(merged_data['Price_new'], errors='coerce')
 price_increases = merged_data[merged_data['Price_new'] > merged_data['Price_old']]
 price_increases['Price_old'] = pd.to_numeric(price_increases['Price_old'], errors='coerce')
 price_increases['Price_new'] = pd.to_numeric(price_increases['Price_new'], errors='coerce')
 price_increases.fillna(0, inplace=True)
-price_increases['Price_change'] = price_increases['Price_new'] - price_increases['Price_old']
-price_increases['Price_change_%'] = (price_increases['Price_change'] / price_increases['Price_old']) * 100
+price_increases['Price change'] = price_increases['Price_new'] - price_increases['Price_old']
+price_increases['Price change %'] = (price_increases['Price change'] / price_increases['Price_old']) * 100
 price_increases = price_increases[price_increases['Price_change'] != 0]
 
 left_column1, right_column1 = st.columns(2)
