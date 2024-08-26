@@ -34,7 +34,8 @@ customer_0 = st.multiselect("Customer", options = customer_opt_0, default = cust
 
 legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 legacy_id_0.sort()
-legacy_id_0 = st.multiselect("Legacy_Item_Number", options = legacy_id_0, default = legacy_id_0)
+with st.expander("Legacy Item Number"):
+    legacy_id_0 = st.multiselect("Legacy_Item_Number", options = legacy_id_0, default = legacy_id_0)
 
 data1 = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 data2 = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
