@@ -27,7 +27,6 @@ with left_column0:
     st.dataframe(files[0])
 with right_column0:
     st.dataframe(files[1])
-
 st.markdown('---')
         
 data1 = files[0]
