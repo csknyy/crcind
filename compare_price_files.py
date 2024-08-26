@@ -38,4 +38,4 @@ price_increases.fillna(0, inplace=True)
 price_increases['Price change'] = price_increases['Price_new'] - price_increases['Price_old']
 price_increases['Price change %'] = (price_increases['Price change'] / price_increases['Price_old']) * 100
 
-st.dataframe(price_increases)
+st.dataframe(price_increases[price_increases['Price change'] != 0])
