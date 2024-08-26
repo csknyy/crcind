@@ -68,26 +68,26 @@ merged_data = pd.merge(data11, data22, on=['Customer', 'Legacy_Item_Number', 'It
 merged_data['Price_old'] = pd.to_numeric(merged_data['Price_old'], errors='coerce')
 merged_data['Price_new'] = pd.to_numeric(merged_data['Price_new'], errors='coerce')
 #price_increases = merged_data[merged_data['Price_new'] > merged_data['Price_old']]
-price_increases['Price_old'] = pd.to_numeric(price_increases['Price_old'], errors='coerce')
-price_increases['Price_new'] = pd.to_numeric(price_increases['Price_new'], errors='coerce')
-price_increases.fillna(0, inplace=True)
-price_increases['Price_change'] = price_increases['Price_new'] - price_increases['Price_old']
-price_increases['Price_change_%'] = (price_increases['Price_change'] / price_increases['Price_old']) * 100
-price_increases = price_increases[price_increases['Price_change'] != 0]
+#price_increases['Price_old'] = pd.to_numeric(price_increases['Price_old'], errors='coerce')
+#price_increases['Price_new'] = pd.to_numeric(price_increases['Price_new'], errors='coerce')
+merged_data.fillna(0, inplace=True)
+merged_data['Price_change'] = merged_data['Price_new'] - merged_data['Price_old']
+merged_data['Price_change_%'] = (merged_data['Price_change'] / merged_data['Price_old']) * 100
+merged_data = merged_data[merged_data['Price_change'] != 0]
 
 left_column2, right_column2 = st.columns(2)
 with left_column2:
     with st.expander("Select Customer"):
-        customer_opt = [str(i) for i in price_increases["Customer"].unique()]
+        customer_opt = [str(i) for i in merged_data["Customer"].unique()]
         customer_opt.sort()
         customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
 
 with right_column2:
     with st.expander("Select Legacy Item Number"):
-        legacy_id_opt = [str(i) for i in price_increases["Legacy_Item_Number"].unique()]
+        legacy_id_opt = [str(i) for i in merged_data["Legacy_Item_Number"].unique()]
         legacy_id_opt.sort()
         legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
 
-price_increases = price_increases.query("Customer == @customer & Legacy_Item_Number == @legacy_id")
+merged_data = merged_data.query("Customer == @customer & Legacy_Item_Number == @legacy_id")
 
-st.dataframe(price_increases)
+st.dataframe(merged_data)
