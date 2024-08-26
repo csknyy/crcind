@@ -30,15 +30,15 @@ data2 = files[1]
 
 customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 customer_opt_0.sort()
-with st.expander("Legacy Item Number"):
+with st.expander("Select Customer"):
     customer_0 = st.multiselect("", options = customer_opt_0, default = customer_opt_0)
     if len(customer_0) == 0:
-        customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
+        customer_0 = [str(i) for i in data2["Customer"].unique()]
 
-legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
-legacy_id_0.sort()
-with st.expander("Legacy Item Number"):
-    legacy_id_0 = st.multiselect("", options = legacy_id_0, default = legacy_id_0)
+legacy_id_opt_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
+legacy_id_opt_0.sort()
+with st.expander("Select Legacy Item Number"):
+    legacy_id_0 = st.multiselect("", options = customer_opt_0, default = legacy_id_0)
     if len(legacy_id_0) == 0:
         legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 
@@ -76,7 +76,11 @@ customer_opt = [str(i) for i in price_increases["Customer"].unique()]
 customer_opt.sort()
 customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
 
+legacy_id_opt = [str(i) for i in price_increases["Legacy_Item_Number"].unique()]
+legacy_id_opt.sort()
+legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
+
 #data_selection = data.query("Supplier_fc == @supplier_fc & Priced_at_supplier_fc == @priced_at_fc
-price_increases = price_increases.query("Customer == @customer")
+price_increases = price_increases.query("Customer == @customer & Legacy_Item_Number == @legacy_id")
 
 st.dataframe(price_increases)
