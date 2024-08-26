@@ -69,14 +69,16 @@ price_increases = price_increases[price_increases['Price_change'] != 0]
 
 left_column1, right_column1 = st.columns(2)
 with left_column1:
-    customer_opt = [str(i) for i in price_increases["Customer"].unique()]
-    customer_opt.sort()
-    customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
+    with st.expander("Select Customer"):
+        customer_opt = [str(i) for i in price_increases["Customer"].unique()]
+        customer_opt.sort()
+        customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
 
 with right_column1:
-    legacy_id_opt = [str(i) for i in price_increases["Legacy_Item_Number"].unique()]
-    legacy_id_opt.sort()
-    legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
+    with st.expander("Select Legacy Item Number"):
+        legacy_id_opt = [str(i) for i in price_increases["Legacy_Item_Number"].unique()]
+        legacy_id_opt.sort()
+        legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
 
 price_increases = price_increases.query("Customer == @customer & Legacy_Item_Number == @legacy_id")
 
