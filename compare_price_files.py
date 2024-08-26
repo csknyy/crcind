@@ -31,7 +31,7 @@ data2 = files[1]
 customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 customer_opt_0.sort()
 with st.expander("Legacy Item Number"):
-    customer_0 = st.multiselect("Customer", options = customer_opt_0, default = customer_opt_0)
+    customer_0 = st.multiselect("", options = customer_opt_0, default = customer_opt_0)
     if len(customer_0) == 0:
         customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
 
