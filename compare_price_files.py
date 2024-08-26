@@ -63,8 +63,8 @@ price_increases = merged_data[merged_data['Price_new'] > merged_data['Price_old'
 price_increases['Price_old'] = pd.to_numeric(price_increases['Price_old'], errors='coerce')
 price_increases['Price_new'] = pd.to_numeric(price_increases['Price_new'], errors='coerce')
 price_increases.fillna(0, inplace=True)
-price_increases['Price change'] = price_increases['Price_new'] - price_increases['Price_old']
-price_increases['Price change %'] = (price_increases['Price change'] / price_increases['Price_old']) * 100
+price_increases['Price_change'] = price_increases['Price_new'] - price_increases['Price_old']
+price_increases['Price_change_%'] = (price_increases['Price_change'] / price_increases['Price_old']) * 100
 price_increases = price_increases[price_increases['Price_change'] != 0]
 
 left_column1, right_column1 = st.columns(2)
