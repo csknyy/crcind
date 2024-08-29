@@ -36,7 +36,7 @@ else:
 data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
 data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
 
-left_column0, ,middle_column0, right_column0 = st.columns(3)
+left_column0, middle_column0, right_column0 = st.columns(3)
 with left_column0:
     country_opt_0 = [str(i) for i in data2["Country"].unique()]
     country_opt_0.sort()
