@@ -85,7 +85,7 @@ left_column2, middle_column2, right_column2 = st.columns(3)
 with left_column2:
     country_opt = [str(i) for i in merged_data["Country"].unique()]
     country_opt.sort()
-    country = st.multiselect("", options = country_opt, default = country_opt)
+    country = st.multiselect("Country", options = country_opt, default = country_opt)
 
 with middle_column2:
     with st.expander("Select Customer"):
@@ -99,6 +99,6 @@ with right_column2:
         legacy_id_opt.sort()
         legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
 
-merged_data = merged_data.query("Customer == @customer & Legacy_Item_Number == @legacy_id")
+merged_data = merged_data.query("Country == @country & Customer == @customer & Legacy_Item_Number == @legacy_id")
 
 st.dataframe(merged_data)
