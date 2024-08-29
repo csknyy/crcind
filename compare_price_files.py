@@ -64,10 +64,10 @@ with right_column1:
     
 st.markdown('---')
 
-data11 = data1[['Date','Customer','Legacy_Item_Number','Item_Name','Price']]
-data22 = data2[['Date','Customer','Legacy_Item_Number','Item_Name','Price']]
+data11 = data1[['Date','Country','Customer','Legacy_Item_Number','Item_Name','Price']]
+data22 = data2[['Date','Country','Customer','Legacy_Item_Number','Item_Name','Price']]
 
-merged_data = pd.merge(data11, data22, on=['Customer', 'Legacy_Item_Number', 'Item_Name'], suffixes=('_old', '_new'))
+merged_data = pd.merge(data11, data22, on=['Country','Customer', 'Legacy_Item_Number', 'Item_Name'], suffixes=('_old', '_new'))
 merged_data.fillna(0, inplace=True)
 merged_data['Price_change'] = merged_data['Price_new'] - merged_data['Price_old']
 merged_data['Price_change_%'] = (merged_data['Price_change'] / merged_data['Price_old']) * 100
