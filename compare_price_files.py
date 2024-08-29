@@ -36,8 +36,16 @@ else:
 data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
 data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
 
-left_column0, right_column0 = st.columns(2)
+left_column0, ,middle_column0, right_column0 = st.columns(3)
 with left_column0:
+    country_opt_0 = [str(i) for i in data2["Country"].unique()]
+    country_opt_0.sort()
+    with st.expander("Select Country"):
+        country_0 = st.multiselect("", options = country_opt_0, default = country_opt_0)
+        if len(country_0) == 0:
+            country_0 = [str(i) for i in data2["Country"].unique()]
+
+with middle_column0:
     customer_opt_0 = [str(i) for i in data2["Customer"].unique()]
     customer_opt_0.sort()
     with st.expander("Select Customer"):
@@ -53,8 +61,8 @@ with right_column0:
         if len(legacy_id_0) == 0:
             legacy_id_0 = [str(i) for i in data2["Legacy_Item_Number"].unique()]
 
-data1_temp = data1.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
-data2_temp = data2.query("Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
+data1_temp = data1.query("Country == @country_0 & Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
+data2_temp = data2.query("Country == @country_0 & Customer == @customer_0 & Legacy_Item_Number == @legacy_id_0")
 
 left_column1, right_column1 = st.columns(2)
 with left_column1:
@@ -73,8 +81,13 @@ merged_data['Price_change'] = merged_data['Price_new'] - merged_data['Price_old'
 merged_data['Price_change_%'] = (merged_data['Price_change'] / merged_data['Price_old']) * 100
 merged_data = merged_data[merged_data['Price_change'] != 0]
 
-left_column2, right_column2 = st.columns(2)
+left_column2, middle_column2, right_column2 = st.columns(3)
 with left_column2:
+    country_opt = [str(i) for i in merged_data["Country"].unique()]
+    country_opt.sort()
+    country = st.multiselect("", options = country_opt, default = country_opt)
+
+with middle_column2:
     with st.expander("Select Customer"):
         customer_opt = [str(i) for i in merged_data["Customer"].unique()]
         customer_opt.sort()
