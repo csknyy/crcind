@@ -83,9 +83,10 @@ merged_data = merged_data[merged_data['Price_change'] != 0]
 
 left_column2, middle_column2, right_column2 = st.columns(3)
 with left_column2:
-    country_opt = [str(i) for i in merged_data["Country"].unique()]
-    country_opt.sort()
-    country = st.multiselect("Country", options = country_opt, default = country_opt)
+    with st.expander("Select Country"):
+        country_opt = [str(i) for i in merged_data["Country"].unique()]
+        country_opt.sort()
+        country = st.multiselect("Country", options = country_opt, default = country_opt)
 
 with middle_column2:
     with st.expander("Select Customer"):
