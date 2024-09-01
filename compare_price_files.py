@@ -87,18 +87,24 @@ with left_column2:
         country_opt = [str(i) for i in merged_data["Country"].unique()]
         country_opt.sort()
         country = st.multiselect("Country", options = country_opt, default = country_opt)
+        if len(country) == 0:
+            country = [str(i) for i in merged_data["Country"].unique()]
 
 with middle_column2:
     with st.expander("Select Customer"):
         customer_opt = [str(i) for i in merged_data["Customer"].unique()]
         customer_opt.sort()
         customer = st.multiselect("Customer",options = customer_opt,default=customer_opt)
+        if len(customer) == 0:
+            customer = [str(i) for i in merged_data["Customer"].unique()]
 
 with right_column2:
     with st.expander("Select Legacy Item Number"):
         legacy_id_opt = [str(i) for i in merged_data["Legacy_Item_Number"].unique()]
         legacy_id_opt.sort()
         legacy_id = st.multiselect("Legacy Item Number",options = legacy_id_opt,default=legacy_id_opt)
+        if len(legacy_id) == 0:
+            legacy_id = [str(i) for i in merged_data["Legacy_Item_Number"].unique()]
 
 merged_data = merged_data.query("Country == @country & Customer == @customer & Legacy_Item_Number == @legacy_id")
 
