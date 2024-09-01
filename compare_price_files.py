@@ -77,9 +77,8 @@ data22 = data2[['Date','Country','Customer','Legacy_Item_Number','Item_Name','Pr
 
 merged_data = pd.merge(data11, data22, on=['Country','Customer', 'Legacy_Item_Number', 'Item_Name'], suffixes=('_old', '_new'))
 merged_data.fillna(0, inplace=True)
-merged_data['Price_change'] = merged_data['Price_new'] - merged_data['Price_old']
-merged_data['Price_change'] = [round(i,2) for i in merged_data['Price_change']]
-merged_data['Price_change_%'] = round((merged_data['Price_change'] / merged_data['Price_old']),4) * 100
+merged_data['Price_change'] = round(merged_data['Price_new'] - merged_data['Price_old'],2)
+merged_data['Price_change_%'] = round(100 * merged_data['Price_change'] / merged_data['Price_old'],2)
 merged_data = merged_data[merged_data['Price_change'] != 0]
 
 left_column2, middle_column2, right_column2 = st.columns(3)
