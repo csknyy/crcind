@@ -34,7 +34,7 @@ else:
     data2 = files[0]
 
 data1['Price'] = [float(i.replace(',', '')) for i in data1['Price']]
-data1['Price'] = [float(i.replace(',', '')) for i in data1['Price']]
+data2['Price'] = [float(i.replace(',', '')) for i in data2['Price']]
 data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
 data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
 
