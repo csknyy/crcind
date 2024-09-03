@@ -33,10 +33,10 @@ else:
     data1 = files[1]
     data2 = files[0]
 
-data1['Price'] = [str(i).replace('.','') for i in data1['Price']]
-data2['Price'] = [str(i).replace('.','') for i in data2['Price']]
-data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
-data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
+#data1['Price'] = [str(i).replace('.','') for i in data1['Price']]
+#data2['Price'] = [str(i).replace('.','') for i in data2['Price']]
+#data1['Price'] = pd.to_numeric(data1['Price'], errors='coerce')
+#data2['Price'] = pd.to_numeric(data2['Price'], errors='coerce')
 
 left_column0, middle_column0, right_column0 = st.columns(3)
 with left_column0:
