@@ -85,7 +85,6 @@ cheapest_prices = data22.groupby(['Country','Legacy_Item_Number',])['Price'].min
 merged_data = pd.merge(merged_data, cheapest_prices, on=['Country', 'Legacy_Item_Number'], how='left', suffixes=('', '_cheapest'))
 merged_data.rename(columns={'Price': 'Cheapest_price'}, inplace=True)
 merged_data['Cheapest'] = ['Cheapest' if price_new == cheapest_price else '' for price_new, cheapest_price in zip(merged_data['Price_new'], merged_data['Cheapest_price'])]
-st.dataframe(cheapest_prices)
 
 left_column2, middle_column2, right_column2, far_right_column2 = st.columns(4)
 with left_column2:
