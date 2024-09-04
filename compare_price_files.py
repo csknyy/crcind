@@ -81,10 +81,9 @@ merged_data['Price_change'] = round(merged_data['Price_new'] - merged_data['Pric
 merged_data['Price_change_%'] = round(100 * merged_data['Price_change'] / merged_data['Price_old'],2)
 merged_data = merged_data[merged_data['Price_change'] != 0]
 
-last_day = data22['Date'].max()
-last_day_data = data22[data22['Date'] == last_day]
-min_price = last_day_data['Price'].min()
-merged_data['Cheapest'] = ['Cheapest' if (row['Date'] == last_day and row['Price'] == min_price) else '' for index, row in data22.iterrows()]
+###cheapest_price
+cheapest_prices = data22.groupby(['Country','Legacy_Item_Number',])['Price'].min().reset_index()
+st.dataframe(cheapest_prices)
 
 
 left_column2, middle_column2, right_column2 = st.columns(3)
