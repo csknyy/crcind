@@ -87,7 +87,7 @@ merged_data.rename(columns={'Price': 'Cheapest_price'}, inplace=True)
 merged_data['Cheapest'] = ['Cheapest' if price_new == cheapest_price else '' for price_new, cheapest_price in zip(merged_data['Price_new'], merged_data['Cheapest_price'])]
 st.dataframe(cheapest_prices)
 
-left_column2, middle_column2, right_column2 = st.columns(3)
+left_column2, middle_column2, right_column2, far_right_column2 = st.columns(4)
 with left_column2:
     with st.expander("Select Country"):
         country_opt = [str(i) for i in merged_data["Country"].unique()]
@@ -112,6 +112,14 @@ with right_column2:
         if len(legacy_id) == 0:
             legacy_id = [str(i) for i in merged_data["Legacy_Item_Number"].unique()]
 
-merged_data = merged_data.query("Country == @country & Customer == @customer & Legacy_Item_Number == @legacy_id")
+with far_right_column2:
+    with st.expander("Select Cheapest"):
+        cheapest_opt = [str(i) for i in merged_data["Cheapest"].unique()]
+        cheapest_opt.sort()
+        cheapest = st.multiselect("Cheapest",options = cheapest_opt, default = cheapest_opt)
+        if len(cheapest) == 0:
+            cheapest = [str(i) for i in merged_data["Cheapest"].unique()]
+
+merged_data = merged_data.query("Country == @country & Customer == @customer & Legacy_Item_Number == @legacy_id & Cheapest == @cheapest")
 
 st.dataframe(merged_data)
