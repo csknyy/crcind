@@ -121,6 +121,6 @@ with far_right_column2:
             cheapest = [str(i) for i in merged_data["Cheapest"].unique()]
 
 merged_data = merged_data.query("Country == @country & Customer == @customer & Legacy_Item_Number == @legacy_id & Cheapest == @cheapest")
-merged_data = merged_data.reset_index(inplace = True)
+merged_data.reset_index(inplace = True)
 
 st.dataframe(merged_data)
