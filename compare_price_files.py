@@ -84,6 +84,8 @@ merged_data = merged_data[merged_data['Price_change'] != 0]
 ###cheapest_price
 cheapest_prices = data22.groupby(['Country','Legacy_Item_Number',])['Price'].min().reset_index()
 st.dataframe(cheapest_prices)
+st.dataframe(pd.merge(merged_data, cheapest_prices, on=['Country', 'Legacy_Item_Number'], how='left', suffixes=('', '_cheapest'))
+
 
 
 left_column2, middle_column2, right_column2 = st.columns(3)
