@@ -8,15 +8,11 @@ uploaded_file = st.file_uploader("Choose the .xlsx file")
 
 if uploaded_file is not None:
     try:
-        data = pd.read_excel(uploaded_file, header=1, engine='openpyxl')
+        data = pd.read_excel(uploaded_file, header=0, engine='openpyxl')
 
-        # Create new headers
         new_headers1 = [str(i)[:4] for i in data.columns.copy()]
         new_headers2 = [str(i) for i in data.iloc[0, :].copy()]
         new_headers = ['-'.join([i, j]) for i, j in zip(new_headers1, new_headers2)]
-        
-        # Handle duplicates
-        #new_headers = pd.Series(new_headers).duplicated(keep='first').map({True: lambda x: f'{x}_dup', False: x}).tolist()
         
         data.columns = new_headers
         data = data[[col for col in data.columns if not col.endswith('Total')]]
