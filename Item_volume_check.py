@@ -42,13 +42,17 @@ if uploaded_file is not None:
 
         up1, up2, up3, up4 = st.columns(4)
         with up1:
-            text_up1 = st.text_input('Greater weight than',value=0.22).astype(float)
+            text_up1 = st.text_input('Greater weight than',value=0.22)
+            text_up1 = float(text_up1)
         with up2:
-            text_up1 = st.text_input('Difference between PY weight',value=0.05).astype(float)
+            text_up2 = st.text_input('Difference between PY weight',value=0.05)
+            text_up2 = float(text_up2)
         with up3:
-            text_up1 = st.text_input('Months with sales (at least)',value=1).astype(int)
+            text_up3 = st.text_input('Months with sales (at least)',value=1)
+            text_up3 = int(text_up3)
         with up4:
-            text_up1 = st.text_input('Total 6 month qty more than',value=50).astype(int)
+            text_up4 = st.text_input('Total 6 month qty more than',value=50)
+            text_up4 = int(text_up4)
         
         filter_up1 = (merged_data['CY_last_month_weight'] > text_up1)
         filter_up2 = (merged_data['Weight_variance'] > text_up2)
