@@ -53,5 +53,8 @@ if uploaded_file is not None:
     
     going_down = merged_data[filter_down1 & filter_down2 & filter_down3 & filter_down4].reset_index(drop=True)
 
+    st.dataframe(going_up)
+    st.dataframe(going_down)
+
   except Exception as e:
     st.error(f"Error: {e}")
