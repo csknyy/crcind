@@ -61,11 +61,27 @@ if uploaded_file is not None:
 
         going_up = merged_data[filter_up1 & filter_up2 & filter_up3 & filter_up4].reset_index(drop=True)
         going_up = going_up.iloc[:,[0,6,7,9,15,16,18,19]]
+        
+        st.markdown('---')
 
-        filter_down1 = (merged_data['CY_last_month_weight'] < 0.10)
-        filter_down2 = (merged_data['Weight_variance'] < -0.05)
-        filter_down3 = (merged_data['CY_count'] > 0)
-        filter_down4 = (merged_data['CY_total'] > 50)
+        down1, down2, down3, down4 = st.columns(4)
+        with up1:
+            text_down1 = st.text_input('Greater weight than',value=0.10)
+            text_down1 = float(text_down1)
+        with up2:
+            text_down2 = st.text_input('Difference between PY weight',value=-0.05)
+            text_down2 = float(text_down2)
+        with up3:
+            text_down3 = st.text_input('Months with sales (at least)',value=1)
+            text_down3 = int(text_down3)
+        with up4:
+            text_down4 = st.text_input('Total 6 month qty more than',value=50)
+            text_down4 = int(text_down4)
+
+        filter_down1 = (merged_data['CY_last_month_weight'] < text_down1)
+        filter_down2 = (merged_data['Weight_variance'] < text_down2)
+        filter_down3 = (merged_data['CY_count'] > text_down3)
+        filter_down4 = (merged_data['CY_total'] > text_down4)
 
         going_down = merged_data[filter_down1 & filter_down2 & filter_down3 & filter_down4].reset_index(drop=True)
         going_down = going_down.iloc[:,[0,6,7,9,15,16,18,19]]
