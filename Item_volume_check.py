@@ -16,7 +16,7 @@ if uploaded_file is not None:
         new_headers = ['-'.join([i, j]) for i, j in zip(new_headers1, new_headers2)]
         
         # Handle duplicates
-        new_headers = pd.Series(new_headers).duplicated(keep='first').map({True: lambda x: f'{x}_dup', False: x}).tolist()
+        #new_headers = pd.Series(new_headers).duplicated(keep='first').map({True: lambda x: f'{x}_dup', False: x}).tolist()
         
         data.columns = new_headers
         data = data[[col for col in data.columns if not col.endswith('Total')]]
