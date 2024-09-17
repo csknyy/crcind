@@ -42,16 +42,16 @@ if uploaded_file is not None:
 
         up1, up2, up3, up4 = st.columns(4)
         with up1:
-            text_up1 = st.text_input('Greater weight than',value=0.22)
+            text_up1 = st.text_input('Greater weight than',value=0.22, key='text_up1')
             text_up1 = float(text_up1)
         with up2:
-            text_up2 = st.text_input('Difference between PY weight',value=0.05)
+            text_up2 = st.text_input('Difference between PY weight',value=0.05, key='text_up2')
             text_up2 = float(text_up2)
         with up3:
-            text_up3 = st.text_input('Months with sales (at least)',value=1)
+            text_up3 = st.text_input('Months with sales (at least)',value=1, key='text_up3')
             text_up3 = int(text_up3)
         with up4:
-            text_up4 = st.text_input('Total 6 month qty more than',value=50)
+            text_up4 = st.text_input('Total 6 month qty more than',value=50, key='text_up4')
             text_up4 = int(text_up4)
         
         filter_up1 = (merged_data['CY_last_month_weight'] > text_up1)
@@ -66,16 +66,16 @@ if uploaded_file is not None:
 
         down1, down2, down3, down4 = st.columns(4)
         with up1:
-            text_down1 = st.text_input('Greater weight than',value=0.10)
+            text_down1 = st.text_input('Greater weight than',value=0.10, key='text_down1')
             text_down1 = float(text_down1)
         with up2:
-            text_down2 = st.text_input('Difference between PY weight',value=-0.05)
+            text_down2 = st.text_input('Difference between PY weight',value=-0.05, key='text_down2')
             text_down2 = float(text_down2)
         with up3:
-            text_down3 = st.text_input('Months with sales (at least)',value=1)
+            text_down3 = st.text_input('Months with sales (at least)',value=1, key='text_down3')
             text_down3 = int(text_down3)
         with up4:
-            text_down4 = st.text_input('Total 6 month qty more than',value=50)
+            text_down4 = st.text_input('Total 6 month qty more than',value=50, key='text_down4')
             text_down4 = int(text_down4)
 
         filter_down1 = (merged_data['CY_last_month_weight'] < text_down1)
