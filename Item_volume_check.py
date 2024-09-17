@@ -62,7 +62,7 @@ if uploaded_file is not None:
         going_up = merged_data[filter_up1 & filter_up2 & filter_up3 & filter_up4].reset_index(drop=True)
         going_up = going_up.iloc[:,[0,6,7,9,15,16,18,19]]
 
-        st.text(f'Items with significant increase: {len(going_up)}')
+        st.subheader(f'Items with significant increase: {len(going_up)}')
         
         st.dataframe(going_up)
         
