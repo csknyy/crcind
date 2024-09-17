@@ -62,6 +62,8 @@ if uploaded_file is not None:
         going_up = merged_data[filter_up1 & filter_up2 & filter_up3 & filter_up4].reset_index(drop=True)
         going_up = going_up.iloc[:,[0,6,7,9,15,16,18,19]]
 
+        st.header(f'Items with significant increase; {len(going_up)}')
+        
         st.dataframe(going_up)
         
         st.markdown('---')
@@ -87,6 +89,8 @@ if uploaded_file is not None:
 
         going_down = merged_data[filter_down1 & filter_down2 & filter_down3 & filter_down4].reset_index(drop=True)
         going_down = going_down.iloc[:,[0,6,7,9,15,16,18,19]]
+
+        st.header(f'Items with significant decrease; {len(going_down)}')
         
         st.dataframe(going_down)
 
