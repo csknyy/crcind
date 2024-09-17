@@ -40,10 +40,20 @@ if uploaded_file is not None:
 
         merged_data = merged_data.sort_values(by='CY_total', ascending=False).reset_index(drop=True)
 
-        filter_up1 = (merged_data['CY_last_month_weight'] > 0.22)
-        filter_up2 = (merged_data['Weight_variance'] > 0.05)
-        filter_up3 = (merged_data['CY_count'] > 0)
-        filter_up4 = (merged_data['CY_total'] > 50)
+        up1, up2, up3, up4 = st.columns(4)
+            with up1:
+                text_up1 = st.text_input('Greater weight than',value=0.22).astype(float)
+            with up2:
+                text_up1 = st.text_input('Difference between PY weight',value=0.05).astype(float)
+            with up3:
+                text_up1 = st.text_input('Months with sales (at least)',value=1).astype(int)
+            with up4:
+                text_up1 = st.text_input('Total 6 month qty more than',value=50).astype(int)
+        
+        filter_up1 = (merged_data['CY_last_month_weight'] > text_up1)
+        filter_up2 = (merged_data['Weight_variance'] > text_up2)
+        filter_up3 = (merged_data['CY_count'] >= text_up3)
+        filter_up4 = (merged_data['CY_total'] > text_up4)
 
         going_up = merged_data[filter_up1 & filter_up2 & filter_up3 & filter_up4].reset_index(drop=True)
         going_up = going_up.iloc[:,[0,6,7,9,15,16,18,19]]
