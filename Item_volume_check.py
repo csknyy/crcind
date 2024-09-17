@@ -67,16 +67,16 @@ if uploaded_file is not None:
         st.markdown('---')
 
         down1, down2, down3, down4 = st.columns(4)
-        with up1:
+        with down1:
             text_down1 = st.text_input('Less weight than',value=0.10, key='text_down1')
             text_down1 = float(text_down1)
-        with up2:
+        with down2:
             text_down2 = st.text_input('Difference between PY weight',value=-0.05, key='text_down2')
             text_down2 = float(text_down2)
-        with up3:
+        with down3:
             text_down3 = st.text_input('Months with sales (at least)',value=1, key='text_down3')
             text_down3 = int(text_down3)
-        with up4:
+        with down4:
             text_down4 = st.text_input('Total 6 month qty more than',value=50, key='text_down4')
             text_down4 = int(text_down4)
 
