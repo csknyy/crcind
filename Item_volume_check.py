@@ -11,8 +11,8 @@ if uploaded_file is not None:
         data = pd.read_excel(uploaded_file, header=1, engine='openpyxl')
 
         # Create new headers
-        new_headers1 = [str(i)[:4] for i in data.columns]
-        new_headers2 = [str(i) for i in data.iloc[0, :]]
+        new_headers1 = [str(i)[:4] for i in data.columns.copy()]
+        new_headers2 = [str(i) for i in data.iloc[0, :].copy()]
         new_headers = ['-'.join([i, j]) for i, j in zip(new_headers1, new_headers2)]
         
         # Handle duplicates
