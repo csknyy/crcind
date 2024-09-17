@@ -61,12 +61,14 @@ if uploaded_file is not None:
 
         going_up = merged_data[filter_up1 & filter_up2 & filter_up3 & filter_up4].reset_index(drop=True)
         going_up = going_up.iloc[:,[0,6,7,9,15,16,18,19]]
+
+        st.dataframe(going_up)
         
         st.markdown('---')
 
         down1, down2, down3, down4 = st.columns(4)
         with up1:
-            text_down1 = st.text_input('Greater weight than',value=0.10, key='text_down1')
+            text_down1 = st.text_input('Less weight than',value=0.10, key='text_down1')
             text_down1 = float(text_down1)
         with up2:
             text_down2 = st.text_input('Difference between PY weight',value=-0.05, key='text_down2')
@@ -85,8 +87,7 @@ if uploaded_file is not None:
 
         going_down = merged_data[filter_down1 & filter_down2 & filter_down3 & filter_down4].reset_index(drop=True)
         going_down = going_down.iloc[:,[0,6,7,9,15,16,18,19]]
-
-        st.dataframe(going_up)
+        
         st.dataframe(going_down)
 
     except Exception as e:
