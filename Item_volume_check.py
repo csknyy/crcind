@@ -22,23 +22,31 @@ if uploaded_file is not None:
     data = data.reset_index(drop=True)
     data.columns.values[0] = 'Legacy Item Number'
     data = data.fillna(0)
+
+    st.dataframe(data)
     
     data_CY = data.iloc[:, [0] + list(range(-6, 0))].copy()
     data_CY.iloc[:, -6:] = data_CY.iloc[:, -6:].astype(int)
     data_CY.loc[:, 'CY_total'] = data_CY.iloc[:, -6:].sum(axis=1).astype(int)
     data_CY['CY_count'] = data_CY.iloc[:, -7:-1].apply(lambda row: (row != 0).sum(), axis=1)
     data_CY['CY_last_month_weight'] = np.where(data_CY['CY_total'] != 0, data_CY.iloc[:, -3] / data_CY['CY_total'], 0)
+
+    st.dataframe(data_CY)
     
     data_PY = data.iloc[:, [0] + list(range(-18, -12))].copy()
     data_PY.iloc[:, -6:] = data_PY.iloc[:, -6:].astype(int)
     data_PY.loc[:, 'PY_total'] = data_PY.iloc[:, -6:].sum(axis=1).astype(int)
     data_PY['PY_count'] = data_PY.iloc[:, -7:-1].apply(lambda row: (row != 0).sum(), axis=1)
     data_PY['PY_last_month_weight'] = np.where(data_PY['PY_total'] != 0, data_PY.iloc[:, -3] / data_PY['PY_total'], 0)
+
+    st.dataframe(data_PY)
     
     merged_data = pd.merge(data_PY, data_CY, on='Legacy Item Number', how='left')
     merged_data['Weight_variance'] = merged_data['CY_last_month_weight'] - merged_data['PY_last_month_weight']
     
     merged_data = merged_data.sort_values(by='CY_total', ascending=False).reset_index(drop=True)
+
+    st.dataframe(merged_data)
     
     filter_up1 = (merged_data['CY_last_month_weight'] > 0.22)
     filter_up2 = (merged_data['Weight_variance'] > 0.05)
