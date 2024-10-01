@@ -8,7 +8,8 @@ uploaded_file = st.file_uploader("Choose the .xlsx file")
 
 if uploaded_file is not None:
     try:
-        data = pd.read_excel(uploaded_file, header=2, engine='openpyxl')
+        #data = pd.read_excel(uploaded_file, header=2, engine='openpyxl')
+        data = pd.read_excel(uploaded_file, engine='openpyxl')
 
         new_headers1 = [str(i)[:4] for i in data.columns.copy()]
         new_headers2 = [str(i) for i in data.iloc[0, :].copy()]
