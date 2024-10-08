@@ -14,6 +14,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     prior_month.set_index('Store', inplace=True)
     #prior_month.iloc[0,0] = 'Summary'
     prior_month_sliced = prior_month.iloc[:, :2]
+
+    st.dataframe(prior_month_sliced)
     
     prior_month_sliced = prior_month_sliced.drop(index='Summary')
     
