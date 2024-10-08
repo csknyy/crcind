@@ -19,8 +19,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     current_month.iloc[0,0] = 'Summary'
     merged_data = pd.merge(current_month, prior_month_sliced, on='Store', how='left')
 
-    merged_data['Monthly Sales'] = merged_data[:,-3] - merged_data[:,0]
-    merged_data['Monthly Profit'] = merged_data[:,-2] - merged_data[:,1]
+    merged_data['Monthly Sales'] = merged_data.iloc[:, -3] - merged_data.iloc[:, 0]
+    merged_data['Monthly Profit'] = merged_data.iloc[:, -2] - merged_data.iloc[:, 1]
     merged_data['Monthly GP%'] = (merged_data['Monthly Profit'] / merged_data['Monthly Sales']).fillna(0)
 
     st.dataframe(prior_month_sliced)
