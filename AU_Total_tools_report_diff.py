@@ -17,8 +17,10 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     current_month = pd.read_excel(uploaded_file_1, engine = 'openpyxl', header = 1)
     current_month = current_month.rename(columns={current_month.columns[0]: 'Store'})
     current_month.iloc[0,0] = 'Summary'
+    
     merged_data = pd.merge(current_month, prior_month_sliced, on='Store', how='left')
-
+    
+    merged_data = merged_data.fillna(0)
     merged_data['Monthly Sales'] = merged_data.iloc[:, -2] - merged_data.iloc[:, 0]
     merged_data['Monthly Profit'] = merged_data.iloc[:, -1] - merged_data.iloc[:, 1]
     merged_data['Monthly GP%'] = (merged_data['Monthly Profit'] / merged_data['Monthly Sales']).fillna(0)
