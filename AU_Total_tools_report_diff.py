@@ -53,7 +53,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
     merged_data.loc['Summary',:] = 0
     for i in merged_data.columns:
-        merged_data.loc['Summary',i] = sum(i)
+        merged_data.loc['Summary',i] = i.sum()
     
     st.dataframe(merged_data)
 
