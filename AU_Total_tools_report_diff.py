@@ -16,15 +16,21 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     prior_month_sliced = prior_month.iloc[:, :2]
 
     st.dataframe(prior_month_sliced)
-    
-    prior_month_sliced = prior_month_sliced.drop(index='Summary')
+
+    try:
+        prior_month_sliced = prior_month_sliced.drop(index='Summary')
+    except:
+        pass
     
     current_month = pd.read_excel(uploaded_file_1, engine = 'openpyxl', header = 1)
     current_month = current_month.rename(columns={current_month.columns[0]: 'Store'})
     #current_month.iloc[0,0] = 'Summary'
     current_month.set_index('Store', inplace=True)
 
-    current_month = current_month.drop(index='Summary')
+    try:
+        current_month = current_month.drop(index='Summary')
+    except:
+        pass
     
     merged_data = pd.merge(current_month, prior_month_sliced, on=index, how='left')
     st.dataframe(merged_data)
