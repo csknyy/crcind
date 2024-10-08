@@ -19,6 +19,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     current_month.iloc[0,0] = 'Summary'
     
     merged_data = pd.merge(current_month, prior_month_sliced, on='Store', how='left')
+    st.dataframe(merged_data)
     
     merged_data.iloc[:, -2] = pd.to_numeric(merged_data.iloc[:, -2], errors='coerce').fillna(0)
     merged_data.iloc[:, -1] = pd.to_numeric(merged_data.iloc[:, -1], errors='coerce').fillna(0)
