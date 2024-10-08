@@ -55,7 +55,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     for col in merged_data.columns:
         merged_data.loc['Summary', col] = merged_data[col].sum()
 
-    merged_data.iloc[-1, 2] = merged_data.iloc[:, 1] / merged_data.iloc[:, 0].replace(0, np.nan)
+    merged_data.iloc[-1, 2] = (merged_data.iloc[:, 1] / merged_data.iloc[:, 0].replace(0, np.nan)).sum()
+
 
     
     
