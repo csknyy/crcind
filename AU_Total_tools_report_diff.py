@@ -10,13 +10,18 @@ uploaded_file_1 = st.file_uploader("Upload the current month's file")
 if uploaded_file_0 is not None and uploaded_file_1 is not None:
     try:
         prior_month = pd.read_excel(uploaded_file_0, engine = 'openpyxl', header = 1)
+        prior_month = prior_month.rename(columns={prior_month.columns[0]: 'Store'})
+        prior_month.iloc[0,0] = 'Summary'
         prior_month_sliced = prior_month.iloc[:, :4]
+        
         current_month = pd.read_excel(uploaded_file_1, engine = 'openpyxl', header = 1)
-        #merged_data = pd.merge(current_month, prior_month_sliced, on='Item ID', how='left')
+        current_month = current_month.rename(columns={current_month.columns[0]: 'Store'})
+        current_month.iloc[0,0] = 'Summary'
+        merged_data = pd.merge(current_month, prior_month_sliced, on='Store', how='left')
 
         st.dataframe(prior_month_sliced)
         st.dataframe(current_month)
-        #st.dataframe(merged_data)
+        st.dataframe(merged_data)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
