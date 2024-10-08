@@ -21,14 +21,13 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     merged_data = pd.merge(current_month, prior_month_sliced, on='Store', how='left')
     
     merged_data.iloc[:, -2] = pd.to_numeric(merged_data.iloc[:, -2], errors='coerce').fillna(0)
-    merged_data.iloc[:, 0] = pd.to_numeric(merged_data.iloc[:, 0], errors='coerce').fillna(0)
     merged_data.iloc[:, -1] = pd.to_numeric(merged_data.iloc[:, -1], errors='coerce').fillna(0)
     merged_data.iloc[:, 1] = pd.to_numeric(merged_data.iloc[:, 1], errors='coerce').fillna(0)
     
-    merged_data['Monthly Sales'] = merged_data.iloc[:, -2] - merged_data.iloc[:, 0]
+    merged_data['Monthly Sales'] = merged_data.iloc[:, -2] - merged_data.iloc[:, 1]
     merged_data['Monthly Sales'] = merged_data['Monthly Sales'].replace(0, np.nan)
     
-    merged_data['Monthly Profit'] = merged_data.iloc[:, -1] - merged_data.iloc[:, 1]
+    merged_data['Monthly Profit'] = merged_data.iloc[:, -1] - merged_data.iloc[:, 2]
     merged_data['Monthly Profit'] = merged_data['Monthly Profit'].replace(0, np.nan)
     
     merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
