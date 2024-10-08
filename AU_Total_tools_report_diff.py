@@ -27,8 +27,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     
     merged_data['Monthly Sales'] = merged_data.iloc[:, -2] - merged_data.iloc[:, 0]
     merged_data['Monthly Profit'] = merged_data.iloc[:, -1] - merged_data.iloc[:, 1]
-    merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
-
+    merged_data['Monthly GP%'] = (merged_data['Monthly Profit'] / merged_data['Monthly Sales']).fillna(0)
+    
     st.dataframe(prior_month_sliced)
     st.dataframe(current_month)
     st.dataframe(merged_data)
