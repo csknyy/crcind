@@ -52,6 +52,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
 
     merged_data.loc['Summary',:] = 0
+    for i in merged_data.columns:
+        merged_data.loc['Summary',i] = sum(i)
     
     st.dataframe(merged_data)
 
