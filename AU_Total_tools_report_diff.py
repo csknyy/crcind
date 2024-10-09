@@ -70,9 +70,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     #merged_data = merged_data.drop(merged_data.columns[[0, 1, 2, 7, 8, 11, 12, 16, 17]], axis=1)
     #merged_data = merged_data.drop(merged_data.columns[[0, 1, 2, 7, 8, 16, 17]], axis=1)
 
-    last_three_columns = merged_data.iloc[:, -3:]
-    remaining_columns = merged_data.iloc[:, :-3]
-    merged_data = pd.concat([last_three_columns, remaining_columns], axis=1)
+    #last_three_columns = merged_data.iloc[:, -3:]
+    #remaining_columns = merged_data.iloc[:, :-3]
+    #merged_data = pd.concat([last_three_columns, remaining_columns], axis=1)
     
     st.dataframe(merged_data)
 
