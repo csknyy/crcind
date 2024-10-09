@@ -62,7 +62,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
     merged_data = merged_data.apply(pd.to_numeric, errors='coerce').fillna(0)
     
-    st.text(merged_data.iloc[:, -1].sum())
+    st.text(merged_data.iloc[:-1, -1].sum())
     st.text(merged_data.iloc[:, 3].sum())
     
     merged_data.iloc[-1, 5] = merged_data.iloc[:, 3].sum() / merged_data.iloc[:, -1].sum()
