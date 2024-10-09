@@ -66,11 +66,11 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     merged_data.iloc[-1, 6] = merged_data.iloc[:-1, -1].sum() / merged_data.iloc[:-1, 3].sum()
 
     merged_data.iloc[-1, 8] = merged_data.iloc[:-1, 7].sum() / merged_data.iloc[:-1, 4].sum()
-    
-    
+
+    merged_data.iloc[-1, 10] = merged_data.iloc[:-1, 9].sum() / merged_data.iloc[:-1, 4].sum()
 
 
-    
+
     
     st.dataframe(merged_data)
 
