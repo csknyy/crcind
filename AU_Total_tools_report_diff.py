@@ -51,8 +51,6 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     
     merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
 
-    merged_data = merged_data.apply(pd.to_numeric, errors='coerce').fillna(0)
-
     merged_data.loc['Summary', :] = 0
     for col in merged_data.columns:
         merged_data.loc['Summary', col] = merged_data[col].sum()
@@ -60,6 +58,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
     merged_data.iloc[-1, 2] = merged_data.iloc[:, 1].sum() / merged_data.iloc[:, 0].sum()
     
     merged_data['delete'] = np.where(merged_data.iloc[:, 3] != 0, merged_data.iloc[:, 3] / merged_data.iloc[:, 5], 0)
+
+    merged_data = merged_data.apply(pd.to_numeric, errors='coerce').fillna(0)
+    
     temp_total = merged_data.iloc[:-1, -1].sum()
     st.text(temp_total )
     st.text(merged_data.iloc[:-1, 3].sum())
