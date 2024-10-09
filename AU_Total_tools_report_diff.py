@@ -57,7 +57,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
     merged_data.iloc[-1, 2] = merged_data.iloc[:, 1].sum() / merged_data.iloc[:, 0].sum()
     
-    merged_data['delete'] = np.where((merged_data.iloc[:, 3] = 0) | (merged_data.iloc[:, 5] = 0), 0, merged_data.iloc[:, 3] / merged_data.iloc[:, 5])
+    merged_data['delete'] = np.where((merged_data.iloc[:, 3] == 0) | (merged_data.iloc[:, 5] == 0), 0, merged_data.iloc[:, 3] / merged_data.iloc[:, 5])
 
 
     merged_data = merged_data.apply(pd.to_numeric, errors='coerce').fillna(0)
