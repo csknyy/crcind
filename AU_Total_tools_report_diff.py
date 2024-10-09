@@ -69,8 +69,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
     merged_data.iloc[-1, 10] = merged_data.iloc[:-1, 9].sum() / merged_data.iloc[:-1, 4].sum()
 
-
-
+    merged_data = merged_data.drop(merged_data.columns[[0, 1, 2, 7, 8, 11, 12]], axis=1)
+    
     
     st.dataframe(merged_data)
 
