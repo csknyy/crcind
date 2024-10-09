@@ -36,12 +36,12 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         
         merged_data['Monthly Profit'] = merged_data.iloc[:, 1] - merged_data.iloc[:, -2]
         merged_data['Monthly Profit'] = merged_data['Monthly Profit'].replace(0, np.nan)
-        
-        merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
     
         merged_data.loc['Summary', :] = 0
         for col in merged_data.columns:
             merged_data.loc['Summary', col] = merged_data[col].sum()
+
+        merged_data['Monthly GP%'] = np.where(merged_data['Monthly Sales'] != 0, merged_data['Monthly Profit'] / merged_data['Monthly Sales'], 0)
     
         merged_data.iloc[-1, 2] = merged_data.iloc[:, 1].sum() / merged_data.iloc[:, 0].sum()
         
