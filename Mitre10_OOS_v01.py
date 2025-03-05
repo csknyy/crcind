@@ -70,6 +70,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         merged_data = pd.merge(farm_source_map, farm_source_data, left_on='Vendor Article Number', right_on='Legacy', how='inner')
         merged_data = merged_data[['Article Vendor', 'Vendor Article Number', 'Description', 'ETA to Mondiale', 'Comments']]
+        merged_data = merged_data.rename(columns={'ETA to Mondiale': 'ETA'})
         
         st.dataframe(merged_data)
 
