@@ -88,7 +88,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
     all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 2)
     all_M10_data = all_M10_data.rename(columns={'Item Number': 'Item number'})
 
-    merged_sales_data = pd.merge(data_BSS, all_NZ_data, left_on='Item number', right_on='All NZ Avg', how='inner')
+    merged_sales_data = pd.merge(all_NZ_data, data_BSS, left_on='Item number', right_on='All NZ Avg', how='inner')
 
     st.dataframe(merged_sales_data)
     st.dataframe(all_NZ_data)
