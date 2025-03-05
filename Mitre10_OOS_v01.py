@@ -91,9 +91,10 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
     merged_sales_data = pd.merge(data_BSS, all_NZ_data[['Item number', 'All NZ Avg']], on='Item number', how='left')
     data_BSS['All NZ Avg'] = merged_sales_data['All NZ Avg']
 
+    merged_sales_data = pd.merge(data_BSS, all_M10_data[['Item number', 'Mitre 10 Avg']], on='Item number', how='left')
+    data_BSS['Mitre 10 Avg'] = merged_sales_data['Mitre 10 Avg']
+
     st.dataframe(data_BSS)
-    st.dataframe(all_NZ_data)
-    st.dataframe(all_M10_data)
 
     #except Exception as e:
     #    st.error(f"An error occurred: {e}")
