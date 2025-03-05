@@ -8,8 +8,10 @@ def convert_data(data):
 
 uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key="file_uploader_0")
 uploaded_file_1 = st.file_uploader("Upload the 'M10 Bronze CRC Ranking Report' .xlsm file", key="file_uploader_1")
+uploaded_file_2 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for Mitre10 NZ using the financial year report", key="file_uploader_2")
+uploaded_file_3 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for all NZ using the financial year report", key="file_uploader_3")
 
-if uploaded_file_0 is not None and uploaded_file_1 is not None:
+if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file_2 is not None and uploaded_file_3:
     try:
         data_BSS = pd.read_excel(uploaded_file_0, sheet_name='Products below safety stock')
 
@@ -73,6 +75,17 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         merged_data = merged_data.rename(columns={'ETA to Mondiale': 'ETA'})
         
         st.dataframe(merged_data)
+
+        st.markdown('---')
+
+        all_NZ_data = uploaded_file_3.iloc[:,[0,1,2,11]]
+        all_NZ_data['All NZ Avg'] = all_NZ_data.iloc[:,-1] / 12
+
+        all_M10_data = uploaded_file_2.iloc[:,[0,1,2,11]]
+        all_M10_data['Mitre 10 Avg'] = all_M10_data.iloc[:,-1] / 12
+
+        st.dataframe(all_NZ_data)
+        st.dataframe(all_M10_data)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
