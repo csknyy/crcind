@@ -80,13 +80,11 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
 
     all_NZ_data = pd.read_excel(uploaded_file_3, engine='openpyxl', header=2)
     all_NZ_data = all_NZ_data.iloc[:,[0,1,2,11]]
-    st.dataframe(all_NZ_data)
-    all_NZ_data['All NZ Avg'] = all_NZ_data.iloc[:,-1] / 12
+    all_NZ_data['All NZ Avg'] = round(all_NZ_data.iloc[:,-1] / 12, 2)
 
     all_M10_data = pd.read_excel(uploaded_file_2, engine='openpyxl', header=2)
     all_M10_data = all_M10_data.iloc[:,[0,1,2,11]]
-    st.dataframe(all_M10_data)
-    all_M10_data['Mitre 10 Avg'] = all_M10_data.iloc[:,-1] / 12
+    all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 2)
 
     st.dataframe(all_NZ_data)
     st.dataframe(all_M10_data)
