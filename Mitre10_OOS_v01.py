@@ -68,14 +68,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
 
         farm_source_data = data_BSS[data_BSS['Legacy'].isin(farm_source_items)]
 
-        # Debug statements to check intermediate data
-        st.write("Farm Source Map:")
-        st.dataframe(farm_source_map)
-        st.write("Farm Source Data:")
-        st.dataframe(farm_source_data)
-
         merged_data = pd.merge(farm_source_map, farm_source_data, left_on='Vendor Article Number', right_on='Legacy', how='inner')
-
+        merged_data = merged_data['Article Number','Vendor Article Number','Description','ETA','Comments']
+        
         st.dataframe(merged_data)
 
     except Exception as e:
