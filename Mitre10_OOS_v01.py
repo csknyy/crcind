@@ -80,12 +80,12 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
 
     all_NZ_data = pd.read_excel(uploaded_file_3, engine='openpyxl', header=2)
     all_NZ_data = all_NZ_data.iloc[:,[0,1,2,11]]
-    all_NZ_data['All NZ Avg'] = round(all_NZ_data.iloc[:,-1] / 12, 2)
+    all_NZ_data['All NZ Avg'] = round(all_NZ_data.iloc[:,-1] / 12, 0)
     all_NZ_data = all_NZ_data.rename(columns={'Item Number': 'Item number'})
 
     all_M10_data = pd.read_excel(uploaded_file_2, engine='openpyxl', header=2)
     all_M10_data = all_M10_data.iloc[:,[0,1,2,11]]
-    all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 2)
+    all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 0)
     all_M10_data = all_M10_data.rename(columns={'Item Number': 'Item number'})
 
     merged_sales_data = pd.merge(data_BSS, all_NZ_data[['Item number', 'All NZ Avg']], on='Item number', how='left')
