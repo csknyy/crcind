@@ -10,6 +10,7 @@ uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key=
 uploaded_file_1 = st.file_uploader("Upload the 'M10 Bronze CRC Ranking Report' .xlsm file", key="file_uploader_1")
 uploaded_file_2 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for Mitre10 NZ using the financial year report", key="file_uploader_2")
 uploaded_file_3 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for all NZ using the financial year report", key="file_uploader_3")
+uploaded_file_4 = st.file_uploader("For Martin - Upload the rolling 12 month sales data for Bunnings NZ using the financial year report", key="file_uploader_3")
 
 if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file_2 is not None and uploaded_file_3:
     try:
@@ -87,12 +88,22 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         all_M10_data = all_M10_data.iloc[:,[0,1,2,11]]
         all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 0)
         all_M10_data = all_M10_data.rename(columns={'Item Number': 'Item number'})
+
+        all_Bunnigs_data = pd.read_excel(uploaded_file_4, engine='openpyxl', header=2)
+        all_Bunnigs_data = all_Bunnigs_data.iloc[:,[0,1,2,11]]
+        all_Bunnigs_data['Bunnings Avg'] = round(all_M10_data.iloc[:,-1] / 12, 0)
+        all_Bunnigs_data = all_Bunnigs_data.rename(columns={'Item Number': 'Item number'})
+
+    
     
         merged_sales_data = pd.merge(data_BSS, all_NZ_data[['Item number', 'All NZ Avg']], on='Item number', how='left')
         data_BSS['All NZ Avg'] = merged_sales_data['All NZ Avg']
     
         merged_sales_data = pd.merge(data_BSS, all_M10_data[['Item number', 'Mitre 10 Avg']], on='Item number', how='left')
         data_BSS['Mitre 10 Avg'] = merged_sales_data['Mitre 10 Avg']
+
+        merged_sales_data = pd.merge(data_BSS, all_Bunnings_data[['Item number', 'Bunnings Avg']], on='Item number', how='left')
+        data_BSS['Bunnings Avg'] = merged_sales_data['Bunnings Avg']
     
         st.dataframe(data_BSS)
 
