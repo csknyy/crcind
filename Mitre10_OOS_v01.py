@@ -89,10 +89,10 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         all_M10_data['Mitre 10 Avg'] = round(all_M10_data.iloc[:,-1] / 12, 0)
         all_M10_data = all_M10_data.rename(columns={'Item Number': 'Item number'})
 
-        all_Bunnigs_data = pd.read_excel(uploaded_file_4, engine='openpyxl', header=2)
-        all_Bunnigs_data = all_Bunnigs_data.iloc[:,[0,1,2,11]]
-        all_Bunnigs_data['Bunnings Avg'] = round(all_Bunnigs_data.iloc[:,-1] / 12, 0)
-        all_Bunnigs_data = all_Bunnigs_data.rename(columns={'Item Number': 'Item number'})
+        all_Bunnings_data = pd.read_excel(uploaded_file_4, engine='openpyxl', header=2)
+        all_Bunnings_data = all_Bunnings_data.iloc[:,[0,1,2,11]]
+        all_Bunnings_data['Bunnings Avg'] = round(all_Bunnings_data.iloc[:,-1] / 12, 0)
+        all_Bunnings_data = all_Bunnings_data.rename(columns={'Item Number': 'Item number'})
 
     
     
