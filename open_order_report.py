@@ -31,6 +31,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         st.dataframe(PowerBI)
         st.dataframe(D3FO)
 
+        PowerBI['Sales Order Number'] = [str(i) for i in PowerBI['Sales Order Number']]
+        D3FO['Number'] = [str(i) for i in D3FO['Number']]
+
         data = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Sales Order Number", "Open Ordered $", "Open Qty"]].groupby(by='Sales Order Number').sum().sort_values(by="Open Ordered $", ascending=False)
         data.index.rename('Sales Order Number', inplace=True)
         data = data.reset_index()
