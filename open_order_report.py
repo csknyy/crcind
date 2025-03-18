@@ -21,6 +21,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         D3FO = pd.read_excel(uploaded_file_0, header=0)
 
         PowerBI = pd.read_excel(uploaded_file_1, header=2)
+        PowerBI = PowerBI[PowerBI["Market Segment"].isin(["Automotive", "Consumer", "Industrial"])]
 
         D3FO = D3FO[D3FO["Handling status"] == "Activated"]
 
