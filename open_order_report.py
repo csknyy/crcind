@@ -11,7 +11,8 @@ uploaded_file_0 = st.file_uploader("Upload the Picking list registration report 
 
 st.markdown('---')
 
-st.markdown('<a href="https://app.powerbi.com/groups/me/apps/214e4084-75df-4879-8c90-d816976503d1/reports/dcd46d0c-50c8-4280-804c-9422172391c3/ReportSection3dd6b96d4bddd09e873d?ctid=635f5fbb-65ae-48dc-a182-43b70db76a78&experience=power-bi" style="font-size: 14px;">Open Orders by Order Creation Date report</a>', unsafe_allow_html=True)
+st.markdown('<a href="https://app.powerbi.com/groups/me/apps/214e4084-75df-4879-8c90-d816976503d1/reports/dcd46d0c-50c8-4280-804c-9422172391c3/ReportSection3dd6b96d4bddd09e873d?ctid=635f5fbb-65ae-48dc-a182-43b70db76a78&experience=power-bi" style="font-size: 14px;">NZ Open Orders by Order Creation Date report</a>', unsafe_allow_html=True)
+st.markdown('<a href="https://app.powerbi.com/groups/me/apps/b47604a7-a105-4fbd-8f96-fea5811b5570/reports/5d65a443-95ad-4d98-8180-72fa34dc66f0/ReportSection3dd6b96d4bddd09e873d?ctid=635f5fbb-65ae-48dc-a182-43b70db76a78&experience=power-bi" style="font-size: 14px;">AU Open Orders by Order Creation Date report</a>', unsafe_allow_html=True)
 uploaded_file_1 = st.file_uploader("Upload the Open Orders by Order Creation Date report from Power BI ", key="file_uploader_1")
 
 st.markdown('---')
