@@ -34,8 +34,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         data = data.reset_index()
 
         st.header(f'Total value: ${data["Open Ordered $"].sum():,.2f}')
-        st.subheader(f'Total lines: {len(data["Open Ordered $"])}')
-        st.subheader(f'Total qty: {data["Open Qty"].sum():,.0f}')
+        st.subheader(f'Total sales orders: {len(data["Open Ordered $"])}')
+        st.subheader(f'Total quantity: {data["Open Qty"].sum():,.0f}')
 
         data2 = PowerBI[PowerBI['Sales Order Number'].isin(D3FO['Number'])][["Item Description", "Open Ordered $", "Open Qty"]].groupby(by='Item Description').sum().sort_values(by="Open Qty", ascending=False)
         data2["Open Ordered $"] = [round(i,2) for i in data2["Open Ordered $"]]
