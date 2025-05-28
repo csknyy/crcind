@@ -6,8 +6,6 @@ st.set_page_config(page_title="Mitre 10 OOS report", layout="wide")
 def convert_data(data):
     return data.to_csv(index=False).encode('utf-8')
 
-uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key="file_uploader_0")
-
 # Radio button to decide if uploaded_file_1 is required
 use_m10_ranking = st.radio(
     "Do you want to include the 'M10 Bronze CRC Ranking Report'?",
@@ -19,8 +17,9 @@ uploaded_file_1 = None
 if use_m10_ranking == "Yes":
     uploaded_file_1 = st.file_uploader("Upload the 'M10 Bronze CRC Ranking Report' .xlsm file", key="file_uploader_1")
 
-uploaded_file_2 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for Mitre10 NZ using the financial year report", key="file_uploader_2")
+uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key="file_uploader_0")
 uploaded_file_3 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for all NZ using the financial year report", key="file_uploader_3")
+uploaded_file_2 = st.file_uploader("For Bryce - Upload the rolling 12 month sales data for Mitre10 NZ using the financial year report", key="file_uploader_2")
 uploaded_file_4 = st.file_uploader("For Martin - Upload the rolling 12 month sales data for Bunnings NZ using the financial year report", key="file_uploader_4")
 
 # Check if essential files are uploaded, and handle optional file based on radio button
