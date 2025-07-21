@@ -37,11 +37,11 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data['Mitre 10 Promo'] = ''
         data['Supplier Comments'] = ''
         
-        data = pd.merge(data, data_M10_ranking[['Supplier Item Code','$Value MAT','Units MAT','SOH LW']], how='left', left_on='Legacy', right_on='Supplier Item Code')
+        data = pd.merge(data, data_M10_ranking[['Supplier Item Code','$Value MAT','Units MAT','SOH LW']], how='left', left_on='Search name', right_on='Supplier Item Code')
         
         del data['Supplier Item Code']
         
-        data = pd.merge(data, data_M10_stock[['Supplier Item Code','WOC ']], how='left', left_on='Legacy', right_on='Supplier Item Code')
+        data = pd.merge(data, data_M10_stock[['Supplier Item Code','WOC ']], how='left', left_on='Search name', right_on='Supplier Item Code')
 
         del data['Supplier Item Code']
         
