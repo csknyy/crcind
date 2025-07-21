@@ -18,9 +18,11 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data_M10_ranking = data_M10_ranking.iloc[:,4:]
         data_M10_stock = pd.read_excel(uploaded_file_1, engine = 'openpyxl', sheet_name = 'Stock',header = 2)
         data_M10_stock = data_M10_stock.iloc[:,2:]
-        data_available_physical = pd.read_excel(uploaded_file_1, engine = 'openpyxl', header = 0)
+        data_available_physical = pd.read_excel(uploaded_file_1, engine = 'openpyxl')
         
         #####################################
+
+        st.dataframe(data_available_physical)
         
         data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
         data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy')
