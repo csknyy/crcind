@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import datetime
+from datetime import date
 
 st.set_page_config(page_title="Mitre 10 OOS report", layout="wide")
 
