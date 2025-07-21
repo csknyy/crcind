@@ -8,8 +8,9 @@ def convert_data(data):
 
 uploaded_file_0 = st.file_uploader("Upload the 'NZ BSS Report' .xlsx file", key="file_uploader_0")
 uploaded_file_1 = st.file_uploader("Upload the 'M10 Bronze CRC Ranking Report' .xlsm file", key="file_uploader_1")
+uploaded_file_2 = st.file_uploader("Upload the 'NZ Inventory' .xlsx file", key="file_uploader_2")
 
-if uploaded_file_0 is not None and uploaded_file_1 is not None:
+if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file_2 is not None:
     try:
         data_BSS = pd.read_excel(uploaded_file_0, sheet_name = 'Products below safety stock')
 
@@ -17,10 +18,12 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None:
         data_M10_ranking = data_M10_ranking.iloc[:,4:]
         data_M10_stock = pd.read_excel(uploaded_file_1, engine = 'openpyxl', sheet_name = 'Stock',header = 2)
         data_M10_stock = data_M10_stock.iloc[:,2:]
+        data_available_physical = pd.read_excel(uploaded_file_1, engine = 'openpyxl', sheet_name = 'Sheet1',header = 0)
         
         #####################################
         
         data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
+        data = pd.merge(data, data_available_physical[['Search name','Available physical']]
         
         data['SOH Status'] = ''
         
