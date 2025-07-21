@@ -58,12 +58,12 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         #data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
         #Working# data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
 
-        exclude_range = ['Range 0', 'Range 8']
-        exclude_search_name = ['4939']
-
         data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
-        data = data[~data['Range'].isin(exclude_range)]
-        data = data[~data['Search name'].isin(exclude_search_name)]
+        
+        #exclude_range = ['Range 0', 'Range 8']
+        #exclude_search_name = ['4939']
+        #data = data[~data['Range'].isin(exclude_range)]
+        #data = data[~data['Search name'].isin(exclude_search_name)]
 
         remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
         for col in remove_cols:
