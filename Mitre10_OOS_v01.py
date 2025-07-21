@@ -23,7 +23,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         #####################################
         
         data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
-        #data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy', right_on='Search name')
+        #Working# data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy', right_on='Search name')
         data = pd.merge(data_available_physical[['Search name','Available physical']], data, how='left', left_on='Search name', right_on='Legacy')
         
         data['SOH Status'] = ''
@@ -53,7 +53,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
           data[i] = data[i].fillna(0).astype(int)
         
         #data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
-        data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
+        #Working# data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
+        data = data[data['Available physical']==0]
 
         remove_cols = ['Physical inventory',' ','Available physical','Search name']
         
