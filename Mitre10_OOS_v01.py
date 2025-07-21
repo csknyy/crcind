@@ -63,6 +63,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         for col in remove_cols:
             del data[col]
 
+        data = data.rename(columns={'Search Name': 'Supplier Sku'})
+
         st.dataframe(data)
 
         csv = convert_data(data)
