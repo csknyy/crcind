@@ -58,7 +58,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         #Working# data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
         data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
 
-        remove_cols = ['Available physical', 'Legacy','ETA to Mondiale']
+        remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
         for col in remove_cols:
             del data[col]
 
