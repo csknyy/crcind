@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import datetime
 
 st.set_page_config(page_title="Mitre 10 OOS report", layout="wide")
 
@@ -31,8 +33,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         
         del data['Supplier Item Code']
         
-        data['Next Availabilty Date (NAVD)'] = data['ETA to Mondiale']
-        
+        data['Next Availabilty Date (NAVD)'] = np.where(data['ETA to Mondiale'].isna(), pd.to_datetime(date.today()) + pd.Timedelta(days=28), data['ETA to Mondiale'])
         
         data['Date item went Out of Stock'] = ''
         data['Days Out Of Stock'] = ''
