@@ -170,7 +170,8 @@ if len(crc_codes)>0:
       except:
         pass
 
-
+    print(dataframe)
+    
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
