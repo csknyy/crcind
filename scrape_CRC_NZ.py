@@ -23,8 +23,6 @@ if len(crc_codes)>0:
     for i in crc_codes_list:
       try:
         url = url_base + 'catalogsearch/result/?q=' + str(i)
-
-        print(url)
   
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -87,7 +85,7 @@ if len(crc_codes)>0:
         
         ###SAFETY DATA SHEET URL
         try:
-          safety_data_sheet_url = soup.find('div', class_='box-tocart').find('a', class_='dropdown-item').get('href')
+          safety_data_sheet_url = soup.find('a', class_='dropdown-item').get('href')
           data_dict['Safety Data Sheet'] = safety_data_sheet_url
         except:
           data_dict['Safety Data Sheet'] = ""
@@ -172,8 +170,6 @@ if len(crc_codes)>0:
       except:
         pass
 
-    print(dataframe)
-    
     st.dataframe(data[data['Product Code'].isin(crc_codes_list)])
   
   except Exception as e:
