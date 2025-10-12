@@ -102,10 +102,11 @@ if len(crc_codes)>0:
             for page in pdf.pages:
                 pdf_text += page.extract_text()
 
-        st.write(pdf_text)
-
+        print(pdf_text)
+              
         try:
           if url_country == 'NZ':
+            #mixtures_index = pdf_text.split('\n').index('Mixtures')
             mixtures_index = pdf_text.split('\n').index('Mixtures')
             mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6]
         
