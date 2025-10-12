@@ -86,10 +86,6 @@ if len(crc_codes)>0:
         ###SAFETY DATA SHEET URL
         try:
           safety_data_sheet_url = soup.find('a', class_='dropdown-item').get('href')
-
-          ##########
-          print(safety_data_sheet_url)
-          ##########
           
           data_dict['Safety Data Sheet'] = safety_data_sheet_url
         except:
@@ -97,6 +93,8 @@ if len(crc_codes)>0:
         
         ###ACTIVE INGREDIENTS
         response2 = requests.get(safety_data_sheet_url)
+
+        print(response2)
         
         with open("downloaded_pdf.pdf", "wb") as pdf_file:
             pdf_file.write(response2.content)
