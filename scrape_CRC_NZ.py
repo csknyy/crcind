@@ -101,13 +101,14 @@ if len(crc_codes)>0:
             pdf_text = ""
             for page in pdf.pages:
                 pdf_text += page.extract_text()
-
-        st.text(pdf_text)
               
         try:
           if url_country == 'NZ':
             #mixtures_index = pdf_text.split('\n').index('Mixtures')
             mixtures_index = pdf_text.split('\n').index('Mixtures')
+
+            st.text(pdf_text.split('\n'))
+            
             mixture = pdf_text.split('\n')[mixtures_index + 2 : mixtures_index + 6]
         
             def extract_name(input_string):
