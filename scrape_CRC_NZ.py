@@ -102,7 +102,7 @@ if len(crc_codes)>0:
             for page in pdf.pages:
                 pdf_text += page.extract_text()
 
-        print(pdf_text)
+        st.text(pdf_text)
               
         try:
           if url_country == 'NZ':
