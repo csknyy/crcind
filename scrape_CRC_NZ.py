@@ -93,8 +93,6 @@ if len(crc_codes)>0:
         
         ###ACTIVE INGREDIENTS
         response2 = requests.get(safety_data_sheet_url)
-
-        print(response2)
         
         with open("downloaded_pdf.pdf", "wb") as pdf_file:
             pdf_file.write(response2.content)
@@ -103,6 +101,9 @@ if len(crc_codes)>0:
             pdf_text = ""
             for page in pdf.pages:
                 pdf_text += page.extract_text()
+
+        st.write(pdf_text)
+
         try:
           if url_country == 'NZ':
             mixtures_index = pdf_text.split('\n').index('Mixtures')
