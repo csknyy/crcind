@@ -54,11 +54,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         
         for i in ['M10 Code', '$Value MAT', 'Units MAT', 'SOH LW', 'WOC ']:
           data[i] = data[i].fillna(0).astype(int)
-        
-        #data = data[(data['Physical inventory']==0) & (data['M10 Code'] != 0)]
-        #Working# data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
 
-        data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
+        #data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
+        data = data[(data['Available physical']<2) & (data['M10 Code'] != 0)]
         
         #exclude_range = ['Range 0', 'Range 8']
         #exclude_search_name = ['4939']
