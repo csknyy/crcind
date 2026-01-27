@@ -61,9 +61,10 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data = data[(data['Available physical']<2) & (data['M10 Code'] != 0)]
         
         #exclude_range = ['Range 0', 'Range 8']
-        #exclude_search_name = ['4939']
         #data = data[~data['Range'].isin(exclude_range)]
-        #data = data[~data['Search name'].isin(exclude_search_name)]
+        
+        exclude_search_name = ['1753207','4939','1753208','1753210']
+        data = data[~data['Search name'].isin(exclude_search_name)]
 
         remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
         for col in remove_cols:
@@ -72,8 +73,6 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data = data.rename(columns={'Search name': 'Supplier Sku'})
         data = data.drop_duplicates()
         data = data.reset_index(drop=True)
-
-        exclude_items = ['1753207','4939','1753208','1753210']
 
         st.dataframe(data)
 
