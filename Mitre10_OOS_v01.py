@@ -23,6 +23,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data_available_physical = pd.read_excel(uploaded_file_2, engine = 'openpyxl')
         
         #####################################
+
+        data_available_physical = data_available_physical.groupby(by="Search name").sum()['Available physical']
+        data_available_physical = data_available_physical.reset_index(drop=True)
         
         #Working# data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
         #Working# data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy', right_on='Search name')
