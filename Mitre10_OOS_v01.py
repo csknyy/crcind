@@ -73,6 +73,8 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         data = data.drop_duplicates()
         data = data.reset_index(drop=True)
 
+        exclude_items = ['1753207','4939','1753208','1753210']
+
         st.dataframe(data)
 
         csv = convert_data(data)
