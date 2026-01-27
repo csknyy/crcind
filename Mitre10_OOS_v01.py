@@ -68,6 +68,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
             del data[col]
 
         data = data.rename(columns={'Search name': 'Supplier Sku'})
+        data = data.drop_duplicates()
 
         st.dataframe(data)
 
