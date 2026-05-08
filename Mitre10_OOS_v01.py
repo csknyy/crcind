@@ -66,9 +66,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         exclude_search_name = ['1753207','4939','1753208','1753210']
         data = data[~data['Search name'].isin(exclude_search_name)]
 
-        #remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
-        #for col in remove_cols:
-        #    del data[col]
+        remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
+        for col in remove_cols:
+            del data[col]
 
         data = data.rename(columns={'Search name': 'Supplier Sku'})
         data = data.drop_duplicates()
