@@ -63,7 +63,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         #exclude_range = ['Range 0', 'Range 8']
         #data = data[~data['Range'].isin(exclude_range)]
         
-        exclude_search_name = ['1753207','4939','1753208','1753210']
+        exclude_search_name = ['1753207','4939','1753208','1753210','1757340','1752781','1753209','1753612','1754202','4947']
         data = data[~data['Search name'].isin(exclude_search_name)]
 
         remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
