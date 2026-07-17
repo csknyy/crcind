@@ -24,13 +24,14 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         
         #####################################
 
-        data_available_physical = data_available_physical.groupby(by="Search name", as_index=False)['Available physical'].sum()
+        data_available_physical['Available physical2'] = data_available_physical['Available physical'] + data_available_physical['Physical reserved']
+        data_available_physical = data_available_physical.groupby(by="Search name", as_index=False)['Available physical2'].sum()
 
         #st.dataframe(data_available_physical)
         
         #Working# data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
         #Working# data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy', right_on='Search name')
-        data = pd.merge(data_available_physical[['Search name','Available physical']], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Search name', right_on='Supplier Item Code')
+        data = pd.merge(data_available_physical[['Search name','Available physical2']], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Search name', right_on='Supplier Item Code')
         data = pd.merge(data,data_BSS[['Legacy','ETA to Mondiale']], how='left', left_on='Search name', right_on='Legacy')
         
         data['SOH Status'] = ''
