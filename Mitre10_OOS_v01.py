@@ -25,9 +25,9 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         #####################################
 
         
-        data_available_physical['Available physical_new'] = data_available_physical['Available physical'] + data_available_physical['Physical reserved']
-        del data_available_physical['Available physical']
-        data_available_physical = data_available_physical.rename(columns={'Available physical_new': 'Available physical'})
+        #Working# data_available_physical['Available physical_new'] = data_available_physical['Available physical'] + data_available_physical['Physical reserved']
+        #Working# del data_available_physical['Available physical']
+        #Working# data_available_physical = data_available_physical.rename(columns={'Available physical_new': 'Available physical'})
         
         data_available_physical = data_available_physical.groupby(by="Search name", as_index=False)['Available physical'].sum()
 
