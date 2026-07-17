@@ -24,14 +24,18 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         
         #####################################
 
-        data_available_physical['Available physical2'] = data_available_physical['Available physical'] + data_available_physical['Physical reserved']
-        data_available_physical = data_available_physical.groupby(by="Search name", as_index=False)['Available physical2'].sum()
+        
+        data_available_physical['Available physical_new'] = data_available_physical['Available physical'] + data_available_physical['Physical reserved']
+        del data_available_physical['Available physical']
+        data = data.rename(columns={'Available physical_new': 'Available physical'})
+        
+        data_available_physical = data_available_physical.groupby(by="Search name", as_index=False)['Available physical'].sum()
 
         #st.dataframe(data_available_physical)
         
         #Working# data = pd.merge(data_BSS['Legacy'], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Legacy', right_on='Supplier Item Code')
         #Working# data = pd.merge(data, data_available_physical[['Search name','Available physical']],how='left', left_on='Legacy', right_on='Search name')
-        data = pd.merge(data_available_physical[['Search name','Available physical2']], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Search name', right_on='Supplier Item Code')
+        data = pd.merge(data_available_physical[['Search name','Available physical']], data_M10_ranking[['Supplier Item Code', 'M10 Code','Item', 'Department', 'Range']], how='left', left_on='Search name', right_on='Supplier Item Code')
         data = pd.merge(data,data_BSS[['Legacy','ETA to Mondiale']], how='left', left_on='Search name', right_on='Legacy')
         
         data['SOH Status'] = ''
@@ -61,7 +65,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
           data[i] = data[i].fillna(0).astype(int)
 
         #data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
-        data = data[(data['Available physical2']<2) & (data['M10 Code'] != 0)]
+        data = data[(data['Available physical']<2) & (data['M10 Code'] != 0)]
         
         #exclude_range = ['Range 0', 'Range 8']
         #data = data[~data['Range'].isin(exclude_range)]
@@ -69,7 +73,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         exclude_search_name = ['1753207','4939','1753208','1753210','1757340','1752781','1753209','1753612','1754202','4947']
         data = data[~data['Search name'].isin(exclude_search_name)]
 
-        remove_cols = ['Available physical2', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
+        remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
         for col in remove_cols:
             del data[col]
 
