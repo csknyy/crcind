@@ -61,7 +61,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
           data[i] = data[i].fillna(0).astype(int)
 
         #data = data[(data['Available physical']==0) & (data['M10 Code'] != 0)]
-        data = data[(data['Available physical']<2) & (data['M10 Code'] != 0)]
+        data = data[(data['Available physical2']<2) & (data['M10 Code'] != 0)]
         
         #exclude_range = ['Range 0', 'Range 8']
         #data = data[~data['Range'].isin(exclude_range)]
@@ -69,7 +69,7 @@ if uploaded_file_0 is not None and uploaded_file_1 is not None and uploaded_file
         exclude_search_name = ['1753207','4939','1753208','1753210','1757340','1752781','1753209','1753612','1754202','4947']
         data = data[~data['Search name'].isin(exclude_search_name)]
 
-        remove_cols = ['Available physical', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
+        remove_cols = ['Available physical2', 'Legacy', 'ETA to Mondiale', ' ', 'Physical inventory']
         for col in remove_cols:
             del data[col]
 
